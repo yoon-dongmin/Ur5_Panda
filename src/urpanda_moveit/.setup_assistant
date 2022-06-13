@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: ur5_description
+    relative_path: urdf/ur5_panda_hand.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/ur5.srdf
+  CONFIG:
+    author_name: ydm
+    author_email: ehdals6034@naver.com
+    generated_timestamp: 1655092361

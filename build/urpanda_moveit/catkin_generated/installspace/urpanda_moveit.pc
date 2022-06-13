@@ -1,0 +1,8 @@
+prefix=/urpanda_ws/install
+
+Name: urpanda_moveit
+Description: Description of urpanda_moveit
+Version: 0.3.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
