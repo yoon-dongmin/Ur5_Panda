@@ -1,4 +1,4 @@
-prefix=/urpanda_ws/devel
+prefix=/ur5/devel
 
 Name: ur5_description
 Description: Description of ur5_description

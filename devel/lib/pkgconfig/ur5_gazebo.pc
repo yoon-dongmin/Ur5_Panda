@@ -1,4 +1,4 @@
-prefix=/urpanda_ws/devel
+prefix=/ur5/devel
 
 Name: ur5_gazebo
 Description: Description of ur5_gazebo

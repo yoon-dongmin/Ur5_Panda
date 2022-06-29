@@ -1,4 +1,4 @@
-prefix=/urpanda_ws/devel
+prefix=/ur5/devel
 
 Name: urpanda_moveit
 Description: Description of urpanda_moveit
