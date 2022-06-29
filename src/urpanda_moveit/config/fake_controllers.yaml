@@ -14,7 +14,5 @@ controller_list:
     joints:
       - panda_finger_joint1
 initial:  # Define initial robot poses.
-#  - group: arm
-#    pose: home
-
-  []
+  - group: arm
+    pose: ready
