@@ -7,5 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export PWD='/ur5/build'
-export ROS_PACKAGE_PATH='/urpanda_ws/src:/ur5/src:/ros_ws/src:/opt/ros/melodic/share'
+export PWD='/ur5_panda/build'

@@ -67,14 +67,14 @@ set(ur5_description_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(ur5_description_SOURCE_PREFIX /ur5/src/ur5/ur5_description)
-  set(ur5_description_DEVEL_PREFIX /ur5/devel)
+  set(ur5_description_SOURCE_PREFIX /ur5_panda/src/ur5/ur5_description)
+  set(ur5_description_DEVEL_PREFIX /ur5_panda/devel)
   set(ur5_description_INSTALL_PREFIX "")
   set(ur5_description_PREFIX ${ur5_description_DEVEL_PREFIX})
 else()
   set(ur5_description_SOURCE_PREFIX "")
   set(ur5_description_DEVEL_PREFIX "")
-  set(ur5_description_INSTALL_PREFIX /ur5/install)
+  set(ur5_description_INSTALL_PREFIX /ur5_panda/install)
   set(ur5_description_PREFIX ${ur5_description_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /ur5/install/lib;/ur5/devel/lib;/ros_ws/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /ur5_panda/install/lib;/ur5_panda/devel/lib;/ros_ws/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

@@ -1,4 +1,4 @@
-prefix=/ur5/install
+prefix=/ur5_panda/install
 
 Name: ur5_description
 Description: Description of ur5_description

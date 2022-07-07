@@ -1,0 +1,2 @@
+set(panda_move_MESSAGE_FILES "/ur5_panda/src/panda_move/msg/Action.msg;/ur5_panda/src/panda_move/msg/Predicate.msg;/ur5_panda/src/panda_move/msg/ExecutionCheck.msg")
+set(panda_move_SERVICE_FILES "/ur5_panda/src/panda_move/srv/Init.srv;/ur5_panda/src/panda_move/srv/Sync.srv;/ur5_panda/src/panda_move/srv/Plan.srv;/ur5_panda/src/panda_move/srv/Hand.srv;/ur5_panda/src/panda_move/srv/MotionCheck.srv;/ur5_panda/src/panda_move/srv/ActionSequences.srv;/ur5_panda/src/panda_move/srv/NewState.srv")

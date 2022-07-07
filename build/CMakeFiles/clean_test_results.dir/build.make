@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /urpanda_ws/src
+CMAKE_SOURCE_DIR = /ur5_panda/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /urpanda_ws/build
+CMAKE_BINARY_DIR = /ur5_panda/build
 
 # Utility rule file for clean_test_results.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /urpanda_ws/build
 include CMakeFiles/clean_test_results.dir/progress.make
 
 CMakeFiles/clean_test_results:
-	/usr/bin/python2 /opt/ros/melodic/share/catkin/cmake/test/remove_test_results.py /urpanda_ws/build/test_results
+	/usr/bin/python2 /opt/ros/melodic/share/catkin/cmake/test/remove_test_results.py /ur5_panda/build/test_results
 
 clean_test_results: CMakeFiles/clean_test_results
 clean_test_results: CMakeFiles/clean_test_results.dir/build.make
@@ -71,6 +71,6 @@ CMakeFiles/clean_test_results.dir/clean:
 .PHONY : CMakeFiles/clean_test_results.dir/clean
 
 CMakeFiles/clean_test_results.dir/depend:
-	cd /urpanda_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /urpanda_ws/src /urpanda_ws/src /urpanda_ws/build /urpanda_ws/build /urpanda_ws/build/CMakeFiles/clean_test_results.dir/DependInfo.cmake --color=$(COLOR)
+	cd /ur5_panda/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /ur5_panda/src /ur5_panda/src /ur5_panda/build /ur5_panda/build /ur5_panda/build/CMakeFiles/clean_test_results.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/clean_test_results.dir/depend
 

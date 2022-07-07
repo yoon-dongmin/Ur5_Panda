@@ -4,5 +4,5 @@ PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
 PROJECT_NAME = "ur5_gazebo"
-PROJECT_SPACE_DIR = "/ur5/install"
+PROJECT_SPACE_DIR = "/ur5_panda/install"
 PROJECT_VERSION = "0.0.0"

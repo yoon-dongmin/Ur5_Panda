@@ -1,4 +1,4 @@
-prefix=/ur5/devel
+prefix=/ur5_panda/devel
 
 Name: franka_description
 Description: Description of franka_description

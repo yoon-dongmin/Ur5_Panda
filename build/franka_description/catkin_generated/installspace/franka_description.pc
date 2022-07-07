@@ -1,4 +1,4 @@
-prefix=/ur5/install
+prefix=/ur5_panda/install
 
 Name: franka_description
 Description: Description of franka_description

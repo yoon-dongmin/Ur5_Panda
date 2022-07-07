@@ -1,4 +1,4 @@
-prefix=/ur5/install
+prefix=/ur5_panda/install
 
 Name: urpanda_moveit
 Description: Description of urpanda_moveit

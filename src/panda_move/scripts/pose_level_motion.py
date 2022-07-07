@@ -13,7 +13,7 @@ import math as m
 
 import numpy as np
 from std_msgs.msg import String
-from moveit_commander.conversions import pose_to_list, list_to_pose # moveit에 list를 pose로 바꿔주는 함수
+from moveit_commander.conversions import pose_to_list, list_to_pose #moveit에 list를 pose로 바꿔주는 함수
 from tf2_ros import StaticTransformBroadcaster, TransformBroadcaster
 from geometry_msgs.msg import TransformStamped, Pose
 from visualization_msgs.msg import Marker, MarkerArray
@@ -94,7 +94,7 @@ class PoseLevelMotion(object):
         # self.move_group.set_num_planning_attempts()
         # self.move_group.set_max_velocity_scaling_factor()
         # self.move_group.set_max_acceleration_scaling_factor()
-        self.move_group.set_end_effector_link('ee_link')
+        self.move_group.set_end_effector_link('tool0')
 
         # Planning Parameter #다음의 6개 존재
         self.planning_frame = self.move_group.get_planning_frame()
@@ -126,16 +126,12 @@ class PoseLevelMotion(object):
         self.joint.append(moveit_commander.RobotCommander.Joint(
             self.robot, 'ee_fixed_joint'))
         self.joint.append(moveit_commander.RobotCommander.Joint(
-            self.robot, 'wrist_3_link-tool0_fixed_joint'))
-        self.joint.append(moveit_commander.RobotCommander.Joint(
-            self.robot, 'panda_hand_joint'))
-        self.joint.append(moveit_commander.RobotCommander.Joint(
             self.robot, 'panda_finger_joint1'))
         self.joint.append(moveit_commander.RobotCommander.Joint(
             self.robot, 'panda_finger_joint2'))
 
         # Visualization
-        # 뭐하는 부분?  tf2?
+        # 뭐하는 부분? 
         self.br = StaticTransformBroadcaster()
         self.marker_array_pub = rospy.Publisher('waypoints', MarkerArray, queue_size=1)
 
@@ -554,15 +550,27 @@ class PoseLevelMotion(object):
             plan = []
             return plan
 
+
+
 def main():
     pose_test = PoseLevelMotion()
-    raw_input("temp1")
-    pose_test.add_box('box',[0.3, 0, 0.5, 0, 0, 0], (0.06, 0.06, 0.05))
-    raw_input("temp2") 
-    pose_test.hold_object('box', 0.03)
-    raw_input("temp3")
-    pose_test.release_object('box')
-	
-
+    pose_test.move_to(list_to_pose([0.3, 0, 0.3, 0, 0, 0]), False)
+    # raw_input()
+    # f_test.move_to(list_to_pose([0.3, 0.1, 0.5, 0, 0, 0]))
+    # f_test.move_to_object(list_to_pose([aaa.x, aaa.y, aaa.z, 0, -pi, -pi/2]))
+    # raw_input()
+    # f_test.attach_box("box1")
+    # raw_input()
+    # f_test.linear_motion("y", 0.3)
+    # raw_input()
+    # f_test.circular_motion("z", "CW", 0.1, 360)
+    # raw_input()
+    # f_test.circular_motion("y", "CW", 0.1, 360)
+    # raw_input()
+    # f_test.circular_motion("x", "CW", 0.1, 360)
+    # raw_input()
+    # f_test.detach_box("box1")
+    # raw_input()
+    # f_test.linear_motion("z", 0.2)
 if __name__ == '__main__':
     main()

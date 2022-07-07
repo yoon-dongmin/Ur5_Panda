@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /urpanda_ws/src
+CMAKE_SOURCE_DIR = /ur5_panda/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /urpanda_ws/build
+CMAKE_BINARY_DIR = /ur5_panda/build
 
 # Utility rule file for run_tests.
 
@@ -67,6 +67,6 @@ CMakeFiles/run_tests.dir/clean:
 .PHONY : CMakeFiles/run_tests.dir/clean
 
 CMakeFiles/run_tests.dir/depend:
-	cd /urpanda_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /urpanda_ws/src /urpanda_ws/src /urpanda_ws/build /urpanda_ws/build /urpanda_ws/build/CMakeFiles/run_tests.dir/DependInfo.cmake --color=$(COLOR)
+	cd /ur5_panda/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /ur5_panda/src /ur5_panda/src /ur5_panda/build /ur5_panda/build /ur5_panda/build/CMakeFiles/run_tests.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/run_tests.dir/depend
 
