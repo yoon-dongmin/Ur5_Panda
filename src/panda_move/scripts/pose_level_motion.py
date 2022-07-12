@@ -94,7 +94,7 @@ class PoseLevelMotion(object):
         # self.move_group.set_num_planning_attempts()
         # self.move_group.set_max_velocity_scaling_factor()
         # self.move_group.set_max_acceleration_scaling_factor()
-        self.move_group.set_end_effector_link('tool0')
+        self.move_group.set_end_effector_link('ee_link')
 
         # Planning Parameter #다음의 6개 존재
         self.planning_frame = self.move_group.get_planning_frame()
@@ -554,7 +554,9 @@ class PoseLevelMotion(object):
 
 def main():
     pose_test = PoseLevelMotion()
+    raw_input()
     pose_test.move_to(list_to_pose([0.3, 0, 0.3, 0, 0, 0]), False)
+    # pose_test.linear_motion([0, 0, -0.3], False)
     # raw_input()
     # f_test.move_to(list_to_pose([0.3, 0.1, 0.5, 0, 0, 0]))
     # f_test.move_to_object(list_to_pose([aaa.x, aaa.y, aaa.z, 0, -pi, -pi/2]))

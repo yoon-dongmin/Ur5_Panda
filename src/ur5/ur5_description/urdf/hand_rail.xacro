@@ -6,7 +6,7 @@
       <joint name="${ns}_hand_joint" type="fixed">
         <parent link="${connected_to}"/>
         <child link="${ns}_hand"/>
-        <origin xyz="${xyz}" rpy="${rpy}"/>
+        <origin xyz="${xyz}" rpy="0 0 ${pi/2}"/>
       </joint>
     </xacro:unless>
     

@@ -1590,8 +1590,60 @@ def main():
         obj_test = ObjectLevelMotion(use_unity)
         obj_test.initialize(sandwich.obj_place) #recipe의 object_place를 가져옴
     
-    
+    obj_test.pick_up('onion')
+    obj_test.place('onion','cutting_board','ingredient')
+    obj_test.pick_up('knife') 
+    obj_test.chop('onion')
+    #####
+    obj_test.place('knife','table','tool')
     obj_test.pick_up('bowl')
+    obj_test.place('bowl','near_cutting_board','dishware')
+    obj_test.pick_up('knife')
+    obj_test.scrape('chopped_onion','bowl')
+    ####
+    obj_test.place('knife','table','tool')
+    obj_test.pick_up('cucumber')
+    obj_test.place('cucumber','cutting_board','ingredient')
+    obj_test.pick_up('knife')
+
+    obj_test.chop('cucumber')
+    obj_test.scrape('chopped_cucumber','bowl')
+    ####
+    obj_test.place('knife','table','tool')
+    obj_test.pick_up('sweet_pepper')
+    obj_test.place('sweet_pepper','cutting_board','ingredient') #pepper -> 고추
+    obj_test.pick_up('knife')
+    obj_test.chop('sweet_pepper')
+    ####
+    obj_test.place('knife','table','tool')
+    obj_test.pick_up('feta_cheese')
+    obj_test.place('feta_cheese','cutting_board','ingredient') 
+    obj_test.pick_up('knife')
+    obj_test.chop('feta_cheese')
+    obj_test.scrape('chopped_sweet_pepper','bowl')
+    obj_test.scrape('chopped_feta_cheese','bowl')
+    ####
+    obj_test.pick_up('black_olive')
+    obj_test.put_on('black_olive','bowl','None')
+    ####
+    obj_test.pick_up('tomato')
+    obj_test.place('tomato','cutting_board','ingredient')
+    obj_test.pick_up('knife')
+    obj_test.chop('tomato')
+    obj_test.scrape('chopped_tomato','bowl')
+    ####
+    obj_test.place('knife','table','tool')
+    obj_test.pick_up('potato')
+    obj_test.place('potato','cutting_board','ingredient')
+    obj_test.pick_up('knife')
+    obj_test.chop('potato')
+    obj_test.scrape('chopped_potato','bowl')
+    ####
+    obj_test.place('knife','table','tool')
+    obj_test.pick_up('spatula')
+    raw_input()
+    obj_test.stir('bowl','salad')
+
 
 
 #######################################
