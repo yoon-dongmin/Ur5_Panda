@@ -82,7 +82,7 @@
     <link name="${prefix}rail0">
       <visual>
         <geometry>
-          <box size="0.1 0.1 0.01"/>
+          <box size="0.1 0.1 0.1"/>
           <!-- <box size="1 1 1"/> -->
         </geometry>
         <material name="rail0">
@@ -92,6 +92,7 @@
     </link>
 
     <joint name="world_joint" type="fixed">
+        <origin xyz="0 0 0.05" rpy="0 0 0"/>
         <parent link="world"/>
         <child link="${prefix}rail0"/>
     </joint>
@@ -99,7 +100,7 @@
     <joint name="${prefix}rail_joint" type="prismatic">
       <parent link="${prefix}rail0"/>
       <child link="${prefix}rail1"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
       <axis xyz="0 1 0"/>
       <limit effort="30" velocity="1.0" lower="-2" upper="2"/>
     </joint>
