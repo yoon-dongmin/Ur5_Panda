@@ -1592,8 +1592,16 @@ def main():
     
     obj_test.pick_up('onion')
     obj_test.place('onion','cutting_board','ingredient')
-    obj_test.pick_up('knife') 
-    obj_test.chop('onion')
+    obj_test.pick_up('bowl')
+    obj_test.place('bowl','near_cutting_board','dishware')
+    obj_test.pick_up('feta_cheese')
+    obj_test.place('feta_cheese','cutting_board','ingredient') 
+    obj_test.pick_up('sweet_pepper')
+    obj_test.place('sweet_pepper','cutting_board','ingredient') #pepper -> 고추
+    obj_test.pick_up('black_olive')
+    obj_test.put_on('black_olive','bowl','None')
+    obj_test.pick_up('potato')
+    obj_test.place('potato','cutting_board','ingredient')
     #####
     obj_test.place('knife','table','tool')
     obj_test.pick_up('bowl')

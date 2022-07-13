@@ -27,6 +27,10 @@
         <joint name="wrist_2_joint" value="-1.5447" />
         <joint name="wrist_3_joint" value="2.2737" />
     </group_state>
+    <group_state name="ready2" group="hand">
+        <joint name="panda_finger_joint1" value="0.04" />
+        <joint name="panda_finger_joint2" value="0" />
+    </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="hand" parent_link="ee_link" group="hand" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
