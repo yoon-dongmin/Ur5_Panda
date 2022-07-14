@@ -87,6 +87,7 @@ def concatenate_to_pose(*args):
         if isinstance(pose, Pose):
             pose_mat = pose_to_mat(pose)
         elif isinstance(pose, list):
+            print(pose,11111111)
             pose_mat = pose_list_to_mat(pose)
         elif isinstance(pose, np.ndarray):
             pose_mat = pose

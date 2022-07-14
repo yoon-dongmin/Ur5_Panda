@@ -932,14 +932,18 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         cut_size = sum(self.obj_stl_yaml[obj_type]['thickness'])
 
         # Change link
-        self.move_group.clear_pose_target('panda_link_ee')
-        self.move_group.set_end_effector_link('panda_link_knife')
+        self.move_group.clear_pose_target('ee_link')
+        self.move_group.set_end_effector_link('_link_knife')
+        
 
         # Change to using pose
         initial_pose = self.get_cur_pose()
+        print(initial_pose,123)
         use_pose = copy.deepcopy(initial_pose)
         use_pose.orientation = use_orient
+        print(use_pose,12341234)
         temp_plan, mp_info = self.move_to(use_pose, False)
+        print(mp_info ,4)
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos        
@@ -950,11 +954,14 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         # Move to obj
         pre_dist_pose = [0, 0, pre_dist, 0, 0, 0, 1]
         chop_pose = self.get_object_pose(obj)
+        print(chop_pose,22222)
         chop_pose.position.x += chop_pos[0]
         chop_pose.position.y += chop_pos[1]
         chop_pose.position.z += chop_pos[2]
         chop_pose.orientation = use_orient
+        
         tar_pose = utils.concatenate_to_pose(pre_dist_pose, chop_pose)
+        print(tar_pose,124)
         temp_plan, mp_info = self.move_to(tar_pose, False)
         mp_infos.append(mp_info)
         if not mp_info['success']:
@@ -1026,8 +1033,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
 
         # Recover link
-        self.move_group.clear_pose_target('panda_link_knife')
-        self.move_group.set_end_effector_link('panda_link_ee')
+        self.move_group.clear_pose_target('_link_knife')
+        self.move_group.set_end_effector_link('ee_link')
 
         return True, mp_infos
 
@@ -1044,8 +1051,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         spread_pos = [0, -spread_dist/2, self.obj_stl_yaml[obj_to_type]['thickness'][1]]
 
         # Change link
-        self.move_group.clear_pose_target('panda_link_ee')
-        self.move_group.set_end_effector_link('panda_link_spreader')
+        self.move_group.clear_pose_target('ee_link')
+        self.move_group.set_end_effector_link('_link_spreader')
         
         # Change to using pose
         initial_pose = self.get_cur_pose()
@@ -1160,8 +1167,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
         
         # Recover link
-        self.move_group.clear_pose_target('panda_link_spreader')
-        self.move_group.set_end_effector_link('panda_link_ee')
+        self.move_group.clear_pose_target('_link_spreader')
+        self.move_group.set_end_effector_link('ee_link')
 
         return True, mp_infos
 
@@ -1177,8 +1184,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         stir_pos = [0, 0, self.obj_stl_yaml['bowl']['thickness'][1]-0.02]
 
         # Change link
-        self.move_group.clear_pose_target('panda_link_ee')
-        self.move_group.set_end_effector_link('panda_link_spatula')
+        self.move_group.clear_pose_target('ee_link')
+        self.move_group.set_end_effector_link('_link_spatula')
 
         # Change to using pose
         initial_pose = self.get_cur_pose()
@@ -1277,8 +1284,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
 
         # Recover link
-        self.move_group.clear_pose_target('panda_link_spatula')
-        self.move_group.set_end_effector_link('panda_link_ee')
+        self.move_group.clear_pose_target('_link_spatula')
+        self.move_group.set_end_effector_link('ee_link')
 
         return True, mp_infos
 
@@ -1299,8 +1306,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         scoop_to_angle = -1*m.pi/10
 
         # Change link
-        self.move_group.clear_pose_target('panda_link_ee')
-        self.move_group.set_end_effector_link('panda_link_scooper')
+        self.move_group.clear_pose_target('ee_link')
+        self.move_group.set_end_effector_link('_link_scooper')
 
         # # Drop object (delete)
         # obj_pose = utils.pose_to_list(self.get_object_pose(obj))
@@ -1413,8 +1420,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
         
         # Recover link
-        self.move_group.clear_pose_target('panda_link_scooper')
-        self.move_group.set_end_effector_link('panda_link_ee')
+        self.move_group.clear_pose_target('_link_scooper')
+        self.move_group.set_end_effector_link('ee_link')
 
         return True, mp_infos
 
@@ -1430,8 +1437,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         mp_infos = []
 
         # Change link
-        self.move_group.clear_pose_target('panda_link_ee')
-        self.move_group.set_end_effector_link('panda_link_knife')
+        self.move_group.clear_pose_target('ee_link')
+        self.move_group.set_end_effector_link('_link_knife')
 
         # Change to using pose
         initial_pose = self.get_cur_pose()
@@ -1520,8 +1527,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
         
         # Recover link
-        self.move_group.clear_pose_target('panda_link_knife')
-        self.move_group.set_end_effector_link('panda_link_ee')
+        self.move_group.clear_pose_target('_link_knife')
+        self.move_group.set_end_effector_link('ee_link')
 
         return True, mp_infos
 
@@ -1583,29 +1590,21 @@ def main():
 
 
     
-    raw_input("Experiment Start!!")
+    # raw_input("Experiment Start!!")
 
     # initialize for motion planning
     if use_moveit:
         obj_test = ObjectLevelMotion(use_unity)
         obj_test.initialize(sandwich.obj_place) #recipe의 object_place를 가져옴
     
+       
     obj_test.pick_up('onion')
     obj_test.place('onion','cutting_board','ingredient')
-    obj_test.pick_up('bowl')
-    obj_test.place('bowl','near_cutting_board','dishware')
-    obj_test.pick_up('feta_cheese')
-    obj_test.place('feta_cheese','cutting_board','ingredient') 
-    obj_test.pick_up('sweet_pepper')
-    obj_test.place('sweet_pepper','cutting_board','ingredient') #pepper -> 고추
-    obj_test.pick_up('black_olive')
-    obj_test.put_on('black_olive','bowl','None')
-    obj_test.pick_up('potato')
-    obj_test.place('potato','cutting_board','ingredient')
+    obj_test.pick_up('knife') 
+    raw_input()
+    obj_test.chop('onion')
+    raw_input()
     #####
-    obj_test.place('knife','table','tool')
-    obj_test.pick_up('bowl')
-    obj_test.place('bowl','near_cutting_board','dishware')
     obj_test.pick_up('knife')
     obj_test.scrape('chopped_onion','bowl')
     ####

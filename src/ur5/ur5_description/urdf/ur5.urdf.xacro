@@ -125,6 +125,7 @@
     </joint>
 
 
+
     <link name="${prefix}base_link" >
       <visual>
         <geometry>
@@ -379,6 +380,38 @@
       <parent link="${prefix}wrist_3_link"/>
       <child link="${prefix}tool0"/>
     </joint>
+
+
+    <link name="${prefix}_link_knife"/>
+    <joint name="${prefix}_joint_knife" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0.21 0.039"/>
+        <!-- <origin rpy="0 0 0" xyz="0 0.21 0.019"/> -->
+        <parent link="${prefix}ee_link"/>
+        <child link="${prefix}_link_knife"/>
+    </joint>
+    <link name="${prefix}_link_spatula"/>
+    <joint name="${prefix}_joint_spatula" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0.235 0"/>
+        <!-- <origin rpy="0 0 0" xyz="0 0.235 -0.02"/> -->
+        <parent link="${prefix}ee_link"/>
+        <child link="${prefix}_link_spatula"/>
+    </joint>
+    <link name="${prefix}_link_scooper"/>
+    <joint name="${prefix}_joint_scooper" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0.25 0"/>
+        <!-- <origin rpy="0 0 0" xyz="0 0.25 -0.02"/> -->
+        <parent link="${prefix}ee_link"/>
+        <child link="${prefix}_link_scooper"/>
+    </joint>
+    <link name="${prefix}_link_spreader"/>
+    <joint name="${prefix}_joint_spreader" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0.295 -0.002"/>
+        <!-- <origin rpy="0 0 0" xyz="0 0.295 -0.022"/> -->
+        <parent link="${prefix}ee_link"/>
+        <child link="${prefix}_link_spreader"/>
+    </joint>
+
+
 
 
 
