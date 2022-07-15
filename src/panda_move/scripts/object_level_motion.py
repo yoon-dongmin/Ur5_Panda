@@ -1597,7 +1597,6 @@ def main():
         obj_test = ObjectLevelMotion(use_unity)
         obj_test.initialize(sandwich.obj_place) #recipe의 object_place를 가져옴
     
-       
     obj_test.pick_up('onion')
     obj_test.place('onion','cutting_board','ingredient')
     obj_test.pick_up('knife') 
@@ -1605,6 +1604,9 @@ def main():
     obj_test.chop('onion')
     raw_input()
     #####
+    obj_test.place('knife','table','tool')
+    obj_test.pick_up('bowl')
+    obj_test.place('bowl','near_cutting_board','dishware')
     obj_test.pick_up('knife')
     obj_test.scrape('chopped_onion','bowl')
     ####
