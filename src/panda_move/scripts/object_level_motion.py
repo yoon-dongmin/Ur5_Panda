@@ -1596,7 +1596,6 @@ def main():
     if use_moveit:
         obj_test = ObjectLevelMotion(use_unity)
         obj_test.initialize(sandwich.obj_place) #recipe의 object_place를 가져옴
-    
     obj_test.pick_up('onion')
     obj_test.place('onion','cutting_board','ingredient')
     obj_test.pick_up('knife') 
