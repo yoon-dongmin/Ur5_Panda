@@ -346,7 +346,7 @@
     <joint name="${prefix}ee_fixed_joint" type="fixed">
       <parent link="${prefix}wrist_3_link" />
       <child link = "${prefix}ee_link" />
-      <origin rpy="${-pi/2} 0 0" xyz="0 0.165 0"/>
+      <origin rpy="${-pi/2} 0 0" xyz="0 0.169 0"/>
     </joint>
 
     <link name="${prefix}ee_link">

@@ -3,7 +3,7 @@
 
   <xacro:include filename="$(find ur5_description)/urdf/ur5_joint_limited_robot.urdf.xacro" />
   <xacro:include filename="$(find ur5_description)/urdf/hand_rail.xacro"/>
-  <!-- <xacro:include filename="$(find ur5_description)/urdf/kitchen.xacro" /> -->
+  <xacro:include filename="$(find ur5_description)/urdf/kitchen.xacro" />
   <xacro:hand ns="panda" rpy="0 0 ${-pi/4}" connected_to="tool0" safety_distance="0.00"/>
 
  
