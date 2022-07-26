@@ -1555,11 +1555,10 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
     def deactivate(self, obj):
         pass
-
-  
+    
 def main():
     use_moveit = True
-    use_unity = False
+    use_unity = True
 
     # sample
     # sandwich = sample.club_sandwich
@@ -1599,9 +1598,7 @@ def main():
     obj_test.pick_up('onion')
     obj_test.place('onion','cutting_board','ingredient')
     obj_test.pick_up('knife') 
-    raw_input()
     obj_test.chop('onion')
-    raw_input()
     #####
     obj_test.place('knife','table','tool')
     obj_test.pick_up('bowl')
@@ -1651,32 +1648,6 @@ def main():
     obj_test.pick_up('spatula')
     raw_input()
     obj_test.stir('bowl','salad')
-
-
-
-#######################################
-    # # rospy.init_node('object_level_motion', anonymous=True)
-    # obj_test = ObjectLevelMotion(False)
-    # sandwich = sample.shrimp_salad
-
-    # raw_input('[initialize]')
-    # obj_test.initialize(sandwich.obj_place)
-
-    # raw_input('[task planner]')
-    # current_state = obj_test.get_current_state()
-    # sandwich_plan = sandwich.total_action_sequences
-    # for action_sequences in sandwich_plan:
-    #     for action in action_sequences:
-    #         success = obj_test.run(action)
-    #         current_state = obj_test.get_current_state()
-    #         rospy.loginfo('*'*40)
-    #         rospy.loginfo(current_state)
-    #         rospy.loginfo('*'*40)
-    #         if not success:
-    #             current_state = obj_test.get_current_state()
-    #             rospy.loginfo("replan!!!!!!!!!!")
-    #             exit()
-
 
 if __name__ == '__main__':
     main()
