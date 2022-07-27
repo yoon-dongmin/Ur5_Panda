@@ -289,7 +289,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
                 for i in range(len(scene_sync_res.joint_state)):
                     if i == 0:
                         self.joint[i].move(scene_sync_res.joint_state[i])
-                    elif i > 0 and i < 8:
+                    elif i > 0 and i < 7:
                         self.joint[i].move(
                             scene_sync_res.joint_state[i] * m.pi / 180)
                     else:

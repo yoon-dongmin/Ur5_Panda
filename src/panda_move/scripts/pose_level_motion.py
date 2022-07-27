@@ -83,7 +83,7 @@ class PoseLevelMotion(object):
         super(PoseLevelMotion, self).__init__()
         moveit_commander.roscpp_initialize(sys.argv)
 
-        rospy.init_node('PandaMove', anonymous=True)
+        #rospy.init_node('PandaMove', anonymous=True)
 
         self.robot = moveit_commander.RobotCommander() #robot 객체 생성
         self.scene = moveit_commander.PlanningSceneInterface() #바뀌는 장면을 추가적으로 넣어줌
