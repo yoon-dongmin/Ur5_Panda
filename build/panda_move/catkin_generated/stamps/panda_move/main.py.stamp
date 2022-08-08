@@ -430,7 +430,7 @@ def run_test_set():
 
 def main():
     use_moveit = True
-    use_unity = False
+    use_unity = True
 
     # sample
     # sandwich = sample.club_sandwich

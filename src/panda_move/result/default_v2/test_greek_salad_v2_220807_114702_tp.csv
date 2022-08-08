@@ -1,0 +1,16 @@
+task,subgoal,length,plan,success,time,num_of_expand
+1,{'chopped_onion': True},4, -> PickUp/onion -> Place/onion/cutting_board/ingredient -> PickUp/knife -> Chop/onion/knife,True,0.32848596572875977,727
+2,{'onion_is_in': 'bowl'},1, -> Scrape/chopped_onion/bowl/knife,True,0.0002620220184326172,2
+3,{'chopped_cucumber': True},5, -> Place/knife/table/tool -> PickUp/cucumber -> Place/cucumber/cutting_board/ingredient -> PickUp/knife -> Chop/cucumber/knife,True,0.15841197967529297,355
+4,{'cucumber_is_in': 'bowl'},1, -> Scrape/chopped_cucumber/bowl/knife,True,0.0009810924530029297,3
+5,{'chopped_sweet_pepper': True},5, -> Place/knife/table/tool -> PickUp/sweet_pepper -> Place/sweet_pepper/cutting_board/ingredient -> PickUp/knife -> Chop/sweet_pepper/knife,True,0.28737401962280273,619
+6,{'chopped_feta_cheese': True},5, -> Place/knife/table/tool -> PickUp/feta_cheese -> Place/feta_cheese/cutting_board/ingredient -> PickUp/knife -> Chop/feta_cheese/knife,True,0.12542200088500977,303
+7,{'sweet_pepper_is_in': 'bowl'},1, -> Scrape/chopped_sweet_pepper/bowl/knife,True,0.0003390312194824219,2
+8,{'feta_cheese_is_in': 'bowl'},1, -> Scrape/chopped_feta_cheese/bowl/knife,True,0.00026988983154296875,2
+9,{'oregano_is_in': 'bowl'},3, -> Place/knife/table/tool -> PickUp/oregano -> PutOn/oregano/bowl/None,True,0.008196830749511719,19
+10,{'black_olive_is_in': 'bowl'},2, -> PickUp/black_olive -> PutOn/black_olive/bowl/None,True,0.013069868087768555,31
+11,{'chopped_tomato': True},4, -> PickUp/tomato -> Place/tomato/cutting_board/ingredient -> PickUp/knife -> Chop/tomato/knife,True,0.29216504096984863,673
+12,{'tomato_is_in': 'bowl'},1, -> Scrape/chopped_tomato/bowl/knife,True,0.00026106834411621094,2
+13,{'chopped_potato': True},5, -> Place/knife/table/tool -> PickUp/potato -> Place/potato/cutting_board/ingredient -> PickUp/knife -> Chop/potato/knife,True,0.3170809745788574,697
+14,{'potato_is_in': 'bowl'},1, -> Scrape/chopped_potato/bowl/knife,True,0.00033211708068847656,2
+15,{'exist_salad': True},3, -> Place/knife/table/tool -> PickUp/spatula -> Stir/bowl/salad/spatula,True,0.008606910705566406,26

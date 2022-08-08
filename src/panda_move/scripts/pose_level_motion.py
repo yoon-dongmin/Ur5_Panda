@@ -89,7 +89,7 @@ class PoseLevelMotion(object):
         self.scene = moveit_commander.PlanningSceneInterface() #바뀌는 장면을 추가적으로 넣어줌
         self.group_name = "arm"
         self.move_group = moveit_commander.MoveGroupCommander(self.group_name)
-        self.move_group.set_planner_id("RRTConnectkConfigDefault")
+        self.move_group.set_planner_id("RRTConnectkConfigDefault") #RRTstarkConfigDefault
         # self.move_group.set_planning_time()
         # self.move_group.set_num_planning_attempts()
         # self.move_group.set_max_velocity_scaling_factor()

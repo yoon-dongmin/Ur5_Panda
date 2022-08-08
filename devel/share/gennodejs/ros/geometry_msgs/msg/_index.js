@@ -1,64 +1,64 @@
 
 "use strict";
 
-let TransformStamped = require('./TransformStamped.js');
-let PoseArray = require('./PoseArray.js');
-let InertiaStamped = require('./InertiaStamped.js');
-let Vector3 = require('./Vector3.js');
-let Point = require('./Point.js');
-let AccelStamped = require('./AccelStamped.js');
-let Transform = require('./Transform.js');
-let Pose = require('./Pose.js');
-let Polygon = require('./Polygon.js');
-let Pose2D = require('./Pose2D.js');
-let PoseStamped = require('./PoseStamped.js');
-let Point32 = require('./Point32.js');
-let Inertia = require('./Inertia.js');
-let Twist = require('./Twist.js');
-let TwistWithCovarianceStamped = require('./TwistWithCovarianceStamped.js');
-let PoseWithCovarianceStamped = require('./PoseWithCovarianceStamped.js');
-let QuaternionStamped = require('./QuaternionStamped.js');
-let AccelWithCovariance = require('./AccelWithCovariance.js');
-let TwistStamped = require('./TwistStamped.js');
 let PointStamped = require('./PointStamped.js');
-let TwistWithCovariance = require('./TwistWithCovariance.js');
-let WrenchStamped = require('./WrenchStamped.js');
-let Wrench = require('./Wrench.js');
-let PoseWithCovariance = require('./PoseWithCovariance.js');
+let PoseArray = require('./PoseArray.js');
+let PoseWithCovarianceStamped = require('./PoseWithCovarianceStamped.js');
 let Quaternion = require('./Quaternion.js');
-let AccelWithCovarianceStamped = require('./AccelWithCovarianceStamped.js');
-let PolygonStamped = require('./PolygonStamped.js');
 let Vector3Stamped = require('./Vector3Stamped.js');
+let Transform = require('./Transform.js');
+let AccelWithCovariance = require('./AccelWithCovariance.js');
 let Accel = require('./Accel.js');
+let Pose2D = require('./Pose2D.js');
+let TransformStamped = require('./TransformStamped.js');
+let PoseStamped = require('./PoseStamped.js');
+let AccelStamped = require('./AccelStamped.js');
+let TwistWithCovariance = require('./TwistWithCovariance.js');
+let Inertia = require('./Inertia.js');
+let TwistWithCovarianceStamped = require('./TwistWithCovarianceStamped.js');
+let Pose = require('./Pose.js');
+let Twist = require('./Twist.js');
+let PoseWithCovariance = require('./PoseWithCovariance.js');
+let Point = require('./Point.js');
+let Wrench = require('./Wrench.js');
+let TwistStamped = require('./TwistStamped.js');
+let AccelWithCovarianceStamped = require('./AccelWithCovarianceStamped.js');
+let Point32 = require('./Point32.js');
+let QuaternionStamped = require('./QuaternionStamped.js');
+let WrenchStamped = require('./WrenchStamped.js');
+let Polygon = require('./Polygon.js');
+let InertiaStamped = require('./InertiaStamped.js');
+let PolygonStamped = require('./PolygonStamped.js');
+let Vector3 = require('./Vector3.js');
 
 module.exports = {
-  TransformStamped: TransformStamped,
-  PoseArray: PoseArray,
-  InertiaStamped: InertiaStamped,
-  Vector3: Vector3,
-  Point: Point,
-  AccelStamped: AccelStamped,
-  Transform: Transform,
-  Pose: Pose,
-  Polygon: Polygon,
-  Pose2D: Pose2D,
-  PoseStamped: PoseStamped,
-  Point32: Point32,
-  Inertia: Inertia,
-  Twist: Twist,
-  TwistWithCovarianceStamped: TwistWithCovarianceStamped,
-  PoseWithCovarianceStamped: PoseWithCovarianceStamped,
-  QuaternionStamped: QuaternionStamped,
-  AccelWithCovariance: AccelWithCovariance,
-  TwistStamped: TwistStamped,
   PointStamped: PointStamped,
-  TwistWithCovariance: TwistWithCovariance,
-  WrenchStamped: WrenchStamped,
-  Wrench: Wrench,
-  PoseWithCovariance: PoseWithCovariance,
+  PoseArray: PoseArray,
+  PoseWithCovarianceStamped: PoseWithCovarianceStamped,
   Quaternion: Quaternion,
-  AccelWithCovarianceStamped: AccelWithCovarianceStamped,
-  PolygonStamped: PolygonStamped,
   Vector3Stamped: Vector3Stamped,
+  Transform: Transform,
+  AccelWithCovariance: AccelWithCovariance,
   Accel: Accel,
+  Pose2D: Pose2D,
+  TransformStamped: TransformStamped,
+  PoseStamped: PoseStamped,
+  AccelStamped: AccelStamped,
+  TwistWithCovariance: TwistWithCovariance,
+  Inertia: Inertia,
+  TwistWithCovarianceStamped: TwistWithCovarianceStamped,
+  Pose: Pose,
+  Twist: Twist,
+  PoseWithCovariance: PoseWithCovariance,
+  Point: Point,
+  Wrench: Wrench,
+  TwistStamped: TwistStamped,
+  AccelWithCovarianceStamped: AccelWithCovarianceStamped,
+  Point32: Point32,
+  QuaternionStamped: QuaternionStamped,
+  WrenchStamped: WrenchStamped,
+  Polygon: Polygon,
+  InertiaStamped: InertiaStamped,
+  PolygonStamped: PolygonStamped,
+  Vector3: Vector3,
 };

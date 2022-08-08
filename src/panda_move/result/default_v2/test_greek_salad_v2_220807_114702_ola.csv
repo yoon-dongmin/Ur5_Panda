@@ -1,0 +1,43 @@
+task,action,length,time,success
+1,"['PickUp', 'onion']",4,15.991109132766724,True
+1,"['Place', 'onion', 'cutting_board', 'ingredient']",4,18.67740797996521,True
+1,"['PickUp', 'knife']",4,16.08536696434021,True
+1,"['Chop', 'onion', 'knife']",6,24.589380979537964,True
+2,"['Scrape', 'chopped_onion', 'bowl', 'knife']",5,22.804412126541138,True
+3,"['Place', 'knife', 'table', 'tool']",4,18.751896142959595,True
+3,"['PickUp', 'cucumber']",4,20.189937829971313,True
+3,"['Place', 'cucumber', 'cutting_board', 'ingredient']",4,24.1933810710907,True
+3,"['PickUp', 'knife']",4,20.781903982162476,True
+3,"['Chop', 'cucumber', 'knife']",6,23.990358114242554,True
+4,"['Scrape', 'chopped_cucumber', 'bowl', 'knife']",5,21.903743982315063,True
+5,"['Place', 'knife', 'table', 'tool']",4,18.53031301498413,True
+5,"['PickUp', 'sweet_pepper']",4,15.890722036361694,True
+5,"['Place', 'sweet_pepper', 'cutting_board', 'ingredient']",4,17.989420890808105,True
+5,"['PickUp', 'knife']",4,15.99071216583252,True
+5,"['Chop', 'sweet_pepper', 'knife']",6,24.390384912490845,True
+6,"['Place', 'knife', 'table', 'tool']",4,18.08936095237732,True
+6,"['PickUp', 'feta_cheese']",4,16.790703058242798,True
+6,"['Place', 'feta_cheese', 'cutting_board', 'ingredient']",4,17.991404056549072,True
+6,"['PickUp', 'knife']",4,16.18996286392212,True
+6,"['Chop', 'feta_cheese', 'knife']",6,20.693976879119873,True
+7,"['Scrape', 'chopped_sweet_pepper', 'bowl', 'knife']",5,23.010541915893555,True
+8,"['Scrape', 'chopped_feta_cheese', 'bowl', 'knife']",5,22.715397119522095,True
+9,"['Place', 'knife', 'table', 'tool']",4,18.71390986442566,True
+9,"['PickUp', 'oregano']",4,16.97395396232605,True
+9,"['PutOn', 'oregano', 'bowl', 'None']",4,17.09073781967163,True
+10,"['PickUp', 'black_olive']",4,15.201122999191284,True
+10,"['PutOn', 'black_olive', 'bowl', 'None']",4,16.29062294960022,True
+11,"['PickUp', 'tomato']",4,15.227921962738037,True
+11,"['Place', 'tomato', 'cutting_board', 'ingredient']",4,18.191416025161743,True
+11,"['PickUp', 'knife']",4,16.0734441280365,True
+11,"['Chop', 'tomato', 'knife']",6,24.4911208152771,True
+12,"['Scrape', 'chopped_tomato', 'bowl', 'knife']",5,22.30915093421936,True
+13,"['Place', 'knife', 'table', 'tool']",4,18.693181037902832,True
+13,"['PickUp', 'potato']",4,16.591607093811035,True
+13,"['Place', 'potato', 'cutting_board', 'ingredient']",4,18.489936113357544,True
+13,"['PickUp', 'knife']",4,16.190448999404907,True
+13,"['Chop', 'potato', 'knife']",6,21.09066414833069,True
+14,"['Scrape', 'chopped_potato', 'bowl', 'knife']",5,22.110226154327393,True
+15,"['Place', 'knife', 'table', 'tool']",4,18.913925170898438,True
+15,"['PickUp', 'spatula']",4,15.090605020523071,True
+15,"['Stir', 'bowl', 'salad', 'spatula']",7,51.09045481681824,True

@@ -1,0 +1,215 @@
+task,action,action_length,sequence,planning_time,execution_time,success
+1,"['PickUp', 'olive_oil_bottle']",4,0,0.12324881553649902,5.799329996109009,True
+1,"['PickUp', 'olive_oil_bottle']",4,1,0.007611989974975586,1.1916239261627197,True
+1,"['PickUp', 'olive_oil_bottle']",4,2,,,True
+1,"['PickUp', 'olive_oil_bottle']",4,3,0.0033080577850341797,1.2959890365600586,True
+1,"['Pour', 'olive_oil_bottle', 'bowl', 'olive_oil']",3,0,0.4965980052947998,3.9996650218963623,True
+1,"['Pour', 'olive_oil_bottle', 'bowl', 'olive_oil']",3,1,0.15955018997192383,9.498383045196533,True
+1,"['Pour', 'olive_oil_bottle', 'bowl', 'olive_oil']",3,2,0.047952890396118164,2.4999899864196777,True
+2,"['Place', 'olive_oil_bottle', 'table', 'ing_bottle']",4,0,0.12506604194641113,5.999284982681274,True
+2,"['Place', 'olive_oil_bottle', 'table', 'ing_bottle']",4,1,0.0014150142669677734,1.6978390216827393,True
+2,"['Place', 'olive_oil_bottle', 'table', 'ing_bottle']",4,2,,,True
+2,"['Place', 'olive_oil_bottle', 'table', 'ing_bottle']",4,3,0.001194000244140625,1.497838020324707,True
+2,"['PickUp', 'lemon_juice_bottle']",4,0,0.10880398750305176,3.799855947494507,True
+2,"['PickUp', 'lemon_juice_bottle']",4,1,0.006718873977661133,1.3926429748535156,True
+2,"['PickUp', 'lemon_juice_bottle']",4,2,,,True
+2,"['PickUp', 'lemon_juice_bottle']",4,3,0.0016541481018066406,1.697803020477295,True
+2,"['Pour', 'lemon_juice_bottle', 'bowl', 'lemon_juice']",3,0,0.2002880573272705,4.599613189697266,True
+2,"['Pour', 'lemon_juice_bottle', 'bowl', 'lemon_juice']",3,1,0.1317908763885498,2.4997899532318115,True
+2,"['Pour', 'lemon_juice_bottle', 'bowl', 'lemon_juice']",3,2,0.03576993942260742,2.499722957611084,True
+3,"['Place', 'lemon_juice_bottle', 'table', 'ing_bottle']",4,0,0.12049603462219238,3.1998088359832764,True
+3,"['Place', 'lemon_juice_bottle', 'table', 'ing_bottle']",4,1,0.0013079643249511719,1.697882890701294,True
+3,"['Place', 'lemon_juice_bottle', 'table', 'ing_bottle']",4,2,,,True
+3,"['Place', 'lemon_juice_bottle', 'table', 'ing_bottle']",4,3,0.0013420581817626953,1.4974949359893799,True
+3,"['PickUp', 'cilantro']",4,0,0.12499189376831055,4.59922194480896,True
+3,"['PickUp', 'cilantro']",4,1,0.006064176559448242,1.4931659698486328,True
+3,"['PickUp', 'cilantro']",4,2,,,True
+3,"['PickUp', 'cilantro']",4,3,0.0070209503173828125,1.792517900466919,True
+3,"['Place', 'cilantro', 'cutting_board', 'ingredient']",4,0,0.134199857711792,2.0998802185058594,True
+3,"['Place', 'cilantro', 'cutting_board', 'ingredient']",4,1,0.0075321197509765625,1.2916619777679443,True
+3,"['Place', 'cilantro', 'cutting_board', 'ingredient']",4,2,,,True
+3,"['Place', 'cilantro', 'cutting_board', 'ingredient']",4,3,0.0011310577392578125,1.7979300022125244,True
+3,"['PickUp', 'knife']",4,0,0.10987997055053711,2.3997209072113037,True
+3,"['PickUp', 'knife']",4,1,0.0032689571380615234,1.5961010456085205,True
+3,"['PickUp', 'knife']",4,2,,,True
+3,"['PickUp', 'knife']",4,3,0.005995035171508789,1.5936250686645508,True
+3,"['Chop', 'cilantro', 'knife']",6,0,0.13509583473205566,0.5001111030578613,True
+3,"['Chop', 'cilantro', 'knife']",6,1,0.1271190643310547,2.2998650074005127,True
+3,"['Chop', 'cilantro', 'knife']",6,2,0.0018711090087890625,1.6978650093078613,True
+3,"['Chop', 'cilantro', 'knife']",6,3,0.0014879703521728516,0.0007190704345703125,True
+3,"['Chop', 'cilantro', 'knife']",6,4,0.0011289119720458984,0.0008602142333984375,True
+3,"['Chop', 'cilantro', 'knife']",6,5,0.13019394874572754,0.5002219676971436,True
+4,"['Place', 'knife', 'table', 'tool']",4,0,0.03446388244628906,2.2000749111175537,True
+4,"['Place', 'knife', 'table', 'tool']",4,1,0.0019769668579101562,1.5965230464935303,True
+4,"['Place', 'knife', 'table', 'tool']",4,2,,,True
+4,"['Place', 'knife', 'table', 'tool']",4,3,0.0011219978332519531,1.598235845565796,True
+4,"['PickUp', 'bowl']",4,0,0.10950207710266113,3.39969801902771,True
+4,"['PickUp', 'bowl']",4,1,0.007910013198852539,1.3903489112854004,True
+4,"['PickUp', 'bowl']",4,2,,,True
+4,"['PickUp', 'bowl']",4,3,0.002808094024658203,1.5966429710388184,True
+4,"['Place', 'bowl', 'near_cutting_board', 'dishware']",4,0,0.041233062744140625,2.1998069286346436,True
+4,"['Place', 'bowl', 'near_cutting_board', 'dishware']",4,1,0.0070590972900390625,1.5923740863800049,True
+4,"['Place', 'bowl', 'near_cutting_board', 'dishware']",4,2,,,True
+4,"['Place', 'bowl', 'near_cutting_board', 'dishware']",4,3,0.0013167858123779297,1.9979498386383057,True
+4,"['PickUp', 'knife']",4,0,0.1175079345703125,2.69966983795166,True
+4,"['PickUp', 'knife']",4,1,0.0011370182037353516,1.598116159439087,True
+4,"['PickUp', 'knife']",4,2,,,True
+4,"['PickUp', 'knife']",4,3,0.0012819766998291016,1.5982439517974854,True
+4,"['Scrape', 'chopped_cilantro', 'bowl', 'knife']",5,0,0.12071990966796875,0.5000941753387451,True
+4,"['Scrape', 'chopped_cilantro', 'bowl', 'knife']",5,1,0.15872597694396973,2.2998440265655518,True
+4,"['Scrape', 'chopped_cilantro', 'bowl', 'knife']",5,2,0.00819706916809082,1.2908151149749756,True
+4,"['Scrape', 'chopped_cilantro', 'bowl', 'knife']",5,3,0.00115203857421875,1.4981410503387451,True
+4,"['Scrape', 'chopped_cilantro', 'bowl', 'knife']",5,4,0.13299202919006348,0.4999709129333496,True
+5,"['Place', 'knife', 'table', 'tool']",4,0,0.12067508697509766,2.4999618530273438,True
+5,"['Place', 'knife', 'table', 'tool']",4,1,0.0011780261993408203,1.4982259273529053,True
+5,"['Place', 'knife', 'table', 'tool']",4,2,,,True
+5,"['Place', 'knife', 'table', 'tool']",4,3,0.0016751289367675781,1.4970190525054932,True
+5,"['PickUp', 'shrimp']",4,0,0.11387395858764648,3.499377965927124,True
+5,"['PickUp', 'shrimp']",4,1,0.006091117858886719,1.2933709621429443,True
+5,"['PickUp', 'shrimp']",4,2,,,True
+5,"['PickUp', 'shrimp']",4,3,0.002708911895751953,1.4964098930358887,True
+5,"['Place', 'shrimp', 'cutting_board', 'ingredient']",4,0,0.03483891487121582,2.5998940467834473,True
+5,"['Place', 'shrimp', 'cutting_board', 'ingredient']",4,1,0.007899045944213867,1.3914570808410645,True
+5,"['Place', 'shrimp', 'cutting_board', 'ingredient']",4,2,,,True
+5,"['Place', 'shrimp', 'cutting_board', 'ingredient']",4,3,0.001058816909790039,1.5985400676727295,True
+5,"['PickUp', 'knife']",4,0,0.11237502098083496,2.1998648643493652,True
+5,"['PickUp', 'knife']",4,1,0.003401041030883789,1.596066951751709,True
+5,"['PickUp', 'knife']",4,2,,,True
+5,"['PickUp', 'knife']",4,3,0.0012478828430175781,1.597877025604248,True
+5,"['Chop', 'shrimp', 'knife']",6,0,0.13240408897399902,0.4997549057006836,True
+5,"['Chop', 'shrimp', 'knife']",6,1,0.12436509132385254,2.100022077560425,True
+5,"['Chop', 'shrimp', 'knife']",6,2,0.0013580322265625,1.5981788635253906,True
+5,"['Chop', 'shrimp', 'knife']",6,3,0.0010540485382080078,0.0007159709930419922,True
+5,"['Chop', 'shrimp', 'knife']",6,4,0.0017189979553222656,0.0007700920104980469,True
+5,"['Chop', 'shrimp', 'knife']",6,5,0.12702107429504395,0.4993901252746582,True
+6,"['Scrape', 'chopped_shrimp', 'bowl', 'knife']",5,0,0.12723994255065918,0.499953031539917,True
+6,"['Scrape', 'chopped_shrimp', 'bowl', 'knife']",5,1,0.14314603805541992,1.1999449729919434,True
+6,"['Scrape', 'chopped_shrimp', 'bowl', 'knife']",5,2,0.0014989376068115234,1.4980759620666504,True
+6,"['Scrape', 'chopped_shrimp', 'bowl', 'knife']",5,3,0.0014271736145019531,1.7980661392211914,True
+6,"['Scrape', 'chopped_shrimp', 'bowl', 'knife']",5,4,0.1289200782775879,0.5001928806304932,True
+7,"['Place', 'knife', 'table', 'tool']",4,0,0.06824684143066406,2.5000061988830566,True
+7,"['Place', 'knife', 'table', 'tool']",4,1,0.003384828567504883,1.5960190296173096,True
+7,"['Place', 'knife', 'table', 'tool']",4,2,,,True
+7,"['Place', 'knife', 'table', 'tool']",4,3,0.0011451244354248047,1.5978410243988037,True
+7,"['PickUp', 'mango']",4,0,0.10003399848937988,2.8998939990997314,True
+7,"['PickUp', 'mango']",4,1,0.0075681209564208984,1.391430139541626,True
+7,"['PickUp', 'mango']",4,2,,,True
+7,"['PickUp', 'mango']",4,3,0.0015599727630615234,1.4979090690612793,True
+7,"['Place', 'mango', 'cutting_board', 'ingredient']",4,0,0.12602901458740234,2.099905014038086,True
+7,"['Place', 'mango', 'cutting_board', 'ingredient']",4,1,0.008105039596557617,1.4901258945465088,True
+7,"['Place', 'mango', 'cutting_board', 'ingredient']",4,2,,,True
+7,"['Place', 'mango', 'cutting_board', 'ingredient']",4,3,0.0016040802001953125,1.6975209712982178,True
+7,"['PickUp', 'knife']",4,0,0.11376309394836426,2.2994401454925537,True
+7,"['PickUp', 'knife']",4,1,0.003168821334838867,1.595916986465454,True
+7,"['PickUp', 'knife']",4,2,,,True
+7,"['PickUp', 'knife']",4,3,0.0012099742889404297,1.5980069637298584,True
+7,"['Chop', 'mango', 'knife']",6,0,0.12215089797973633,0.5000369548797607,True
+7,"['Chop', 'mango', 'knife']",6,1,0.11740398406982422,2.099792957305908,True
+7,"['Chop', 'mango', 'knife']",6,2,0.007789134979248047,1.5913488864898682,True
+7,"['Chop', 'mango', 'knife']",6,3,0.0010411739349365234,0.0007848739624023438,True
+7,"['Chop', 'mango', 'knife']",6,4,0.0011339187622070312,0.0008060932159423828,True
+7,"['Chop', 'mango', 'knife']",6,5,0.12758803367614746,0.5002939701080322,True
+8,"['Scrape', 'chopped_mango', 'bowl', 'knife']",5,0,0.13059091567993164,0.499805212020874,True
+8,"['Scrape', 'chopped_mango', 'bowl', 'knife']",5,1,0.16163206100463867,0.8002121448516846,True
+8,"['Scrape', 'chopped_mango', 'bowl', 'knife']",5,2,0.00700688362121582,1.3923969268798828,True
+8,"['Scrape', 'chopped_mango', 'bowl', 'knife']",5,3,0.0014011859893798828,1.797774076461792,True
+8,"['Scrape', 'chopped_mango', 'bowl', 'knife']",5,4,0.13225293159484863,0.4999721050262451,True
+9,"['Place', 'knife', 'table', 'tool']",4,0,0.10591721534729004,2.499969005584717,True
+9,"['Place', 'knife', 'table', 'tool']",4,1,0.0013780593872070312,1.5980918407440186,True
+9,"['Place', 'knife', 'table', 'tool']",4,2,,,True
+9,"['Place', 'knife', 'table', 'tool']",4,3,0.002068042755126953,1.5972540378570557,True
+9,"['PickUp', 'scallion']",4,0,0.1092991828918457,2.999706983566284,True
+9,"['PickUp', 'scallion']",4,1,0.006889820098876953,1.2925729751586914,True
+9,"['PickUp', 'scallion']",4,2,,,True
+9,"['PickUp', 'scallion']",4,3,0.0016369819641113281,1.4977660179138184,True
+9,"['Place', 'scallion', 'cutting_board', 'ingredient']",4,0,0.034646034240722656,1.9999909400939941,True
+9,"['Place', 'scallion', 'cutting_board', 'ingredient']",4,1,0.006269931793212891,1.4931628704071045,True
+9,"['Place', 'scallion', 'cutting_board', 'ingredient']",4,2,,,True
+9,"['Place', 'scallion', 'cutting_board', 'ingredient']",4,3,0.0014731884002685547,1.6978590488433838,True
+9,"['PickUp', 'knife']",4,0,0.09958600997924805,2.3980138301849365,True
+9,"['PickUp', 'knife']",4,1,0.0012810230255126953,1.5977520942687988,True
+9,"['PickUp', 'knife']",4,2,,,True
+9,"['PickUp', 'knife']",4,3,0.001277923583984375,1.5980570316314697,True
+9,"['Chop', 'scallion', 'knife']",6,0,0.12360501289367676,0.5001039505004883,True
+9,"['Chop', 'scallion', 'knife']",6,1,0.13043808937072754,2.298600912094116,True
+9,"['Chop', 'scallion', 'knife']",6,2,0.0021250247955322266,1.5959348678588867,True
+9,"['Chop', 'scallion', 'knife']",6,3,0.0009741783142089844,0.0007607936859130859,True
+9,"['Chop', 'scallion', 'knife']",6,4,0.001544952392578125,0.001191854476928711,True
+9,"['Chop', 'scallion', 'knife']",6,5,0.13056588172912598,0.4999539852142334,True
+10,"['Scrape', 'chopped_scallion', 'bowl', 'knife']",5,0,0.12735605239868164,0.4999959468841553,True
+10,"['Scrape', 'chopped_scallion', 'bowl', 'knife']",5,1,0.30016207695007324,1.1998469829559326,True
+10,"['Scrape', 'chopped_scallion', 'bowl', 'knife']",5,2,0.007353067398071289,1.3921668529510498,True
+10,"['Scrape', 'chopped_scallion', 'bowl', 'knife']",5,3,0.0013630390167236328,1.4979050159454346,True
+10,"['Scrape', 'chopped_scallion', 'bowl', 'knife']",5,4,0.12940192222595215,0.499953031539917,True
+11,"['Place', 'knife', 'table', 'tool']",4,0,0.05320000648498535,2.499919891357422,True
+11,"['Place', 'knife', 'table', 'tool']",4,1,0.001264810562133789,1.5970489978790283,True
+11,"['Place', 'knife', 'table', 'tool']",4,2,,,True
+11,"['Place', 'knife', 'table', 'tool']",4,3,0.003554821014404297,1.5956611633300781,True
+11,"['PickUp', 'banana']",4,0,0.11743497848510742,3.499692916870117,True
+11,"['PickUp', 'banana']",4,1,0.006581783294677734,1.3917739391326904,True
+11,"['PickUp', 'banana']",4,2,,,True
+11,"['PickUp', 'banana']",4,3,0.0022470951080322266,1.5972120761871338,True
+11,"['Place', 'banana', 'cutting_board', 'ingredient']",4,0,0.03569293022155762,2.4999868869781494,True
+11,"['Place', 'banana', 'cutting_board', 'ingredient']",4,1,0.006382942199707031,1.5926880836486816,True
+11,"['Place', 'banana', 'cutting_board', 'ingredient']",4,2,,,True
+11,"['Place', 'banana', 'cutting_board', 'ingredient']",4,3,0.001110076904296875,1.6980459690093994,True
+11,"['PickUp', 'knife']",4,0,0.11033010482788086,2.4999358654022217,True
+11,"['PickUp', 'knife']",4,1,0.0015249252319335938,1.5974009037017822,True
+11,"['PickUp', 'knife']",4,2,,,True
+11,"['PickUp', 'knife']",4,3,0.003568887710571289,1.5959620475769043,True
+11,"['Chop', 'banana', 'knife']",6,0,0.12908196449279785,0.5000081062316895,True
+11,"['Chop', 'banana', 'knife']",6,1,0.12856101989746094,2.099832057952881,True
+11,"['Chop', 'banana', 'knife']",6,2,0.0017719268798828125,1.6970679759979248,True
+11,"['Chop', 'banana', 'knife']",6,3,0.0009300708770751953,0.000701904296875,True
+11,"['Chop', 'banana', 'knife']",6,4,0.0010118484497070312,0.0007929801940917969,True
+11,"['Chop', 'banana', 'knife']",6,5,0.13298296928405762,0.49994492530822754,True
+12,"['Scrape', 'chopped_banana', 'bowl', 'knife']",5,0,0.12030315399169922,0.4997730255126953,True
+12,"['Scrape', 'chopped_banana', 'bowl', 'knife']",5,1,0.16480302810668945,1.2001299858093262,True
+12,"['Scrape', 'chopped_banana', 'bowl', 'knife']",5,2,0.006424903869628906,1.392874002456665,True
+12,"['Scrape', 'chopped_banana', 'bowl', 'knife']",5,3,0.0015950202941894531,1.7979741096496582,True
+12,"['Scrape', 'chopped_banana', 'bowl', 'knife']",5,4,0.1392228603363037,0.5999710559844971,True
+13,"['Place', 'knife', 'table', 'tool']",4,0,0.03255009651184082,2.4999477863311768,True
+13,"['Place', 'knife', 'table', 'tool']",4,1,0.0011489391326904297,1.598336935043335,True
+13,"['Place', 'knife', 'table', 'tool']",4,2,,,True
+13,"['Place', 'knife', 'table', 'tool']",4,3,0.0011060237884521484,1.598095178604126,True
+13,"['PickUp', 'walnut']",4,0,0.11522102355957031,3.299571990966797,True
+13,"['PickUp', 'walnut']",4,1,0.003161907196044922,1.595973014831543,True
+13,"['PickUp', 'walnut']",4,2,,,True
+13,"['PickUp', 'walnut']",4,3,0.0013780593872070312,1.5981919765472412,True
+13,"['PutOn', 'walnut', 'bowl', 'None']",4,0,0.10563397407531738,1.899860143661499,True
+13,"['PutOn', 'walnut', 'bowl', 'None']",4,1,0.006989002227783203,0.8921248912811279,True
+13,"['PutOn', 'walnut', 'bowl', 'None']",4,2,,,True
+13,"['PutOn', 'walnut', 'bowl', 'None']",4,3,0.001222848892211914,1.39821195602417,True
+14,"['PickUp', 'black_pepper_bottle']",4,0,0.10538887977600098,6.098908185958862,True
+14,"['PickUp', 'black_pepper_bottle']",4,1,0.008296012878417969,1.2913072109222412,True
+14,"['PickUp', 'black_pepper_bottle']",4,2,,,True
+14,"['PickUp', 'black_pepper_bottle']",4,3,0.002201080322265625,1.5969719886779785,True
+14,"['Pour', 'black_pepper_bottle', 'bowl', 'black_pepper']",3,0,0.23076987266540527,1.8999710083007812,True
+14,"['Pour', 'black_pepper_bottle', 'bowl', 'black_pepper']",3,1,0.12282109260559082,2.498236894607544,True
+14,"['Pour', 'black_pepper_bottle', 'bowl', 'black_pepper']",3,2,0.035455942153930664,2.4997339248657227,True
+15,"['Place', 'black_pepper_bottle', 'table', 'ing_bottle']",4,0,0.08240890502929688,1.8998558521270752,True
+15,"['Place', 'black_pepper_bottle', 'table', 'ing_bottle']",4,1,0.0015349388122558594,1.595715045928955,True
+15,"['Place', 'black_pepper_bottle', 'table', 'ing_bottle']",4,2,,,True
+15,"['Place', 'black_pepper_bottle', 'table', 'ing_bottle']",4,3,0.0011379718780517578,1.3978469371795654,True
+15,"['PickUp', 'salt_bottle']",4,0,0.10788202285766602,1.0998620986938477,True
+15,"['PickUp', 'salt_bottle']",4,1,0.007344961166381836,1.2917420864105225,True
+15,"['PickUp', 'salt_bottle']",4,2,,,True
+15,"['PickUp', 'salt_bottle']",4,3,0.0020110607147216797,1.597156047821045,True
+15,"['Pour', 'salt_bottle', 'bowl', 'salt']",3,0,0.33764195442199707,2.1002440452575684,True
+15,"['Pour', 'salt_bottle', 'bowl', 'salt']",3,1,0.1268329620361328,2.4978818893432617,True
+15,"['Pour', 'salt_bottle', 'bowl', 'salt']",3,2,0.040509939193725586,2.4980340003967285,True
+16,"['Place', 'salt_bottle', 'table', 'ing_bottle']",4,0,0.08355093002319336,2.099822998046875,True
+16,"['Place', 'salt_bottle', 'table', 'ing_bottle']",4,1,0.001232147216796875,1.5981600284576416,True
+16,"['Place', 'salt_bottle', 'table', 'ing_bottle']",4,2,,,True
+16,"['Place', 'salt_bottle', 'table', 'ing_bottle']",4,3,0.00115203857421875,1.3982770442962646,True
+16,"['PickUp', 'spatula']",4,0,0.08449101448059082,3.099853038787842,True
+16,"['PickUp', 'spatula']",4,1,0.0012500286102294922,1.4982337951660156,True
+16,"['PickUp', 'spatula']",4,2,,,True
+16,"['PickUp', 'spatula']",4,3,0.0017621517181396484,1.4978039264678955,True
+16,"['Stir', 'bowl', 'salad', 'spatula']",7,0,0.16574406623840332,4.89954686164856,True
+16,"['Stir', 'bowl', 'salad', 'spatula']",7,1,0.17489290237426758,6.7997050285339355,True
+16,"['Stir', 'bowl', 'salad', 'spatula']",7,2,0.0014770030975341797,1.196009874343872,True
+16,"['Stir', 'bowl', 'salad', 'spatula']",7,3,0.0027549266815185547,3.8941500186920166,True
+16,"['Stir', 'bowl', 'salad', 'spatula']",7,4,0.0026209354400634766,3.8944480419158936,True
+16,"['Stir', 'bowl', 'salad', 'spatula']",7,5,0.0009908676147460938,1.19846510887146,True
+16,"['Stir', 'bowl', 'salad', 'spatula']",7,6,0.13380908966064453,3.3996520042419434,True

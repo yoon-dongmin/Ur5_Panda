@@ -1,160 +1,160 @@
 
 "use strict";
 
-let ExecuteTrajectoryActionGoal = require('./ExecuteTrajectoryActionGoal.js');
-let MoveGroupSequenceActionResult = require('./MoveGroupSequenceActionResult.js');
-let MoveGroupSequenceResult = require('./MoveGroupSequenceResult.js');
-let MoveGroupFeedback = require('./MoveGroupFeedback.js');
-let MoveGroupSequenceFeedback = require('./MoveGroupSequenceFeedback.js');
-let ExecuteTrajectoryResult = require('./ExecuteTrajectoryResult.js');
-let PickupFeedback = require('./PickupFeedback.js');
-let MoveGroupActionFeedback = require('./MoveGroupActionFeedback.js');
-let PickupResult = require('./PickupResult.js');
 let PickupGoal = require('./PickupGoal.js');
-let MoveGroupGoal = require('./MoveGroupGoal.js');
-let PlaceAction = require('./PlaceAction.js');
+let MoveGroupActionFeedback = require('./MoveGroupActionFeedback.js');
 let PickupActionGoal = require('./PickupActionGoal.js');
-let MoveGroupResult = require('./MoveGroupResult.js');
-let ExecuteTrajectoryFeedback = require('./ExecuteTrajectoryFeedback.js');
-let PlaceActionGoal = require('./PlaceActionGoal.js');
-let MoveGroupSequenceActionGoal = require('./MoveGroupSequenceActionGoal.js');
-let PickupAction = require('./PickupAction.js');
-let MoveGroupSequenceGoal = require('./MoveGroupSequenceGoal.js');
-let PickupActionResult = require('./PickupActionResult.js');
-let PlaceFeedback = require('./PlaceFeedback.js');
-let MoveGroupSequenceAction = require('./MoveGroupSequenceAction.js');
-let PickupActionFeedback = require('./PickupActionFeedback.js');
-let MoveGroupSequenceActionFeedback = require('./MoveGroupSequenceActionFeedback.js');
-let PlaceGoal = require('./PlaceGoal.js');
-let PlaceActionResult = require('./PlaceActionResult.js');
 let MoveGroupActionResult = require('./MoveGroupActionResult.js');
-let PlaceActionFeedback = require('./PlaceActionFeedback.js');
-let PlaceResult = require('./PlaceResult.js');
-let ExecuteTrajectoryActionResult = require('./ExecuteTrajectoryActionResult.js');
 let MoveGroupAction = require('./MoveGroupAction.js');
-let MoveGroupActionGoal = require('./MoveGroupActionGoal.js');
-let ExecuteTrajectoryActionFeedback = require('./ExecuteTrajectoryActionFeedback.js');
-let ExecuteTrajectoryAction = require('./ExecuteTrajectoryAction.js');
+let PlaceAction = require('./PlaceAction.js');
+let ExecuteTrajectoryFeedback = require('./ExecuteTrajectoryFeedback.js');
+let PickupAction = require('./PickupAction.js');
+let PlaceResult = require('./PlaceResult.js');
+let PickupActionFeedback = require('./PickupActionFeedback.js');
 let ExecuteTrajectoryGoal = require('./ExecuteTrajectoryGoal.js');
-let LinkScale = require('./LinkScale.js');
-let PositionIKRequest = require('./PositionIKRequest.js');
-let PlaceLocation = require('./PlaceLocation.js');
-let RobotTrajectory = require('./RobotTrajectory.js');
-let MotionSequenceItem = require('./MotionSequenceItem.js');
-let PositionConstraint = require('./PositionConstraint.js');
-let MoveItErrorCodes = require('./MoveItErrorCodes.js');
-let MotionPlanRequest = require('./MotionPlanRequest.js');
-let ObjectColor = require('./ObjectColor.js');
-let AllowedCollisionMatrix = require('./AllowedCollisionMatrix.js');
-let CostSource = require('./CostSource.js');
-let MotionSequenceResponse = require('./MotionSequenceResponse.js');
-let ConstraintEvalResult = require('./ConstraintEvalResult.js');
-let VisibilityConstraint = require('./VisibilityConstraint.js');
-let DisplayRobotState = require('./DisplayRobotState.js');
-let PlanningSceneComponents = require('./PlanningSceneComponents.js');
-let ContactInformation = require('./ContactInformation.js');
-let PlanningScene = require('./PlanningScene.js');
+let MoveGroupSequenceActionFeedback = require('./MoveGroupSequenceActionFeedback.js');
+let ExecuteTrajectoryResult = require('./ExecuteTrajectoryResult.js');
+let ExecuteTrajectoryActionGoal = require('./ExecuteTrajectoryActionGoal.js');
+let MoveGroupSequenceAction = require('./MoveGroupSequenceAction.js');
+let ExecuteTrajectoryActionResult = require('./ExecuteTrajectoryActionResult.js');
+let PickupActionResult = require('./PickupActionResult.js');
+let MoveGroupFeedback = require('./MoveGroupFeedback.js');
+let MoveGroupSequenceGoal = require('./MoveGroupSequenceGoal.js');
+let MoveGroupGoal = require('./MoveGroupGoal.js');
+let PickupFeedback = require('./PickupFeedback.js');
+let MoveGroupSequenceResult = require('./MoveGroupSequenceResult.js');
+let PlaceActionFeedback = require('./PlaceActionFeedback.js');
+let MoveGroupActionGoal = require('./MoveGroupActionGoal.js');
+let PlaceFeedback = require('./PlaceFeedback.js');
+let MoveGroupSequenceActionGoal = require('./MoveGroupSequenceActionGoal.js');
+let MoveGroupSequenceFeedback = require('./MoveGroupSequenceFeedback.js');
+let PickupResult = require('./PickupResult.js');
+let ExecuteTrajectoryActionFeedback = require('./ExecuteTrajectoryActionFeedback.js');
+let PlaceActionGoal = require('./PlaceActionGoal.js');
+let PlaceGoal = require('./PlaceGoal.js');
+let ExecuteTrajectoryAction = require('./ExecuteTrajectoryAction.js');
+let PlaceActionResult = require('./PlaceActionResult.js');
+let MoveGroupResult = require('./MoveGroupResult.js');
+let MoveGroupSequenceActionResult = require('./MoveGroupSequenceActionResult.js');
 let LinkPadding = require('./LinkPadding.js');
-let MotionPlanResponse = require('./MotionPlanResponse.js');
-let JointConstraint = require('./JointConstraint.js');
-let WorkspaceParameters = require('./WorkspaceParameters.js');
-let TrajectoryConstraints = require('./TrajectoryConstraints.js');
+let MotionPlanRequest = require('./MotionPlanRequest.js');
+let PlanningSceneComponents = require('./PlanningSceneComponents.js');
 let DisplayTrajectory = require('./DisplayTrajectory.js');
-let PlannerParams = require('./PlannerParams.js');
-let OrientationConstraint = require('./OrientationConstraint.js');
-let PlanningSceneWorld = require('./PlanningSceneWorld.js');
-let PlanningOptions = require('./PlanningOptions.js');
-let JointLimits = require('./JointLimits.js');
-let RobotState = require('./RobotState.js');
+let MotionSequenceItem = require('./MotionSequenceItem.js');
+let PlanningScene = require('./PlanningScene.js');
+let CostSource = require('./CostSource.js');
 let PlannerInterfaceDescription = require('./PlannerInterfaceDescription.js');
-let MotionPlanDetailedResponse = require('./MotionPlanDetailedResponse.js');
-let MotionSequenceRequest = require('./MotionSequenceRequest.js');
-let OrientedBoundingBox = require('./OrientedBoundingBox.js');
-let AttachedCollisionObject = require('./AttachedCollisionObject.js');
+let PlanningOptions = require('./PlanningOptions.js');
+let PlanningSceneWorld = require('./PlanningSceneWorld.js');
 let Constraints = require('./Constraints.js');
-let KinematicSolverInfo = require('./KinematicSolverInfo.js');
-let BoundingVolume = require('./BoundingVolume.js');
 let Grasp = require('./Grasp.js');
+let RobotTrajectory = require('./RobotTrajectory.js');
+let JointConstraint = require('./JointConstraint.js');
+let ConstraintEvalResult = require('./ConstraintEvalResult.js');
+let MotionSequenceRequest = require('./MotionSequenceRequest.js');
 let GripperTranslation = require('./GripperTranslation.js');
 let AllowedCollisionEntry = require('./AllowedCollisionEntry.js');
+let AttachedCollisionObject = require('./AttachedCollisionObject.js');
+let PositionConstraint = require('./PositionConstraint.js');
+let JointLimits = require('./JointLimits.js');
+let VisibilityConstraint = require('./VisibilityConstraint.js');
+let RobotState = require('./RobotState.js');
+let PlannerParams = require('./PlannerParams.js');
+let TrajectoryConstraints = require('./TrajectoryConstraints.js');
+let MotionPlanDetailedResponse = require('./MotionPlanDetailedResponse.js');
+let KinematicSolverInfo = require('./KinematicSolverInfo.js');
 let CollisionObject = require('./CollisionObject.js');
+let WorkspaceParameters = require('./WorkspaceParameters.js');
+let OrientationConstraint = require('./OrientationConstraint.js');
+let BoundingVolume = require('./BoundingVolume.js');
+let AllowedCollisionMatrix = require('./AllowedCollisionMatrix.js');
+let MoveItErrorCodes = require('./MoveItErrorCodes.js');
+let ContactInformation = require('./ContactInformation.js');
+let LinkScale = require('./LinkScale.js');
+let PositionIKRequest = require('./PositionIKRequest.js');
+let DisplayRobotState = require('./DisplayRobotState.js');
+let ObjectColor = require('./ObjectColor.js');
+let PlaceLocation = require('./PlaceLocation.js');
+let OrientedBoundingBox = require('./OrientedBoundingBox.js');
+let MotionSequenceResponse = require('./MotionSequenceResponse.js');
+let MotionPlanResponse = require('./MotionPlanResponse.js');
 
 module.exports = {
-  ExecuteTrajectoryActionGoal: ExecuteTrajectoryActionGoal,
-  MoveGroupSequenceActionResult: MoveGroupSequenceActionResult,
-  MoveGroupSequenceResult: MoveGroupSequenceResult,
-  MoveGroupFeedback: MoveGroupFeedback,
-  MoveGroupSequenceFeedback: MoveGroupSequenceFeedback,
-  ExecuteTrajectoryResult: ExecuteTrajectoryResult,
-  PickupFeedback: PickupFeedback,
-  MoveGroupActionFeedback: MoveGroupActionFeedback,
-  PickupResult: PickupResult,
   PickupGoal: PickupGoal,
-  MoveGroupGoal: MoveGroupGoal,
-  PlaceAction: PlaceAction,
+  MoveGroupActionFeedback: MoveGroupActionFeedback,
   PickupActionGoal: PickupActionGoal,
-  MoveGroupResult: MoveGroupResult,
-  ExecuteTrajectoryFeedback: ExecuteTrajectoryFeedback,
-  PlaceActionGoal: PlaceActionGoal,
-  MoveGroupSequenceActionGoal: MoveGroupSequenceActionGoal,
-  PickupAction: PickupAction,
-  MoveGroupSequenceGoal: MoveGroupSequenceGoal,
-  PickupActionResult: PickupActionResult,
-  PlaceFeedback: PlaceFeedback,
-  MoveGroupSequenceAction: MoveGroupSequenceAction,
-  PickupActionFeedback: PickupActionFeedback,
-  MoveGroupSequenceActionFeedback: MoveGroupSequenceActionFeedback,
-  PlaceGoal: PlaceGoal,
-  PlaceActionResult: PlaceActionResult,
   MoveGroupActionResult: MoveGroupActionResult,
-  PlaceActionFeedback: PlaceActionFeedback,
-  PlaceResult: PlaceResult,
-  ExecuteTrajectoryActionResult: ExecuteTrajectoryActionResult,
   MoveGroupAction: MoveGroupAction,
-  MoveGroupActionGoal: MoveGroupActionGoal,
-  ExecuteTrajectoryActionFeedback: ExecuteTrajectoryActionFeedback,
-  ExecuteTrajectoryAction: ExecuteTrajectoryAction,
+  PlaceAction: PlaceAction,
+  ExecuteTrajectoryFeedback: ExecuteTrajectoryFeedback,
+  PickupAction: PickupAction,
+  PlaceResult: PlaceResult,
+  PickupActionFeedback: PickupActionFeedback,
   ExecuteTrajectoryGoal: ExecuteTrajectoryGoal,
-  LinkScale: LinkScale,
-  PositionIKRequest: PositionIKRequest,
-  PlaceLocation: PlaceLocation,
-  RobotTrajectory: RobotTrajectory,
-  MotionSequenceItem: MotionSequenceItem,
-  PositionConstraint: PositionConstraint,
-  MoveItErrorCodes: MoveItErrorCodes,
-  MotionPlanRequest: MotionPlanRequest,
-  ObjectColor: ObjectColor,
-  AllowedCollisionMatrix: AllowedCollisionMatrix,
-  CostSource: CostSource,
-  MotionSequenceResponse: MotionSequenceResponse,
-  ConstraintEvalResult: ConstraintEvalResult,
-  VisibilityConstraint: VisibilityConstraint,
-  DisplayRobotState: DisplayRobotState,
-  PlanningSceneComponents: PlanningSceneComponents,
-  ContactInformation: ContactInformation,
-  PlanningScene: PlanningScene,
+  MoveGroupSequenceActionFeedback: MoveGroupSequenceActionFeedback,
+  ExecuteTrajectoryResult: ExecuteTrajectoryResult,
+  ExecuteTrajectoryActionGoal: ExecuteTrajectoryActionGoal,
+  MoveGroupSequenceAction: MoveGroupSequenceAction,
+  ExecuteTrajectoryActionResult: ExecuteTrajectoryActionResult,
+  PickupActionResult: PickupActionResult,
+  MoveGroupFeedback: MoveGroupFeedback,
+  MoveGroupSequenceGoal: MoveGroupSequenceGoal,
+  MoveGroupGoal: MoveGroupGoal,
+  PickupFeedback: PickupFeedback,
+  MoveGroupSequenceResult: MoveGroupSequenceResult,
+  PlaceActionFeedback: PlaceActionFeedback,
+  MoveGroupActionGoal: MoveGroupActionGoal,
+  PlaceFeedback: PlaceFeedback,
+  MoveGroupSequenceActionGoal: MoveGroupSequenceActionGoal,
+  MoveGroupSequenceFeedback: MoveGroupSequenceFeedback,
+  PickupResult: PickupResult,
+  ExecuteTrajectoryActionFeedback: ExecuteTrajectoryActionFeedback,
+  PlaceActionGoal: PlaceActionGoal,
+  PlaceGoal: PlaceGoal,
+  ExecuteTrajectoryAction: ExecuteTrajectoryAction,
+  PlaceActionResult: PlaceActionResult,
+  MoveGroupResult: MoveGroupResult,
+  MoveGroupSequenceActionResult: MoveGroupSequenceActionResult,
   LinkPadding: LinkPadding,
-  MotionPlanResponse: MotionPlanResponse,
-  JointConstraint: JointConstraint,
-  WorkspaceParameters: WorkspaceParameters,
-  TrajectoryConstraints: TrajectoryConstraints,
+  MotionPlanRequest: MotionPlanRequest,
+  PlanningSceneComponents: PlanningSceneComponents,
   DisplayTrajectory: DisplayTrajectory,
-  PlannerParams: PlannerParams,
-  OrientationConstraint: OrientationConstraint,
-  PlanningSceneWorld: PlanningSceneWorld,
-  PlanningOptions: PlanningOptions,
-  JointLimits: JointLimits,
-  RobotState: RobotState,
+  MotionSequenceItem: MotionSequenceItem,
+  PlanningScene: PlanningScene,
+  CostSource: CostSource,
   PlannerInterfaceDescription: PlannerInterfaceDescription,
-  MotionPlanDetailedResponse: MotionPlanDetailedResponse,
-  MotionSequenceRequest: MotionSequenceRequest,
-  OrientedBoundingBox: OrientedBoundingBox,
-  AttachedCollisionObject: AttachedCollisionObject,
+  PlanningOptions: PlanningOptions,
+  PlanningSceneWorld: PlanningSceneWorld,
   Constraints: Constraints,
-  KinematicSolverInfo: KinematicSolverInfo,
-  BoundingVolume: BoundingVolume,
   Grasp: Grasp,
+  RobotTrajectory: RobotTrajectory,
+  JointConstraint: JointConstraint,
+  ConstraintEvalResult: ConstraintEvalResult,
+  MotionSequenceRequest: MotionSequenceRequest,
   GripperTranslation: GripperTranslation,
   AllowedCollisionEntry: AllowedCollisionEntry,
+  AttachedCollisionObject: AttachedCollisionObject,
+  PositionConstraint: PositionConstraint,
+  JointLimits: JointLimits,
+  VisibilityConstraint: VisibilityConstraint,
+  RobotState: RobotState,
+  PlannerParams: PlannerParams,
+  TrajectoryConstraints: TrajectoryConstraints,
+  MotionPlanDetailedResponse: MotionPlanDetailedResponse,
+  KinematicSolverInfo: KinematicSolverInfo,
   CollisionObject: CollisionObject,
+  WorkspaceParameters: WorkspaceParameters,
+  OrientationConstraint: OrientationConstraint,
+  BoundingVolume: BoundingVolume,
+  AllowedCollisionMatrix: AllowedCollisionMatrix,
+  MoveItErrorCodes: MoveItErrorCodes,
+  ContactInformation: ContactInformation,
+  LinkScale: LinkScale,
+  PositionIKRequest: PositionIKRequest,
+  DisplayRobotState: DisplayRobotState,
+  ObjectColor: ObjectColor,
+  PlaceLocation: PlaceLocation,
+  OrientedBoundingBox: OrientedBoundingBox,
+  MotionSequenceResponse: MotionSequenceResponse,
+  MotionPlanResponse: MotionPlanResponse,
 };

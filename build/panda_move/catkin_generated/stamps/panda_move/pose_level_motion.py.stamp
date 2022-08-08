@@ -83,7 +83,7 @@ class PoseLevelMotion(object):
         super(PoseLevelMotion, self).__init__()
         moveit_commander.roscpp_initialize(sys.argv)
 
-        rospy.init_node('PandaMove', anonymous=True)
+        #rospy.init_node('PandaMove', anonymous=True)
 
         self.robot = moveit_commander.RobotCommander() #robot 객체 생성
         self.scene = moveit_commander.PlanningSceneInterface() #바뀌는 장면을 추가적으로 넣어줌
@@ -108,10 +108,6 @@ class PoseLevelMotion(object):
         self.joint = [moveit_commander.RobotCommander.Joint( #moveit_commander에 joint 생성
             self.robot, 'rail_joint')]
         self.joint.append(moveit_commander.RobotCommander.Joint(
-            self.robot, 'base_joint'))
-        self.joint.append(moveit_commander.RobotCommander.Joint(
-            self.robot, 'base_link-base_fixed_joint'))
-        self.joint.append(moveit_commander.RobotCommander.Joint(
             self.robot, 'shoulder_pan_joint'))
         self.joint.append(moveit_commander.RobotCommander.Joint(
             self.robot, 'shoulder_lift_joint'))
@@ -123,8 +119,6 @@ class PoseLevelMotion(object):
             self.robot, 'wrist_2_joint'))
         self.joint.append(moveit_commander.RobotCommander.Joint(
             self.robot, 'wrist_3_joint'))
-        self.joint.append(moveit_commander.RobotCommander.Joint(
-            self.robot, 'ee_fixed_joint'))
         self.joint.append(moveit_commander.RobotCommander.Joint(
             self.robot, 'panda_finger_joint1'))
         self.joint.append(moveit_commander.RobotCommander.Joint(
