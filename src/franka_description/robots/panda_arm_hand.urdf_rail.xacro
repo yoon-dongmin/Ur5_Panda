@@ -5,8 +5,8 @@
     <xacro:panda_arm connected_to="world" safety_distance="0.005"/>
     <xacro:hand ns="panda" rpy="0 0 ${-pi/4}" connected_to="panda_link8" safety_distance="0.00"/>
 
-    
-    <!-- table -->
+</robot>
+    <!-- table
     <xacro:property name="table_w" value="0.5"/>
     <xacro:property name="table_l" value="3.0"/>
     <xacro:property name="table_h" value="0.4"/>
@@ -132,7 +132,6 @@
                 <box size="${cuttingboard_w} ${cuttingboard_l} ${cuttingboard_h}"/>
             </geometry>
         </collision>
-    </link>
+    </link> -->
 
 
-</robot>
