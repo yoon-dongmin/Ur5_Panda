@@ -7,7 +7,6 @@ obj_state = []
 
 # container
 obj_state.append(['pan', 'pan', None])
-obj_state.append(['pot', 'pot', None])
 obj_state.append(['plate', 'plate', None])
 obj_state.append(['bowl', 'bowl', None])
 
@@ -55,7 +54,6 @@ obj_place = []
 # obj_place.append(['knife', 'knife', 'table1_knife', 'activated'])
 # obj_place.append(['cutting_board', 'cutting_board', 'table1_cutting_board', None])
 obj_place.append(['pan', 'pan', 'table1_cookware_area', 'activated'])
-obj_place.append(['pot', 'pot', 'table1_cookware_area', 'activated'])
 obj_place.append(['plate', 'plate', 'table1_dishware_area', 'activated'])
 obj_place.append(['bowl', 'bowl', 'table1_dishware_area', 'activated'])
 obj_place.append(['spatula', 'spatula', 'table1_tool_area', 'activated'])

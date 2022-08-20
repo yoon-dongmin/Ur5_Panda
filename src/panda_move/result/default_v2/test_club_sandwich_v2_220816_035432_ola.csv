@@ -1,0 +1,27 @@
+task,action,length,time,success
+1,"['PickUp', 'pan']",4,15.859982013702393,True
+1,"['Place', 'pan', 'stove', 'cookware']",4,22.786216974258423,True
+1,"['PickUp', 'bacon']",4,21.29032802581787,True
+1,"['PutOn', 'bacon', 'pan', 'None']",4,22.990896940231323,True
+1,"['Activate', 'stove', 'bacon']",0,0.06531596183776855,True
+2,"['PickUp', 'tomato']",4,18.796669006347656,True
+2,"['Place', 'tomato', 'cutting_board', 'ingredient']",4,31.191265106201172,True
+2,"['PickUp', 'knife']",4,16.58289909362793,True
+2,"['Chop', 'tomato', 'knife']",6,24.990500926971436,True
+3,"['Place', 'knife', 'table', 'tool']",4,18.408341884613037,True
+3,"['PickUp', 'mayonnaise_bottle']",4,18.089962005615234,True
+3,"['Pour', 'mayonnaise_bottle', 'bread1', 'mayonnaise']",3,20.489736080169678,True
+4,"['Place', 'mayonnaise_bottle', 'table', 'ing_bottle']",4,18.310800075531006,True
+4,"['PickUp', 'ham']",4,19.590211868286133,True
+4,"['PutOn', 'ham', 'bread1', 'None']",4,16.891259908676147,True
+5,"['PickUp', 'turkey']",4,16.40398907661438,True
+5,"['PutOn', 'turkey', 'ham', 'None']",4,16.490381002426147,True
+6,"['PickUp', 'cheese']",4,20.88431692123413,True
+6,"['PutOn', 'cheese', 'turkey', 'None']",4,16.290477991104126,True
+7,"['PickUp', 'mayonnaise_bottle']",4,19.293925046920776,True
+7,"['Pour', 'mayonnaise_bottle', 'bread2', 'mayonnaise']",3,20.89101004600525,True
+8,"['Place', 'mayonnaise_bottle', 'table', 'ing_bottle']",4,18.957309007644653,True
+8,"['PickUp', 'bread2']",4,17.190315008163452,True
+8,"['PutOn', 'bread2', 'cheese', 'None']",4,22.584630966186523,True
+9,"['PickUp', 'bacon']",4,20.578598976135254,True
+9,"['PutOn', 'bacon', 'bread2', 'None']",4,6.9888951778411865,False

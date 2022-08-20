@@ -433,12 +433,13 @@ def main():
     use_unity = True
 
     # sample
-    # sandwich = sample.club_sandwich
-    sandwich = sample.tuna_sandwich
+    sandwich = sample.club_sandwich
+    # sandwich = sample.tuna_sandwich
     # sandwich = sample.greek_salad
     # sandwich = sample.shrimp_salad
     # sandwich = sample.test_15_predict3_v2
-    # sandwich = sample.test_33_predict2_v2
+    # sandwich = sample.test_33_predict2_
+    # v2
     # sandwich = sample.test_49_predict2_v2
     # sandwich = sample.test_80_predict2_v2
 

@@ -1,0 +1,133 @@
+task,action,action_length,sequence,planning_time,execution_time,success
+1,"['PickUp', 'bacon']",4,0,0.11404299736022949,2.0998687744140625,True
+1,"['PickUp', 'bacon']",4,1,0.0013408660888671875,1.8981528282165527,True
+1,"['PickUp', 'bacon']",4,2,,,True
+1,"['PickUp', 'bacon']",4,3,0.0015571117401123047,1.797593116760254,True
+1,"['PutOn', 'bacon', 'pan', 'None']",4,0,0.1266920566558838,3.899678945541382,True
+1,"['PutOn', 'bacon', 'pan', 'None']",4,1,0.007477998733520508,0.8920822143554688,True
+1,"['PutOn', 'bacon', 'pan', 'None']",4,2,,,True
+1,"['PutOn', 'bacon', 'pan', 'None']",4,3,0.0010941028594970703,1.2984740734100342,True
+1,"['PickUp', 'pan']",4,0,0.10374593734741211,1.5000298023223877,True
+1,"['PickUp', 'pan']",4,1,0.006976127624511719,1.291482925415039,True
+1,"['PickUp', 'pan']",4,2,,,True
+1,"['PickUp', 'pan']",4,3,0.0018651485443115234,1.6975629329681396,True
+1,"['Place', 'pan', 'stove', 'cookware']",4,0,0.06752300262451172,5.0990190505981445,True
+1,"['Place', 'pan', 'stove', 'cookware']",4,1,0.007091999053955078,1.1924951076507568,True
+1,"['Place', 'pan', 'stove', 'cookware']",4,2,,,True
+1,"['Place', 'pan', 'stove', 'cookware']",4,3,0.0016760826110839844,1.4981939792633057,True
+2,"['PickUp', 'tomato']",4,0,0.09453105926513672,2.899427890777588,True
+2,"['PickUp', 'tomato']",4,1,0.007348060607910156,1.4917149543762207,True
+2,"['PickUp', 'tomato']",4,2,,,True
+2,"['PickUp', 'tomato']",4,3,0.007120847702026367,1.5921862125396729,True
+2,"['Place', 'tomato', 'cutting_board', 'ingredient']",4,0,0.053607940673828125,2.100287914276123,True
+2,"['Place', 'tomato', 'cutting_board', 'ingredient']",4,1,0.007055997848510742,1.4926059246063232,True
+2,"['Place', 'tomato', 'cutting_board', 'ingredient']",4,2,,,True
+2,"['Place', 'tomato', 'cutting_board', 'ingredient']",4,3,0.0010809898376464844,1.6982219219207764,True
+2,"['PickUp', 'knife']",4,0,0.10634398460388184,2.200105905532837,True
+2,"['PickUp', 'knife']",4,1,0.0013508796691894531,1.597985029220581,True
+2,"['PickUp', 'knife']",4,2,,,True
+2,"['PickUp', 'knife']",4,3,0.0018188953399658203,1.59769606590271,True
+2,"['Chop', 'tomato', 'knife']",6,0,0.1278989315032959,0.49921512603759766,True
+2,"['Chop', 'tomato', 'knife']",6,1,0.13280200958251953,1.8999419212341309,True
+2,"['Chop', 'tomato', 'knife']",6,2,0.006731986999511719,1.5926249027252197,True
+2,"['Chop', 'tomato', 'knife']",6,3,0.0013670921325683594,0.0016369819641113281,True
+2,"['Chop', 'tomato', 'knife']",6,4,0.0010390281677246094,0.0009520053863525391,True
+2,"['Chop', 'tomato', 'knife']",6,5,0.11767792701721191,0.5000820159912109,True
+3,"['Place', 'knife', 'table', 'tool']",4,0,0.03387308120727539,1.6000242233276367,True
+3,"['Place', 'knife', 'table', 'tool']",4,1,0.001238107681274414,1.5982179641723633,True
+3,"['Place', 'knife', 'table', 'tool']",4,2,,,True
+3,"['Place', 'knife', 'table', 'tool']",4,3,0.00162506103515625,1.5962979793548584,True
+3,"['PickUp', 'mayonnaise_bottle']",4,0,0.11932897567749023,3.699479818344116,True
+3,"['PickUp', 'mayonnaise_bottle']",4,1,0.006775856018066406,1.2925288677215576,True
+3,"['PickUp', 'mayonnaise_bottle']",4,2,,,True
+3,"['PickUp', 'mayonnaise_bottle']",4,3,0.0017659664154052734,1.4979710578918457,True
+3,"['Pour', 'mayonnaise_bottle', 'bread1', 'mayonnaise']",3,0,0.6162068843841553,2.599961996078491,True
+3,"['Pour', 'mayonnaise_bottle', 'bread1', 'mayonnaise']",3,1,0.12506508827209473,2.4997777938842773,True
+3,"['Pour', 'mayonnaise_bottle', 'bread1', 'mayonnaise']",3,2,0.060426950454711914,2.4995977878570557,True
+4,"['Place', 'mayonnaise_bottle', 'table', 'ing_bottle']",4,0,0.11084198951721191,3.9995970726013184,True
+4,"['Place', 'mayonnaise_bottle', 'table', 'ing_bottle']",4,1,0.0013151168823242188,1.4979729652404785,True
+4,"['Place', 'mayonnaise_bottle', 'table', 'ing_bottle']",4,2,,,True
+4,"['Place', 'mayonnaise_bottle', 'table', 'ing_bottle']",4,3,0.002154827117919922,3.8959720134735107,True
+4,"['PickUp', 'ham']",4,0,0.1327059268951416,3.4999799728393555,True
+4,"['PickUp', 'ham']",4,1,0.006361961364746094,1.6928119659423828,True
+4,"['PickUp', 'ham']",4,2,,,True
+4,"['PickUp', 'ham']",4,3,0.0015709400177001953,4.297816038131714,True
+4,"['PutOn', 'ham', 'bread1', 'None']",4,0,0.11484193801879883,1.4999690055847168,True
+4,"['PutOn', 'ham', 'bread1', 'None']",4,1,0.006104946136474609,0.8933568000793457,True
+4,"['PutOn', 'ham', 'bread1', 'None']",4,2,,,True
+4,"['PutOn', 'ham', 'bread1', 'None']",4,3,0.0009179115295410156,1.2986350059509277,True
+5,"['PickUp', 'turkey']",4,0,0.1015939712524414,2.399930953979492,True
+5,"['PickUp', 'turkey']",4,1,0.0010991096496582031,1.5983340740203857,True
+5,"['PickUp', 'turkey']",4,2,,,True
+5,"['PickUp', 'turkey']",4,3,0.0026018619537353516,1.596893072128296,True
+5,"['PutOn', 'turkey', 'ham', 'None']",4,0,0.11408400535583496,1.5999469757080078,True
+5,"['PutOn', 'turkey', 'ham', 'None']",4,1,0.0010750293731689453,1.298280954360962,True
+5,"['PutOn', 'turkey', 'ham', 'None']",4,2,,,True
+5,"['PutOn', 'turkey', 'ham', 'None']",4,3,0.0010199546813964844,1.2986021041870117,True
+6,"['PickUp', 'cheese']",4,0,0.0993959903717041,4.698850154876709,True
+6,"['PickUp', 'cheese']",4,1,0.0069048404693603516,1.4926509857177734,True
+6,"['PickUp', 'cheese']",4,2,,,True
+6,"['PickUp', 'cheese']",4,3,0.0015370845794677734,1.5976881980895996,True
+6,"['PutOn', 'cheese', 'turkey', 'None']",4,0,0.11295604705810547,1.2002389430999756,True
+6,"['PutOn', 'cheese', 'turkey', 'None']",4,1,0.007439136505126953,0.8918070793151855,True
+6,"['PutOn', 'cheese', 'turkey', 'None']",4,2,,,True
+6,"['PutOn', 'cheese', 'turkey', 'None']",4,3,0.001055002212524414,1.2983441352844238,True
+7,"['PickUp', 'mayonnaise_bottle']",4,0,0.16288280487060547,13.398393869400024,True
+7,"['PickUp', 'mayonnaise_bottle']",4,1,0.006291866302490234,1.1929268836975098,True
+7,"['PickUp', 'mayonnaise_bottle']",4,2,,,True
+7,"['PickUp', 'mayonnaise_bottle']",4,3,0.006631135940551758,0.3929429054260254,False
+7,"['Pour', 'mayonnaise_bottle', 'bread2', 'mayonnaise']",3,0,0.6113390922546387,9.498859882354736,True
+7,"['Pour', 'mayonnaise_bottle', 'bread2', 'mayonnaise']",3,1,0.13321399688720703,4.799718856811523,True
+7,"['Pour', 'mayonnaise_bottle', 'bread2', 'mayonnaise']",3,2,0.058135986328125,2.5996410846710205,True
+8,"['Place', 'mayonnaise_bottle', 'table', 'ing_bottle']",4,0,0.09200692176818848,9.39891505241394,True
+8,"['Place', 'mayonnaise_bottle', 'table', 'ing_bottle']",4,1,0.0021109580993652344,1.6971678733825684,True
+8,"['Place', 'mayonnaise_bottle', 'table', 'ing_bottle']",4,2,,,True
+8,"['Place', 'mayonnaise_bottle', 'table', 'ing_bottle']",4,3,0.0015959739685058594,1.497018814086914,True
+8,"['PickUp', 'bread2']",4,0,0.1192159652709961,3.099821090698242,True
+8,"['PickUp', 'bread2']",4,1,0.0016608238220214844,1.3973891735076904,True
+8,"['PickUp', 'bread2']",4,2,,,True
+8,"['PickUp', 'bread2']",4,3,0.0041768550872802734,1.3951280117034912,True
+8,"['PutOn', 'bread2', 'cheese', 'None']",4,0,0.11146712303161621,4.399188041687012,True
+8,"['PutOn', 'bread2', 'cheese', 'None']",4,1,0.0010139942169189453,1.2984850406646729,True
+8,"['PutOn', 'bread2', 'cheese', 'None']",4,2,,,True
+8,"['PutOn', 'bread2', 'cheese', 'None']",4,3,0.0011200904846191406,1.2985608577728271,True
+9,"['PickUp', 'bacon']",4,0,0.08663296699523926,5.999309062957764,True
+9,"['PickUp', 'bacon']",4,1,0.0030400753021240234,1.4964048862457275,True
+9,"['PickUp', 'bacon']",4,2,,,True
+9,"['PickUp', 'bacon']",4,3,0.0013780593872070312,1.4981510639190674,True
+9,"['PutOn', 'bacon', 'bread2', 'None']",4,0,0.12696409225463867,6.399179935455322,True
+9,"['PutOn', 'bacon', 'bread2', 'None']",4,1,0.0012259483337402344,1.2979872226715088,True
+9,"['PutOn', 'bacon', 'bread2', 'None']",4,2,,,True
+9,"['PutOn', 'bacon', 'bread2', 'None']",4,3,0.0010640621185302734,1.2983529567718506,True
+10,"['PickUp', 'lettuce']",4,0,0.10592794418334961,1.6000709533691406,True
+10,"['PickUp', 'lettuce']",4,1,0.006822824478149414,1.3924129009246826,True
+10,"['PickUp', 'lettuce']",4,2,,,True
+10,"['PickUp', 'lettuce']",4,3,0.0013701915740966797,1.5982251167297363,True
+10,"['PutOn', 'lettuce', 'bacon', 'None']",4,0,0.1170492172241211,1.5999691486358643,True
+10,"['PutOn', 'lettuce', 'bacon', 'None']",4,1,0.0064699649810791016,0.8932349681854248,True
+10,"['PutOn', 'lettuce', 'bacon', 'None']",4,2,,,True
+10,"['PutOn', 'lettuce', 'bacon', 'None']",4,3,0.0010609626770019531,1.2982499599456787,True
+11,"['PickUp', 'scooper']",4,0,0.11896491050720215,2.7002060413360596,True
+11,"['PickUp', 'scooper']",4,1,0.0011169910430908203,1.5983250141143799,True
+11,"['PickUp', 'scooper']",4,2,,,True
+11,"['PickUp', 'scooper']",4,3,0.001611948013305664,1.5978660583496094,True
+11,"['Scoop', 'chopped_tomato', 'lettuce', 'scooper']",7,0,0.1306138038635254,1.899914026260376,True
+11,"['Scoop', 'chopped_tomato', 'lettuce', 'scooper']",7,1,0.13142609596252441,2.099985122680664,True
+11,"['Scoop', 'chopped_tomato', 'lettuce', 'scooper']",7,2,0.0013430118560791016,1.898069143295288,True
+11,"['Scoop', 'chopped_tomato', 'lettuce', 'scooper']",7,3,0.0012850761413574219,1.8983769416809082,True
+11,"['Scoop', 'chopped_tomato', 'lettuce', 'scooper']",7,4,0.1305539608001709,2.099799871444702,True
+11,"['Scoop', 'chopped_tomato', 'lettuce', 'scooper']",7,5,0.11553406715393066,1.4998440742492676,True
+11,"['Scoop', 'chopped_tomato', 'lettuce', 'scooper']",7,6,0.1216440200805664,1.49971604347229,True
+11,"['Scoop', 'chopped_tomato', 'lettuce', 'scooper']",7,7,0.12852907180786133,0.49994897842407227,True
+12,"['Place', 'scooper', 'table', 'tool']",4,0,0.10949110984802246,2.699711799621582,True
+12,"['Place', 'scooper', 'table', 'tool']",4,1,0.0043909549713134766,1.5929069519042969,True
+12,"['Place', 'scooper', 'table', 'tool']",4,2,,,True
+12,"['Place', 'scooper', 'table', 'tool']",4,3,0.0018088817596435547,1.5956859588623047,True
+12,"['PickUp', 'bread3']",4,0,0.11523103713989258,2.8997278213500977,True
+12,"['PickUp', 'bread3']",4,1,0.0011870861053466797,1.7979259490966797,True
+12,"['PickUp', 'bread3']",4,2,,,True
+12,"['PickUp', 'bread3']",4,3,0.00144195556640625,1.8978400230407715,True
+12,"['PutOn', 'bread3', 'chopped_tomato', 'sandwich']",4,0,0.11554384231567383,1.9002339839935303,True
+12,"['PutOn', 'bread3', 'chopped_tomato', 'sandwich']",4,1,0.0010612010955810547,1.298323154449463,True
+12,"['PutOn', 'bread3', 'chopped_tomato', 'sandwich']",4,2,,,True
+12,"['PutOn', 'bread3', 'chopped_tomato', 'sandwich']",4,3,0.0011911392211914062,1.298367977142334,True
