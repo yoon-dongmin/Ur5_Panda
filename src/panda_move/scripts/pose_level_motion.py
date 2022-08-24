@@ -238,6 +238,7 @@ class PoseLevelMotion(object):
 
         return plan, mp_info
     
+    #current pose에 대한 trasnformation matrix는 현재 pose가 기준?
     def linear_motion(self, distance, avoid_collision=True, reference="world"):
         move_group = self.move_group
         waypoints = []
@@ -558,7 +559,7 @@ class PoseLevelMotion(object):
 def main():
     pose_test = PoseLevelMotion()
     raw_input()
-    pose_test.add_box('box',[0.3, 0, 0.5, 0, 0, 0], (0.06, 0.06, 0.05))
+    # pose_test.add_box('box',[0.3, 0, 0.5, 0, 0, 0], (0.06, 0.06, 0.05))
     #pose_test.add_object('[avocado]',[0.5, 0, 0.42,0,0,0], "/ur5_panda/src/object_sample/avocado.stl",(1, 1, 1))
     #pose_test.add_object('[banana]',[0.5, 0, 0.42,0,0,0], "/ur5_panda/src/object_sample/banana.stl",(1, 1, 1))
     #pose_test.move_to(list_to_pose([0.3, 0, 0.3, 0, 0, 0]), False)
@@ -568,9 +569,9 @@ def main():
     # pose_test.linear_motion([0.3,-0.5,0], True)
     # raw_input()
     # pose_test.linear_motion([0,0.5,0], True) 
-    raw_input()
-    pose_test.linear_motion([0,-3,0], True, reference="eef") 
-    #pose_test.reciprocating_motion("X",1,False,reference="eef")
+    # raw_input()
+    #pose_test.linear_motion([0,0,-3], True, reference="eef") 
+    pose_test.reciprocating_motion("Z",0.3,False)
     # raw_input("temp2") 
     # pose_test.hold_object('box', 0.03)
     #pose_test.hold_object('box', 0.03)

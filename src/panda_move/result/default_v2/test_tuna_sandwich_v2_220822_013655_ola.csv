@@ -1,0 +1,53 @@
+task,action,length,time,success
+1,"['PickUp', 'tuna']",4,15.846121072769165,True
+1,"['Place', 'tuna', 'cutting_board', 'ingredient']",4,18.07993197441101,True
+1,"['PickUp', 'knife']",4,16.3889000415802,True
+1,"['Chop', 'tuna', 'knife']",6,21.78949213027954,True
+2,"['Place', 'knife', 'table', 'tool']",4,18.675846815109253,True
+2,"['PickUp', 'bowl']",4,17.190185070037842,True
+2,"['Place', 'bowl', 'near_cutting_board', 'dishware']",4,18.288814067840576,True
+2,"['PickUp', 'knife']",4,16.19245195388794,True
+2,"['Scrape', 'chopped_tuna', 'bowl', 'knife']",5,23.790435075759888,True
+3,"['Place', 'knife', 'table', 'tool']",4,18.86855697631836,True
+3,"['PickUp', 'mayonnaise_bottle']",4,17.49373483657837,True
+3,"['Pour', 'mayonnaise_bottle', 'bowl', 'mayonnaise']",3,20.382946014404297,True
+4,"['Place', 'mayonnaise_bottle', 'table', 'ing_bottle']",4,18.513593912124634,True
+4,"['PickUp', 'onion']",4,16.888056993484497,True
+4,"['Place', 'onion', 'cutting_board', 'ingredient']",4,22.690107107162476,True
+4,"['PickUp', 'knife']",4,16.390214920043945,True
+4,"['Chop', 'onion', 'knife']",6,25.089683771133423,True
+5,"['Scrape', 'chopped_onion', 'bowl', 'knife']",5,22.38496494293213,True
+6,"['Place', 'knife', 'table', 'tool']",4,18.650912046432495,True
+6,"['PickUp', 'sugar_bottle']",4,24.491355895996094,True
+6,"['Pour', 'sugar_bottle', 'bowl', 'sugar']",3,20.387924909591675,True
+7,"['Place', 'sugar_bottle', 'table', 'ing_bottle']",4,18.361677885055542,True
+7,"['PickUp', 'pepper_bottle']",4,14.488761901855469,True
+7,"['Pour', 'pepper_bottle', 'bowl', 'pepper']",3,20.784271001815796,True
+8,"['Place', 'pepper_bottle', 'table', 'ing_bottle']",4,18.580590963363647,True
+8,"['PickUp', 'spatula']",4,16.99002504348755,True
+8,"['Stir', 'bowl', 'tuna_spread', 'spatula']",7,53.88994002342224,True
+9,"['Place', 'spatula', 'table', 'tool']",4,18.0222430229187,True
+9,"['PickUp', 'spreader']",4,14.690862894058228,True
+9,"['Spread', 'butter', 'bread1', 'spreader']",6,34.88999390602112,True
+10,"['Spread', 'butter', 'bread2', 'spreader']",6,35.691147804260254,True
+11,"['Place', 'spreader', 'table', 'tool']",4,19.313846111297607,True
+11,"['PickUp', 'scooper']",4,14.789254188537598,True
+11,"['Scoop', 'tuna_spread', 'bread1', 'scooper']",7,37.889897108078,True
+12,"['Place', 'scooper', 'table', 'tool']",4,18.821614980697632,True
+12,"['PickUp', 'lettuce']",4,15.990017175674438,True
+12,"['Place', 'lettuce', 'cutting_board', 'ingredient']",4,45.59317684173584,True
+12,"['PickUp', 'knife']",4,16.08798599243164,True
+12,"['Chop', 'lettuce', 'knife']",6,20.99131202697754,True
+13,"['Place', 'knife', 'table', 'tool']",4,18.233224153518677,True
+13,"['PickUp', 'scooper']",4,14.79021406173706,True
+13,"['Scoop', 'chopped_lettuce', 'tuna_spread', 'scooper']",7,38.89056897163391,True
+14,"['Place', 'scooper', 'table', 'tool']",4,18.83601999282837,True
+14,"['PickUp', 'salt_bottle']",4,18.989187002182007,True
+14,"['Pour', 'salt_bottle', 'chopped_lettuce', 'salt']",3,27.190866947174072,True
+15,"['Place', 'salt_bottle', 'table', 'ing_bottle']",4,18.73711109161377,True
+15,"['PickUp', 'bread2']",4,20.790778875350952,True
+15,"['PutOn', 'bread2', 'chopped_lettuce', 'sandwich']",4,19.690361976623535,True
+16,"['PickUp', 'sandwich']",4,15.938423156738281,True
+16,"['Place', 'sandwich', 'cutting_board', 'ingredient']",4,21.090801000595093,True
+16,"['PickUp', 'knife']",4,16.38918685913086,True
+16,"['Chop', 'sandwich', 'knife']",6,24.58625817298889,True

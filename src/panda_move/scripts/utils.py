@@ -75,7 +75,7 @@ def inv_trans_mat(transformation):
     elif isinstance(transformation, np.ndarray):
         transformation_mat = transformation
     inv_rot = tf.transformations.identity_matrix()
-    inv_rot[:3, :3] = (transformation_mat[:3, :3]).T
+    inv_rot[:3, :3] = (transformation_mat[:3, :3]).T #rotation matrix만 trasnpose
     inv_trans = tf.transformations.translation_matrix(-transformation_mat[:, 3])
     inv_mat = tf.transformations.concatenate_matrices(inv_rot, inv_trans)
     return inv_mat
@@ -83,28 +83,27 @@ def inv_trans_mat(transformation):
 
 def concatenate_to_pose(*args):
     pose_mats = tuple()
-    print(123)
-    for pose in args: # (0,0,0,0,0,0,0)형태로 변경
+    for pose in args: # transformation matrix로 변경
         #ex) isinstance(1,int) => true
         print(pose,type(pose),3)
         if isinstance(pose, Pose):
-            #print(pose,5555)
-            pose_mat = pose_to_mat(pose) #matrix로 변경
+            print(pose,5555)
+            pose_mat = pose_to_mat(pose) 
         elif isinstance(pose, list):
-            #print(pose,4555)
+            print(pose,4555)
             pose_mat = pose_list_to_mat(pose)
             #print(pose_mat,777)
         elif isinstance(pose, np.ndarray):
-            #print(pose,3555)
+            print(pose,3555)
             pose_mat = pose
-        pose_mats += (pose_mat, ) #array[1,2,3] + array[4] = array[[1,2,3],[4]]
+        pose_mats += (pose_mat, ) #array[1,2,3] + array[4,5,6] = array[[1,2,3],[4,5,6]]
         print(pose_mats,4)
 
     # result_mat = tf.transformations.concatenate_matrices(pose_mats)
     result_mat = tf.transformations.identity_matrix()
     for M in pose_mats:
         result_mat = np.dot(result_mat, M)
-    result_pose = mat_to_pose(result_mat)
+    result_pose = mat_to_pose(result_mat) #trasnformation matrix => pose
     
     return result_pose
 

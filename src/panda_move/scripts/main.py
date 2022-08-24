@@ -11,6 +11,7 @@ import datetime
 import rospy
 from collections import defaultdict
 from os.path import dirname
+import sys
 from task_planning.searcher import AStarSearcher
 from task_planning.planner import ForwardPlanner
 from task_planning.domain import *
@@ -430,12 +431,12 @@ def run_test_set():
 
 def main():
     use_moveit = True
-    use_unity = True
+    use_unity = False
 
     # sample
-    sandwich = sample.club_sandwich
+    # sandwich = sample.club_sandwich
     # sandwich = sample.tuna_sandwich
-    # sandwich = sample.greek_salad
+    sandwich = sample.greek_salad
     # sandwich = sample.shrimp_salad
     # sandwich = sample.test_15_predict3_v2
     # sandwich = sample.test_33_predict2_
@@ -544,6 +545,9 @@ def main():
 
             # run action_sequences
             action_sequences = [action.split('/') for action in task_planner.solution.to_str().split(" -> ") if action]
+            print(action_sequences,33333333333333333333333)
+            raw_input("aaa")
+
             if use_moveit:
                 # success = False
                 for i, action in enumerate(action_sequences):

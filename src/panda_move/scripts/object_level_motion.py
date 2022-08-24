@@ -29,8 +29,8 @@ import sample.club_sandwich
 import sample.tuna_sandwich
 import sample.greek_salad
 import sample.shrimp_salad
-
-from panda_move.srv import Init, InitRequest, InitResponse 
+#request와 response할 객체 이름을 정해서 가져옴
+from panda_move.srv import Init, InitRequest, InitResponse  
 from panda_move.srv import Sync, SyncRequest, SyncResponse
 from panda_move.srv import Plan, PlanRequest, PlanResponse
 from panda_move.srv import Hand, HandRequest, HandResponse
@@ -51,7 +51,7 @@ def import_yaml(file_path):
         yaml_data = yaml.load(f, Loader=yaml.FullLoader)
     return yaml_data
 
-def pressEnter(msg):  #마우스 제어?
+def pressEnter(msg):  #마우스 제어? 현제 사용x
     if msg.status:
         pyautogui.press('enter')
 
@@ -91,7 +91,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
             for key, val in self.placement_yaml.items(): #config에 있는 파일
                 for area in val['area']: #value값이 'area'인것에 대해서
                     self.place_area_poses[area].append(key) #key:area([stove_cookware_area]) value:stove_1 =>같은 area를 가지는 key값 존재
-            #check self.object가 add object한 후 추가???
+            #check self.object가 add object한 후 추가?
 
             # temp = []
             for (obj_instance, obj_type, place_area, obj_state) in arrange_info: #왜 ingredient가 2번 들어감? => bread같은 경우 bread1,bread2,bread3 존재
@@ -101,14 +101,14 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
                 # initialize obj_state
                 if obj_state is not None:
-                    self.objects[obj_state].append(obj_instance) #ex) key:activated value:tomato
+                    self.objects[obj_state].append(obj_instance) #ex) key:activated value:tomato =>self.objects 추가 
                     
                 
                 # temp.append([obj_state, obj_instance])
                 #
                 #
                 # initialize obj_instance
-                self.instance_type[obj_instance] = obj_type
+                self.instance_type[obj_instance] = obj_type # self.instance_type 추가 
             # for (a, b) in temp:
             #       self.objects[a] = b
             raw_input("Initial Scene Configuration Completed")
@@ -116,7 +116,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         except Exception as e:
             rospy.logerr(e)
 
-    #ingredient를 area에 random하게 배치
+    #ingredient를 possible_area에 random하게 배치
     def _select_pose_from_area(self, obj, obj_to_area):
         candidate_poses = []
         feasible_poses = []
@@ -200,19 +200,19 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
     def _arrange(self, obj_name, obj_type, placement): #check
         try:
-            placement_pose = self.placement_yaml[placement]['pose'] #placement_pose값을 가져옴
-            place_pose = self._make_place_pose(obj_type)
-            place_pose_inv = utils.inv_trans_mat(place_pose) #inverse로 변경?
+            placement_pose = self.placement_yaml[placement]['pose'] # placement_pose값을 가져옴
+            place_pose = self._make_place_pose(obj_type) #obj에 대한 place_pose를 가져옴
+            place_pose_inv = utils.inv_trans_mat(place_pose) # inverse로 변경
             
-            object_pose = utils.concatenate_to_pose_list(placement_pose, place_pose_inv) #최종적으로 object)pose 구함
+            object_pose = utils.concatenate_to_pose_list(placement_pose, place_pose_inv) #최종적으로 object pose 구함
             object_mesh = STL_PATH + self.obj_stl_yaml[obj_type]['file_name']
             object_size = self.obj_stl_yaml[obj_type]['scale']
             frame_id = self.placement_yaml[placement]['frame_id'] #world로 동일
 
             # raw_input(obj_name)
             rospy.loginfo(obj_name)
-            self.add_object(obj_name, object_pose,
-                            object_mesh, object_size, frame_id)
+            self.add_object(obj_name, object_pose, 
+                            object_mesh, object_size, frame_id) #obj 추가
 
         except Exception as e:
             rospy.logerr(e)
@@ -222,8 +222,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         if 'place_pos' in self.obj_pose_yaml[obj_type].keys(): #knife, spatula, scooper, spreader
             place_pos = self.obj_pose_yaml[obj_type]['place_pos'] # 파일에 있는 값 가져옴
         else:
-            place_pos = [0, 0, -self.obj_stl_yaml[obj_type]['thickness'][0]-0.001]
-        place_orient = utils.rpy_to_quaternion_list(self.obj_pose_yaml[obj_type]['place_orient']) #euler -> quaternion
+            place_pos = [0, 0, -self.obj_stl_yaml[obj_type]['thickness'][0]-0.001] #이외의 모든 obj에 대한 thickness를 가져옴 ex)[0,0,0.0006]
+        place_orient = utils.rpy_to_quaternion_list(self.obj_pose_yaml[obj_type]['place_orient']) #orient를 가져옴 euler -> quaternion
         place_pose = place_pos + place_orient
 
         return place_pose
@@ -260,8 +260,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
                     temp_scale.z = self.obj_stl_yaml[temp_type]["scale"][2]
                     init_sync_req.scale.append(temp_scale) #scale에 대한 정보 담음
                 
-                init_sync_res = init_sync_client(init_sync_req) #request할 정보를 담음
-                if init_sync_res.init_state == 1: #response를 받으면
+                init_sync_res = init_sync_client(init_sync_req) #request할 정보를 담아서 전달후 response 받음
+                if init_sync_res.init_state == 1: #response를 받으면 1
                     raw_input("Initialization Sync Completed")
                 else:
                     rospy.loginfo("[Unity Error] Initialization Sync Failed")
@@ -280,18 +280,19 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
                 scene_sync_req = SyncRequest()
                 scene_sync_req.activated_object = self.objects["activated"] #activated obj를 request (deactivated ->activated)
 
-                scene_sync_res = scene_sync_client(scene_sync_req)
+                scene_sync_res = scene_sync_client(scene_sync_req) #request할 정보를 담아서 전달후 response 받음
                 #joint와 관련된 정보
                 for i in range(len(scene_sync_res.joint_state)): #unity의 joint state
                     if i == 0:
                         self.joint[i].move(scene_sync_res.joint_state[i]) #pose_level_motion에서 정의한 것들
                     elif i > 0 and i < 7:
                         self.joint[i].move(
-                            scene_sync_res.joint_state[i] * m.pi / 180)
+                            scene_sync_res.joint_state[i] * m.pi / 180) # 왜 / 180?
                     else:
-                        self.joint[i].move(scene_sync_res.joint_state[i])
+                        self.joint[i].move(scene_sync_res.joint_state[i]) #eef 
 
-                for i in range(len(scene_sync_res.object_name)):
+                #rviz상 scene update
+                for i in range(len(scene_sync_res.object_name)): 
                     temp_name = scene_sync_res.object_name[i]
                     temp_pose = geometry_msgs.msg.Pose()
                     temp_pose.position = scene_sync_res.position[i]
@@ -330,17 +331,17 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
             pass
 
     #send plan trajectoryof panda to Unity
-    def panda_plan(self, plan_i): 
+    def panda_plan(self, plan_i): #plan을 입력받음
         if self.unity == True:
             try:#panda_plan_req정보를 전달
                 rospy.wait_for_service("panda_plan")
                 panda_plan_client = rospy.ServiceProxy("panda_plan", Plan)
                 panda_plan_req = PlanRequest()
-                panda_plan_req.trajectories.append(plan_i)
+                panda_plan_req.trajectories.append(plan_i) 
 
-                panda_plan_res = panda_plan_client(panda_plan_req)
+                panda_plan_res = panda_plan_client(panda_plan_req) #trajectories 정보 request
 
-                if panda_plan_res.execute_state == 1:
+                if panda_plan_res.execute_state == 1: #response
                     raw_input("Plan Execution Complelted")
                 else:
                     rospy.loginfo("[Unity Error] Plan Execution Failed")
@@ -470,7 +471,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
 
 
-    def get_current_state(self):
+    def get_current_state(self): #현재 사용?
         place_pose_state, obj_list = self._update_place_pose_state()
         current_state = self._to_symbolic_state(place_pose_state, obj_list)
 
@@ -479,6 +480,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
     #함수 안 함수
     def run(self, action):
+        #marker 함수
         def marker_msg(action):
             marker_ = Marker()
             marker_.header.frame_id = "/table1"
@@ -555,7 +557,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         # Parameter
         pre_dist = 0.1
-        if 'place_pos' in self.obj_pose_yaml[obj_type].keys(): #'place_pos'가 obj_pose_yaml에 있다면
+        if 'place_pos' in self.obj_pose_yaml[obj_type].keys(): #knife,...
             place_pos = self.obj_pose_yaml[obj_type]['place_pos'] #그 값을 가져옴
         else: #thickness에서 가져옴?
             place_pos = [0, 0, -self.obj_stl_yaml[obj_type]['thickness'][0]-0.001]
@@ -565,8 +567,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         placement_pose = self.placement_yaml[obj_to_pose]['pose']
 
         # Move to pre place pose
-        pre_dist_pose = [0, 0, pre_dist, 0, 0, 0, 1]
-        place_pose = place_pos + place_orient #값 or 좌표??
+        pre_dist_pose = [0, 0, pre_dist, 0, 0, 0, 1] #up
+        place_pose = place_pos + place_orient 
         place_pose_inv = utils.inv_trans_mat(place_pose) # inv_trans_mat을 이용하여 값을 변경
         pre_pose = utils.concatenate_to_pose(pre_dist_pose, placement_pose, place_pose_inv, grasp_pose) #concatenate_to_pose를 이용하여 pre_pose를 가져옴
         temp_plan, mp_info = self.move_to(pre_pose, False) #위의 구한 pre_pose를 이용하여 move
@@ -637,29 +639,30 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         
         # Parameter
         # 다음 4개의 parameter를 초기에 설정
-        pre_dist = 0.1
-        post_dist = 0.1 # 0.2
+        pre_dist = 0.1 # down
+        post_dist = 0.1 # up
+        #gripper size와 grasp할 위치를 가져옴
         grasp_size = self.obj_pose_yaml[obj_type]['grasp_size']
         grasp_pose = self.obj_pose_yaml[obj_type]['grasp_pose']
         
         # Move to pre-grasp pose
-        obj_pose = self.get_object_pose(obj)
-        pre_dist_pose = [0, 0, -pre_dist, 0, 0, 0, 1]
+        obj_pose = self.get_object_pose(obj) #inv 필요x
+        pre_dist_pose = [0, 0, -pre_dist, 0, 0, 0, 1] #[0,0,-0.1,0,0,0,1]
         #pre-pick_up motion
-        pre_pose = utils.concatenate_to_pose(obj_pose, grasp_pose, pre_dist_pose) 
+        pre_pose = utils.concatenate_to_pose(obj_pose, grasp_pose, pre_dist_pose) #obj위치 + gripper위치 + 초기위치
         temp_plan, mp_info = self.move_to(pre_pose, False)
         mp_infos.append(mp_info)
 
         if not mp_info['success']:
             return False, mp_infos
         # Service request to Unity
-        # Unity에 적용?
+        # Unity에 적용
         self.panda_plan(temp_plan)
         self.scene_sync()
 
         # Move to grasp pose
         # end-effector를 조절
-        temp_plan, mp_info = self.linear_motion([0, 0, pre_dist], True, "eef")
+        temp_plan, mp_info = self.linear_motion([0, 0, pre_dist], True, "eef") #eef를 사용하여 아래로 더 내려감
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos
@@ -669,13 +672,13 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         
         # Get object hierarchy
         # 이 부분 check
-        obj_hierarchy = [obj] #object가 들어있는 list로 만든다?
-        if obj in self.contain_objects.keys():
+        obj_hierarchy = [obj] #object가 들어있는 list로 만든다? => 여러 obj handle
+        if obj in self.contain_objects.keys(): #put_on과 같은 motion에서 추가됨
             obj_hierarchy += copy.deepcopy(self.contain_objects[obj])
         rospy.loginfo("obj_hierarchy = {}".format(obj_hierarchy))
         
         # Grasp target object
-        # 위에서 구한 obj_hierarchy를 이용하여 hold
+        # 위에서 구한 obj_hierarchy를 hold
         _, mp_info = self.hold_object(obj_hierarchy, grasp_size)
         mp_infos.append(mp_info)
         if not mp_info['success']:
@@ -685,11 +688,12 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         # Change object state
         for obj in obj_hierarchy: #obj_hierarchy에 대해서
+            #activated는 제거 attached는 추가
             self.objects['activated'].remove(obj)
-            self.objects['attached'].append(obj)
+            self.objects['attached'].append(obj) 
 
         # Move to post-grasp pose
-        temp_plan, mp_info = self.linear_motion([0, 0, post_dist], True)
+        temp_plan, mp_info = self.linear_motion([0, 0, post_dist], True) #다시 올라옴 check
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos
@@ -979,7 +983,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         # Cutting
         for i in range(chop_num):        
-            temp_plan, mp_info = self.reciprocating_motion('Z', cut_size, False)
+            temp_plan, mp_info = self.reciprocating_motion('Z', cut_size, False) #chop을 하기 위해서 collision을 false?
             mp_infos.append(mp_info)
             if not mp_info['success']:
                 return False, mp_infos
