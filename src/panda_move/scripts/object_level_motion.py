@@ -622,6 +622,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
     #다음 3개의 값을 input으로 받음
     def place(self, obj, obj_to, obj_category):
         obj_to_area = self._match_place_to_area(obj_to, obj_category)
+        #place할 pose를 선택
         scp = self._select_pose_from_area(obj, obj_to_area)
         if scp:
             success, mp_infos = self.place_to_pose(obj, scp)
@@ -707,7 +708,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
     
     
 
-    # target object를 다른 target object위에 올려쌓기
+    # obj를 target obj에 올리기
     def put_on(self, obj, obj_to, new_obj='None'):
         obj_type = self.instance_type[obj] #attached object
         obj_to_type = self.instance_type[obj_to] #target object to put attached object on
@@ -715,22 +716,23 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         mp_infos = []
 
         # Parameter
+        # obj에 대해서 
         pre_dist = 0.05
         place_pose = self._make_place_pose(obj_type)
         grasp_pose = self.obj_pose_yaml[obj_type]['grasp_pose']
         # puton_pos = [0, 0, self.obj_stl_yaml[obj_to_type]['thickness'][1]]
         #target object에 대해서
-        if 'puton_dist' in self.obj_pose_yaml[obj_to_type].keys():
-            puton_dist = self.obj_pose_yaml[obj_to_type]['puton_dist']
+        if 'puton_dist' in self.obj_pose_yaml[obj_to_type].keys(): #bowl,plate,pan
+            puton_dist = self.obj_pose_yaml[obj_to_type]['puton_dist'] 
         else:
-            puton_dist = self.obj_stl_yaml[obj_to_type]['thickness'][1]
+            puton_dist = self.obj_stl_yaml[obj_to_type]['thickness'][1] #thickness의 1번째 원소
 
         # Move to pre put on pose
         pre_dist_pose = [0, 0, pre_dist, 0, 0, 0, 1]
-        puton_pose = self.get_object_pose(obj_to)
-        puton_pose.position.z += puton_dist
+        puton_pose = self.get_object_pose(obj_to) #target obj의 위치값
+        puton_pose.position.z += puton_dist #앞에 구한 puton_dist를 현재 pose의 z축으로 더해줌 
         puton_pose.orientation = Quaternion(0, 0, 0, 1)
-        place_pose_inv = utils.inv_trans_mat(place_pose)        
+        place_pose_inv = utils.inv_trans_mat(place_pose) #place_pose의 inv형태를 불러옴    
         pre_pose = utils.concatenate_to_pose(pre_dist_pose, puton_pose, place_pose_inv, grasp_pose)
         temp_plan, mp_info = self.move_to(pre_pose, False) #pre_pose를 위와같이 설정하고 move
         mp_infos.append(mp_info)
@@ -741,7 +743,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
 
         # Puton
-        temp_plan, mp_info = self.linear_motion([0, 0, -pre_dist], True)
+        temp_plan, mp_info = self.linear_motion([0, 0, -pre_dist], True) #down
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos                
@@ -750,7 +752,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
 
         # Get object hierarchy
-        obj_hierarchy = copy.deepcopy(self.objects['attached']) #object의 hierarchy를 가져옴
+        obj_hierarchy = copy.deepcopy(self.objects['attached']) #attached object의 hierarchy를 가져옴
         
         # Release object
         _, mp_info = self.release_object(obj_hierarchy)
@@ -758,25 +760,27 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         if not mp_info['success']:
             return False, mp_infos        
         # Service request to Unity
-        self.hand_sync(obj, 0.4)
+        self.hand_sync(obj, 0.4) #unity에 보낼때는 hand size를 0.4로 해서 보냄
 
         # Drop object
-        if obj_to_type == 'bowl' and (not self.unity):
-            obj_to_pose = utils.add(pose_to_list(self.get_object_pose(obj_to)), [0, 0, 0.02, 0, 0, 0, 0])
+        if obj_to_type == 'bowl' and (not self.unity): #unity가 False 일때 
+            obj_to_pose = utils.add(pose_to_list(self.get_object_pose(obj_to)), [0, 0, 0.02, 0, 0, 0, 0]) #현재 obj_pose에서 z축으로 0.02만큼 up
             obj_mesh = STL_PATH+self.obj_stl_yaml[obj_type]['file_name']
             obj_size = self.obj_stl_yaml[obj_type]['scale']
-            self.add_object(obj, obj_to_pose, obj_mesh, obj_size)
+            self.add_object(obj, obj_to_pose, obj_mesh, obj_size) #obj추가
 
         # Change object state
         for obj in obj_hierarchy:
+            #attached -> activated
             self.objects['activated'].append(obj)
             self.objects['attached'].remove(obj)
         
         # Motion Check Service Request
-        self.motion_check("PutOn", [obj], [obj_to])
+        self.motion_check("PutOn", [obj], [obj_to]) 
         self.scene_sync()
 
         # Reassign self.contains_objects
+        # check
         place_pose_state, _ = self._update_place_pose_state()
         self.contain_objects = dict()
         for key, val in place_pose_state.items():
@@ -784,7 +788,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
                 self.contain_objects[val[0]] = val[1:]
         rospy.loginfo(self.contain_objects)
         # Recover to original pose
-        temp_plan, mp_info = self.linear_motion([0, 0, pre_dist], True)
+        temp_plan, mp_info = self.linear_motion([0, 0, pre_dist], True) #up
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos
@@ -794,8 +798,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
 
         # Only for Tuna Sandwich
-        # Tuna Sandwich한테만 적용?
-        if (new_obj != 'None') and ('sandwich' in self.objects['deactivated']):
+        # new_obj에 Tuna Sandwich가 들어오면
+        if (new_obj != 'None') and ('sandwich' in self.objects['deactivated']): #deactivated인 sandwich에 대해서 
             # Delete objects
             del_objects = []
             rospy.loginfo("*****************")
@@ -808,6 +812,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
             
             new_obj_pose = pose_to_list(self.get_object_pose(new_obj))
             obj_to_pose = pose_to_list(self.get_object_pose(obj_to))
+            #어떻게 delete?
             for dobj in del_objects:
                 dobj_type = self.instance_type[dobj]
                 dobj_mesh = STL_PATH+self.obj_stl_yaml[dobj_type]['file_name']
@@ -823,6 +828,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
             self.motion_check("Sandwich", ["None"], ["None"])
             
             # Change object state
+            # del obj는 deactivated & new obj는 activated
             for dobj in del_objects:
                 self.objects['activated'].remove(dobj)
                 self.objects['deactivated'].append(dobj)
@@ -921,15 +927,15 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
     def chop(self, obj, chop_num=2):
         obj_type = self.instance_type[obj]
-        cobj_type = 'chopped_'+obj_type
+        cobj_type = 'chopped_'+obj_type #파일 이름이 chopped_로 시작
 
         mp_infos = []
 
         # Parameter
         pre_dist = 0.1
-        use_orient = utils.rpy_to_quaternion(self.obj_pose_yaml['knife']['use_orient'])
-        chop_pos = [0, 0, self.obj_stl_yaml[obj_type]['thickness'][1]]
-        cut_size = sum(self.obj_stl_yaml[obj_type]['thickness'])
+        use_orient = utils.rpy_to_quaternion(self.obj_pose_yaml['knife']['use_orient']) #knife의 orient값을 가져와서 quaternion으로 변경
+        chop_pos = [0, 0, self.obj_stl_yaml[obj_type]['thickness'][1]]  #obj thickness의 1번째 원소를 가져옴 
+        cut_size = sum(self.obj_stl_yaml[obj_type]['thickness']) #thickness의 합을 cut_size로
 
         # Change link
         self.move_group.clear_pose_target('ee_link')
@@ -937,13 +943,11 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         
 
         # Change to using pose
-        initial_pose = self.get_cur_pose()
-        print(initial_pose,123)
+        # 사용할 도구의 pose로 변경
+        initial_pose = self.get_cur_pose() #현재 pose를 가져옴
         use_pose = copy.deepcopy(initial_pose)
-        use_pose.orientation = use_orient
-        print(use_pose,12341234)
+        use_pose.orientation = use_orient #orient는 도구의 orient를 가져옴
         temp_plan, mp_info = self.move_to(use_pose, False)
-        print(mp_info ,4)
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos        
@@ -952,16 +956,16 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
         
         # Move to obj
-        pre_dist_pose = [0, 0, pre_dist, 0, 0, 0, 1]
-        chop_pose = self.get_object_pose(obj)
-        print(chop_pose,22222)
-        chop_pose.position.x += chop_pos[0]
+        pre_dist_pose = [0, 0, pre_dist, 0, 0, 0, 1] #up
+        chop_pose = self.get_object_pose(obj) #현재 obj의 pose
+        #위의 정의한 chop_pos parameter값들을 가져옴  
+        chop_pose.position.x += chop_pos[0] 
         chop_pose.position.y += chop_pos[1]
         chop_pose.position.z += chop_pos[2]
         chop_pose.orientation = use_orient
         
+        #obj의 위로 이동
         tar_pose = utils.concatenate_to_pose(pre_dist_pose, chop_pose)
-        print(tar_pose,124)
         temp_plan, mp_info = self.move_to(tar_pose, False)
         mp_infos.append(mp_info)
         if not mp_info['success']:
@@ -970,7 +974,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.panda_plan(temp_plan)
         self.scene_sync()
 
-        # Pre-cutting
+        # Pre-cutting(한번 cutting 실행)
         temp_plan, mp_info = self.linear_motion([0, 0, -pre_dist], True)
         mp_infos.append(mp_info)
         if not mp_info['success']:
@@ -983,6 +987,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         # Cutting
         for i in range(chop_num):        
+            #cut_size는 위에 정의함
             temp_plan, mp_info = self.reciprocating_motion('Z', cut_size, False) #chop을 하기 위해서 collision을 false?
             mp_infos.append(mp_info)
             if not mp_info['success']:
@@ -994,13 +999,15 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         # self.add_object()
         # self.update_object_pose()
 
-        # Change object pose
+        # Change object pose 
+        # obj => chopped_obj
             # obj_pose = utils.add(pose_to_list(self.get_object_pose(obj)), [0, 0, -0.01, 0, 0, 0, 0])
             # obj_pose = utils.add(pose_to_list(self.get_object_pose(obj))[:3], [0, 0, -0.01])+[0, 0, 0, 1]
-        obj_pose = pose_to_list(self.get_object_pose(obj))
+        obj_pose = pose_to_list(self.get_object_pose(obj)) #obj의 현재 pose를 가져옴
+        #obj_pose z값을 cobj_type으로 변경
         obj_pose[2] -= self.obj_stl_yaml[obj_type]['thickness'][0]
         obj_pose[2] += self.obj_stl_yaml[cobj_type]['thickness'][0]
-        obj_pose = obj_pose[:3] + [0, 0, 0, 1]
+        obj_pose = obj_pose[:3] + [0, 0, 0, 1] 
         obj_mesh = STL_PATH + self.obj_stl_yaml[obj_type]['file_name']
         obj_size = self.obj_stl_yaml[obj_type]['scale']
 
@@ -1008,10 +1015,12 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         cobj_mesh = STL_PATH + self.obj_stl_yaml[cobj_type]['file_name']
         cobj_size = self.obj_stl_yaml[cobj_type]['scale']
 
+        #왜 같이??
         self.add_object(obj, cobj_pose, obj_mesh, obj_size)
         self.add_object('chopped_'+obj, obj_pose, cobj_mesh, cobj_size)
 
         # Change object state
+        # obj -> deactivated , chopped_obj -> activated
         self.objects['activated'].remove(obj)
         self.objects['deactivated'].append(obj)
         self.objects['activated'].append('chopped_'+obj)
@@ -1156,6 +1165,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         # self.objects['deactivated'].remove('spread_'+obj)
 
         # Recover orientation
+        # 초기에 설정한 orientation으로 변경
         recover_pose = self.get_cur_pose()
         recover_pose.orientation = initial_pose.orientation
         temp_plan, mp_info = self.move_to(recover_pose, False)
@@ -1167,6 +1177,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
         
         # Recover link
+        
         self.move_group.clear_pose_target('_link_spreader')
         self.move_group.set_end_effector_link('ee_link')
 

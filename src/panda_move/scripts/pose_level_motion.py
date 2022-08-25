@@ -141,7 +141,6 @@ class PoseLevelMotion(object):
 
     def get_cur_pose(self):
         cur_pose = self.move_group.get_current_pose().pose
-        print(cur_pose)
         return cur_pose
 
     def get_object_pose(self, object_name): #object 하나에 대한 pose를 가져옴
@@ -560,10 +559,10 @@ def main():
     pose_test = PoseLevelMotion()
     raw_input()
     # pose_test.add_box('box',[0.3, 0, 0.5, 0, 0, 0], (0.06, 0.06, 0.05))
-    #pose_test.add_object('[avocado]',[0.5, 0, 0.42,0,0,0], "/ur5_panda/src/object_sample/avocado.stl",(1, 1, 1))
+    #pose_test.add_object('[pepper]',[0.5, 0, 0.42,0,0,0], "/ur5_panda/src/object_sample/pepper.stl",(1, 1, 1))
     #pose_test.add_object('[banana]',[0.5, 0, 0.42,0,0,0], "/ur5_panda/src/object_sample/banana.stl",(1, 1, 1))
     #pose_test.move_to(list_to_pose([0.3, 0, 0.3, 0, 0, 0]), False)
-    #pose_test.get_cur_pose() 
+    #pose_test.get_cur_pose()  #eef의 pose
     # raw_input()
     #pose_test.move_to(list_to_pose([-0.5, 0, 0, 0, 0, 0]), False) 
     # pose_test.linear_motion([0.3,-0.5,0], True)
@@ -571,9 +570,17 @@ def main():
     # pose_test.linear_motion([0,0.5,0], True) 
     # raw_input()
     #pose_test.linear_motion([0,0,-3], True, reference="eef") 
-    pose_test.reciprocating_motion("Z",0.3,False)
+    #pose_test.reciprocating_motion("Z",0.3,False)
     # raw_input("temp2") 
     # pose_test.hold_object('box', 0.03)
     #pose_test.hold_object('box', 0.03)
+    initial_pose = pose_test.get_cur_pose() #현재 pose를 가져옴
+    use_pose = copy.deepcopy(initial_pose)
+    #use_pose.orientation = use_orient
+    pose_test.move_to(use_pose, False)
+
+
+
+
 if __name__ == '__main__':
     main()
