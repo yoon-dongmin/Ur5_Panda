@@ -29,6 +29,7 @@ import sample.club_sandwich
 import sample.tuna_sandwich
 import sample.greek_salad
 import sample.shrimp_salad
+import sample.carrot_salad
 #request와 response할 객체 이름을 정해서 가져옴
 from panda_move.srv import Init, InitRequest, InitResponse  
 from panda_move.srv import Sync, SyncRequest, SyncResponse
@@ -543,9 +544,9 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
             AssertionError("action name is wrong")
         
         # Save info
-        ola_info['action'] = action
-        ola_info['success'] = success
-        ola_info['mp_infos'] = mp_infos
+        # ola_info['action'] = action
+        # ola_info['success'] = success
+        # ola_info['mp_infos'] = mp_infos
         
         return success, ola_info
 
@@ -845,16 +846,19 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         mp_infos = []
         
         # Parameter
-        pour_angle = -2*m.pi/5
-        pour_pos = [0, -self.obj_stl_yaml[obj_type]['thickness'][1], sum(self.obj_stl_yaml[obj_to_type]['thickness']) + 0.1]
+        # import math as m
+        pour_angle = -2*m.pi/5 #-72 degree
+        #pour_pos check 왜 이렇게 pose값?
+        pour_pos = [0, -self.obj_stl_yaml[obj_type]['thickness'][1], sum(self.obj_stl_yaml[obj_to_type]['thickness']) + 0.1] 
 
         # Move to obj_to
+        # obj_pose에 위에구한 pour_pos값을 더해줌
         pre_pose = self.get_object_pose(obj_to)
         pre_pose.position.x += pour_pos[0]
         pre_pose.position.y += pour_pos[1]
         pre_pose.position.z += pour_pos[2]
-        pre_pose.orientation = self.get_cur_pose().orientation
-        temp_plan, mp_info = self.move_to(pre_pose, True)
+        pre_pose.orientation = self.get_cur_pose().orientation #orientation은 현재 pose로
+        temp_plan, mp_info = self.move_to(pre_pose, True) #pour할 위치로 이동
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos                
@@ -863,9 +867,9 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
         
         # Pour
-        pour_angle_pose = utils.list_to_pose([0, 0, 0, 0, 0, pour_angle])
-        pour_pose = utils.concatenate_to_pose(pre_pose, pour_angle_pose)
-        temp_plan, mp_info = self.move_to(pour_pose, False)
+        pour_angle_pose = utils.list_to_pose([0, 0, 0, 0, 0, pour_angle]) #list마지막 원소에 pour_angle대입
+        pour_pose = utils.concatenate_to_pose(pre_pose, pour_angle_pose) 
+        temp_plan, mp_info = self.move_to(pour_pose, False) #-72 degree만큼 회전
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos        
@@ -874,9 +878,9 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
         
         # Get pour_obj name
-        self.num_of_pour[obj] += 1
-        pour_obj = new_obj + '_' + str(self.num_of_pour[obj])
-        pour_obj_type = self.instance_type[pour_obj]
+        self.num_of_pour[obj] += 1 #항상 1?
+        pour_obj = new_obj + '_' + str(self.num_of_pour[obj]) #ex)olive_oil_1
+        pour_obj_type = self.instance_type[pour_obj] #ex) olive_oil
         rospy.loginfo(pour_obj)
 
         # Add pour_obj
@@ -888,7 +892,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         #     pour_obj_mesh = STL_PATH+self.obj_stl_yaml[pour_obj_type]['file_name']
         #     pour_obj_size = self.obj_stl_yaml[pour_obj_type]['scale']
         #     self.add_object(pour_obj, obj_to_pose, pour_obj_mesh, pour_obj_size)
-        if not self.unity:
+        if not self.unity: #unity를 사용하지 않으면 
             if obj_to == 'bowl':
                 obj_to_pose = utils.add(pose_to_list(self.get_object_pose(obj_to)), [0, 0, 0.02, 0, 0, 0, 0])
                 pour_obj_mesh = STL_PATH+self.obj_stl_yaml[pour_obj_type]['file_name']
@@ -897,6 +901,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         if obj_to == 'bowl':
             # Change object state
+            # pour object: deactivated -> activated
             self.objects['activated'].append(pour_obj)
             self.objects['deactivated'].remove(pour_obj)
 
@@ -905,6 +910,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
 
         # Reassign self.contains_objects
+        # check
         rospy.loginfo("reassign")
         time.sleep(0.7)
         place_pose_state, _ = self._update_place_pose_state()
@@ -915,7 +921,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         rospy.loginfo(self.contain_objects)
 
         # Recover pose
-        temp_plan, mp_info = self.move_to(pre_pose, False)
+        temp_plan, mp_info = self.move_to(pre_pose, False) #원래pose로 이동
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos        
@@ -1047,6 +1053,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         return True, mp_infos
 
+
+    #obj:butter / obj_to:bread
     def spread(self, obj, obj_to):
         obj_type = self.instance_type[obj]
         obj_to_type = self.instance_type[obj_to]
@@ -1055,9 +1063,9 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         # Parameter
         pre_dist = 0.2
-        use_orient = utils.rpy_to_quaternion(self.obj_pose_yaml['spreader']['use_orient'])
-        spread_dist = 0.04
-        spread_pos = [0, -spread_dist/2, self.obj_stl_yaml[obj_to_type]['thickness'][1]]
+        use_orient = utils.rpy_to_quaternion(self.obj_pose_yaml['spreader']['use_orient']) #spreader사용
+        spread_dist = 0.04  #y축 방향으로 이동
+        spread_pos = [0, -spread_dist/2, self.obj_stl_yaml[obj_to_type]['thickness'][1]] 
 
         # Change link
         self.move_group.clear_pose_target('ee_link')
@@ -1066,7 +1074,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         # Change to using pose
         initial_pose = self.get_cur_pose()
         use_pose = copy.deepcopy(initial_pose)
-        use_pose.orientation = use_orient
+        use_pose.orientation = use_orient #도구의 orientation
         temp_plan, mp_info = self.move_to(use_pose, False)
         mp_infos.append(mp_info)
         if not mp_info['success']:
@@ -1079,7 +1087,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         tar_pose = self.get_object_pose(obj)
         tar_pose.position.z += (self.obj_stl_yaml[obj]['thickness'][1] + 0.1)
         tar_pose.orientation = use_orient
-        temp_plan, mp_info = self.move_to(tar_pose, False)
+        temp_plan, mp_info = self.move_to(tar_pose, False) #target pose 위로 이동
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos
@@ -1088,7 +1096,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
 
         # Ready to spread
-        temp_plan, mp_info = self.reciprocating_motion("Z", 0.08)
+        temp_plan, mp_info = self.reciprocating_motion("Z", 0.08) #down
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos
@@ -1097,8 +1105,10 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
         
         # Move to obj_to
+        # tar_obj로 이동
         pre_dist_pose = [0, 0, pre_dist, 0, 0, 0, 1]
         spread_pose = self.get_object_pose(obj_to)
+        #위에서 구한 spread_pos를 더해줌
         spread_pose.position.x += spread_pos[0]
         spread_pose.position.y += spread_pos[1]
         spread_pose.position.z += spread_pos[2]
@@ -1113,8 +1123,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
 
         # Spread
-        temp_plan, mp_info = self.linear_motion([0, 0, -pre_dist], True)
-        mp_infos.append(mp_info)
+        temp_plan, mp_info = self.linear_motion([0, 0, -pre_dist], True) #z축 방향 down
+        mp_infos.append(mp_info) 
         if not mp_info['success']:
             return False, mp_infos        
         # Service request to Unity
@@ -1123,7 +1133,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         # self.motion_check("Before_Spread", [obj], ["None"])
         self.scene_sync()
 
-        temp_plan, mp_info = self.linear_motion([0, spread_dist, 0], False)
+        temp_plan, mp_info = self.linear_motion([0, spread_dist, 0], False) #y축 방향
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos        
@@ -1133,7 +1143,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         # self.motion_check("After_Spread", [obj], ["spread_"+obj])
         self.scene_sync()
 
-        temp_plan, mp_info = self.linear_motion([0, 0, pre_dist], False)
+        temp_plan, mp_info = self.linear_motion([0, 0, pre_dist], False) #up
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos    
@@ -1308,13 +1318,15 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         # Parameter
         use_orient = utils.rpy_to_quaternion(self.obj_pose_yaml['scooper']['use_orient'])
+        #chopped된 obj인지 아닌지에 따라서 z값을 달리 가져옴\
+        #chopped->cutting_board위에 / 나머지는 -> bowl위에
         if "chopped" in obj:
             scoop_pos = [0, 0, self.obj_stl_yaml[obj_type]["thickness"][1]+0.1]
         else:
             scoop_pos = [0, 0, self.obj_stl_yaml['bowl']['thickness'][1]]
-        scoop_r = 0.05
+        scoop_r = 0.05 #사용하지 않음
         scoop_to_pos = [0, -0.025, self.obj_stl_yaml[obj_to_type]['thickness'][1]+0.1]
-        scoop_to_angle = -1*m.pi/10
+        scoop_to_angle = -1*m.pi/10 #-18 degree
 
         # Change link
         self.move_group.clear_pose_target('ee_link')
@@ -1328,7 +1340,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         # Change to using pose
         initial_pose = self.get_cur_pose()
         use_pose = copy.deepcopy(initial_pose)
-        use_pose.orientation = use_orient
+        use_pose.orientation = use_orient #scooper의 orientation을 가져옴
         temp_plan, mp_info = self.move_to(use_pose, False)
         mp_infos.append(mp_info)
         if not mp_info['success']:
@@ -1340,6 +1352,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         # Move to obj
         scoop_pose = self.get_object_pose(obj)
         scoop_pose.orientation = self.get_cur_pose().orientation
+        #scoop_pos의 값을 더해줌
         scoop_pose.position.x += scoop_pos[0]
         scoop_pose.position.y += scoop_pos[1]
         scoop_pose.position.z += scoop_pos[2]
@@ -1357,7 +1370,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         # temp_plan, mp_info = self.circular_motion('Y', 'CW', scoop_r, 90, 180, False)
         # temp_plan, mp_info = self.linear_motion([0, 0, -0.1], True) ## ?
         # temp_plan, mp_info = self.reciprocating_motion('Z', 0.1, False)
-        temp_plan, mp_info = self.linear_motion([0, 0, -0.1], True)
+        temp_plan, mp_info = self.linear_motion([0, 0, -0.1], True) #down
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos        
@@ -1367,7 +1380,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.motion_check("After_Scoop", [obj], ["None"])
         self.scene_sync()
         # post-scoop
-        temp_plan, mp_info = self.linear_motion([0, 0, 0.1], True)
+        temp_plan, mp_info = self.linear_motion([0, 0, 0.1], True) #up
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos
@@ -1377,6 +1390,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         # Move to obj_to
         pre_pose = self.get_object_pose(obj_to)
+        #위에 구한 scoop_to_pos값을 더해줌
         pre_pose.position.x += scoop_to_pos[0]
         pre_pose.position.y += scoop_to_pos[1]
         pre_pose.position.z += scoop_to_pos[2]
@@ -1390,9 +1404,9 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
 
         # Scoop to
-        scoop_to_angle_pose = utils.list_to_pose([0, 0, 0, 0, scoop_to_angle, 0])
+        scoop_to_angle_pose = utils.list_to_pose([0, 0, 0, 0, scoop_to_angle, 0]) #y축방향으로 회전
         scoop_to_pose = utils.concatenate_to_pose(pre_pose, scoop_to_angle_pose)
-        temp_plan, mp_info = self.move_to(scoop_to_pose, False)
+        temp_plan, mp_info = self.move_to(scoop_to_pose, False) #scoop
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos        
@@ -1400,6 +1414,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.panda_plan(temp_plan)
 
         # Change object pose
+        # unity를 사용하지 않는다면
         if not self.unity:
             obj_to_pose = utils.add(pose_to_list(self.get_object_pose(obj_to)), [0, 0, 0.015, 0, 0, 0, 0])
             obj_mesh = STL_PATH + self.obj_stl_yaml[obj_type]['file_name']
@@ -1410,6 +1425,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.motion_check("ScoopOn", [obj], [obj_to])
         self.scene_sync()
 
+        # pose와 orientation원상태로
         # Recover pose
         temp_plan, mp_info = self.move_to(pre_pose, False)
         mp_infos.append(mp_info)
@@ -1572,7 +1588,8 @@ def main():
     use_unity = False
 
     # sample
-    sandwich = sample.club_sandwich
+    #sandwich = sample.club_sandwich
+    sandwich = sample.carrot_salad
     # sandwich = sample.tuna_sandwich
     # sandwich = sample.greek_salad
     # sandwich = sample.shrimp_salad
@@ -1581,22 +1598,22 @@ def main():
     # sandwich = sample.test_49_predict2_v2
     # sandwich = sample.test_80_predict2_v2
 
-    # csv #여기서 
-    test_dir = dirname(dirname(__file__)) + '/test_set/default_v2/'
-    # test_dir = dirname(dirname(__file__)) + '/test_set/predict2_v2/'
-    # test_dir = dirname(dirname(__file__)) + '/test_set/predict3_v2/'
-    result_dir = dirname(dirname(__file__)) + '/result/default_v2/'
-    # result_dir = dirname(dirname(__file__)) + '/result/predict2_v2/'
-    # result_dir = dirname(dirname(__file__)) + '/result/predict3_v2/'
-    for target_dir in [test_dir, result_dir]:
-        if not os.path.exists(target_dir):
-            os.makedirs(target_dir)
+    # # csv #여기서 
+    # test_dir = dirname(dirname(__file__)) + '/test_set/default_v2/'
+    # # test_dir = dirname(dirname(__file__)) + '/test_set/predict2_v2/'
+    # # test_dir = dirname(dirname(__file__)) + '/test_set/predict3_v2/'
+    # result_dir = dirname(dirname(__file__)) + '/result/default_v2/'
+    # # result_dir = dirname(dirname(__file__)) + '/result/predict2_v2/'
+    # # result_dir = dirname(dirname(__file__)) + '/result/predict3_v2/'
+    # for target_dir in [test_dir, result_dir]:
+    #     if not os.path.exists(target_dir):
+    #         os.makedirs(target_dir)
 
-    test_path = test_dir + sandwich.test_file_name
-    #suffix = datetime.datetime.now().strftime("_%y%m%d_%H%M%S")
-    # tp_result_path = result_dir + sandwich.test_file_name[:-4] + suffix + '_tp.csv'
-    # ola_result_path = result_dir + sandwich.test_file_name[:-4] + suffix + '_ola.csv'
-    # mp_result_path = result_dir + sandwich.test_file_name[:-4] + suffix + '_mp.csv'
+    # test_path = test_dir + sandwich.test_file_name
+    # #suffix = datetime.datetime.now().strftime("_%y%m%d_%H%M%S")
+    # # tp_result_path = result_dir + sandwich.test_file_name[:-4] + suffix + '_tp.csv'
+    # # ola_result_path = result_dir + sandwich.test_file_name[:-4] + suffix + '_ola.csv'
+    # # mp_result_path = result_dir + sandwich.test_file_name[:-4] + suffix + '_mp.csv'
 
 
     
@@ -1606,60 +1623,74 @@ def main():
     if use_moveit:
         obj_test = ObjectLevelMotion(use_unity)
         obj_test.initialize(sandwich.obj_place) #recipe의 object_place를 가져옴
-    obj_test.pick_up('mayonnaise_bottle')
-    obj_test.pour('mayonnaise_bottle','bread2','mayonnaise') #(self, obj, obj_to, new_obj) Pour/mayonnaise_bottle/bread2/mayonnaise
-    obj_test.place('onion','cutting_board','ingredient')
-    obj_test.pick_up('knife') 
-    obj_test.chop('onion')
-    #####
-    obj_test.place('knife','table','tool')
-    obj_test.pick_up('bowl')
-    obj_test.place('bowl','near_cutting_board','dishware')
-    obj_test.pick_up('knife')
-    obj_test.scrape('chopped_onion','bowl')
-    ####
-    obj_test.place('knife','table','tool')
-    obj_test.pick_up('cucumber')
-    obj_test.place('cucumber','cutting_board','ingredient')
-    obj_test.pick_up('knife')
+    total_action_sequences = []
+    for result in sandwich.task_plan:
+        action_sequences = [action.split('/') for action in result.split(" -> ") if action]
+        total_action_sequences.append(action_sequences)
+        #print(action_sequences)
+    
+    if use_moveit:
+        # success = False
+        
+        for i, action in enumerate(total_action_sequences):
+            print(i,action)
+            obj_test.run(action)
 
-    obj_test.chop('cucumber')
-    obj_test.scrape('chopped_cucumber','bowl')
-    ####
-    obj_test.place('knife','table','tool')
-    obj_test.pick_up('sweet_pepper')
-    obj_test.place('sweet_pepper','cutting_board','ingredient') #pepper -> 고추
-    obj_test.pick_up('knife')
-    obj_test.chop('sweet_pepper')
-    ####
-    obj_test.place('knife','table','tool')
-    obj_test.pick_up('feta_cheese')
-    obj_test.place('feta_cheese','cutting_board','ingredient') 
-    obj_test.pick_up('knife')
-    obj_test.chop('feta_cheese')
-    obj_test.scrape('chopped_sweet_pepper','bowl')
-    obj_test.scrape('chopped_feta_cheese','bowl')
-    ####
-    obj_test.pick_up('black_olive')
-    obj_test.put_on('black_olive','bowl','None')
-    ####
-    obj_test.pick_up('tomato')
-    obj_test.place('tomato','cutting_board','ingredient')
-    obj_test.pick_up('knife')
-    obj_test.chop('tomato')
-    obj_test.scrape('chopped_tomato','bowl')
-    ####
-    obj_test.place('knife','table','tool')
-    obj_test.pick_up('potato')
-    obj_test.place('potato','cutting_board','ingredient')
-    obj_test.pick_up('knife')
-    obj_test.chop('potato')
-    obj_test.scrape('chopped_potato','bowl')
-    ####
-    obj_test.place('knife','table','tool')
-    obj_test.pick_up('spatula')
-    raw_input()
-    obj_test.stir('bowl','salad')
+
+    # obj_test.pick_up('mayonnaise_bottle')
+    # obj_test.pour('mayonnaise_bottle','bread2','mayonnaise') #(self, obj, obj_to, new_obj) Pour/mayonnaise_bottle/bread2/mayonnaise
+    # obj_test.place('onion','cutting_board','ingredient')
+    # obj_test.pick_up('knife') 
+    # obj_test.chop('onion')
+    # #####
+    # obj_test.place('knife','table','tool')
+    # obj_test.pick_up('bowl')
+    # obj_test.place('bowl','near_cutting_board','dishware')
+    # obj_test.pick_up('knife')
+    # obj_test.scrape('chopped_onion','bowl')
+    # ####
+    # obj_test.place('knife','table','tool')
+    # obj_test.pick_up('cucumber')
+    # obj_test.place('cucumber','cutting_board','ingredient')
+    # obj_test.pick_up('knife')
+
+    # obj_test.chop('cucumber')
+    # obj_test.scrape('chopped_cucumber','bowl')
+    # ####
+    # obj_test.place('knife','table','tool')
+    # obj_test.pick_up('sweet_pepper')
+    # obj_test.place('sweet_pepper','cutting_board','ingredient') #pepper -> 고추
+    # obj_test.pick_up('knife')
+    # obj_test.chop('sweet_pepper')
+    # ####
+    # obj_test.place('knife','table','tool')
+    # obj_test.pick_up('feta_cheese')
+    # obj_test.place('feta_cheese','cutting_board','ingredient') 
+    # obj_test.pick_up('knife')
+    # obj_test.chop('feta_cheese')
+    # obj_test.scrape('chopped_sweet_pepper','bowl')
+    # obj_test.scrape('chopped_feta_cheese','bowl')
+    # ####
+    # obj_test.pick_up('black_olive')
+    # obj_test.put_on('black_olive','bowl','None')
+    # ####
+    # obj_test.pick_up('tomato')
+    # obj_test.place('tomato','cutting_board','ingredient')
+    # obj_test.pick_up('knife')
+    # obj_test.chop('tomato')
+    # obj_test.scrape('chopped_tomato','bowl')
+    # ####
+    # obj_test.place('knife','table','tool')
+    # obj_test.pick_up('potato')
+    # obj_test.place('potato','cutting_board','ingredient')
+    # obj_test.pick_up('knife')
+    # obj_test.chop('potato')
+    # obj_test.scrape('chopped_potato','bowl')
+    # ####
+    # obj_test.place('knife','table','tool')
+    # obj_test.pick_up('spatula')
+    # raw_input()
+    # obj_test.stir('bowl','salad')
 
 if __name__ == '__main__':
     main()

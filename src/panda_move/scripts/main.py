@@ -551,6 +551,8 @@ def main():
             if use_moveit:
                 # success = False
                 for i, action in enumerate(action_sequences):
+                    print(i,action,4444444444)
+                    raw_input("aaa")
                     rospy.loginfo('='*50)
                     rospy.loginfo('[ola={}] {}'.format(i, action))
                     
