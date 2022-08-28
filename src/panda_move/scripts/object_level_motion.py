@@ -1199,6 +1199,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         mp_infos = []
 
         # Parameter
+        # spatula로만 사용
         pre_dist = 0.05
         use_orient = utils.rpy_to_quaternion(self.obj_pose_yaml['spatula']['use_orient'])
         stir_r = 0.05
@@ -1212,7 +1213,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         initial_pose = self.get_cur_pose()
         use_pose = copy.deepcopy(initial_pose)
         use_pose.orientation = use_orient
-        temp_plan, mp_info = self.move_to(use_pose, False)
+        temp_plan, mp_info = self.move_to(use_pose, False) #orientaion만 도구에서 가져옴
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos        
@@ -1227,7 +1228,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         stir_pose.position.z += stir_pos[2]
         stir_pose.orientation = use_orient
         pre_dist_pose = [0, 0, pre_dist, 0, 0, 0, 1]
-        pre_pose = utils.concatenate_to_pose(pre_dist_pose, stir_pose)
+        pre_pose = utils.concatenate_to_pose(pre_dist_pose, stir_pose) #up
         temp_plan, mp_info = self.move_to(pre_pose, True)
         mp_infos.append(mp_info)
         if not mp_info['success']:
@@ -1237,7 +1238,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.scene_sync()
 
         # Stir
-        temp_plan, mp_info = self.linear_motion([0, 0, -pre_dist], True)
+        temp_plan, mp_info = self.linear_motion([0, 0, -pre_dist], True) #down
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos        
@@ -1259,14 +1260,14 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         # Change object pose
         # if not self.unity:
-        if new_obj in self.objects['deactivated']:
+        if new_obj in self.objects['deactivated']: #deactivated인 new_obj에대해서
             obj_pose = utils.add(pose_to_list(self.get_object_pose(obj)), [0, 0, 0.02, 0, 0, 0, 0])
             nobj_type = self.instance_type[new_obj]
             nobj_mesh = STL_PATH + self.obj_stl_yaml[nobj_type]['file_name']
             nobj_size = self.obj_stl_yaml[nobj_type]['scale']
             self.add_object(new_obj, obj_pose, nobj_mesh, nobj_size)
 
-            for dobj in self.contain_objects[obj]:
+            for dobj in self.contain_objects[obj]: #현재 contaion하는 obj
                 dobj_type = self.instance_type[dobj]
                 dobj_pose = [0, 4, 4, 0, 0, 0, 1]
                 dobj_mesh = STL_PATH + self.obj_stl_yaml[dobj_type]['file_name']
@@ -1468,6 +1469,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.move_group.set_end_effector_link('_link_knife')
 
         # Change to using pose
+        # knife로 target pose변경
         initial_pose = self.get_cur_pose()
         use_pose = copy.deepcopy(initial_pose)
         use_pose.orientation = use_orient
@@ -1485,7 +1487,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         scrape_pose.position.y += scrape_pos[1]
         scrape_pose.position.z += scrape_pos[2]
         scrape_pose.orientation = use_orient
-        pre_dist_pose = [0, 0, pre_dist, 0, 0, 0, 1]
+        pre_dist_pose = [0, 0, pre_dist, 0, 0, 0, 1] #up
         pre_pose = utils.concatenate_to_pose(pre_dist_pose, scrape_pose)
         temp_plan, mp_info = self.move_to(pre_pose, True)
         mp_infos.append(mp_info)
@@ -1497,7 +1499,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         # Scrape
         # temp_plan, mp_info = self.linear_motion('Z', -pre_dist, True)
-        temp_plan, mp_info = self.linear_motion([0, 0, -pre_dist], True)
+        temp_plan, mp_info = self.linear_motion([0, 0, -pre_dist], True) #down
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos        
@@ -1506,11 +1508,14 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.motion_check("Before_Scrape", [obj], ["None"])
         self.scene_sync()
 
-        scrape_to_pose = self.get_object_pose(obj_to)
-        scrape_to_pose.position.x += scrape_to_pos[0]
+        scrape_to_pose = self.get_object_pose(obj_to) #현재 bowl의 pose를 가져옴
+        #knowledge에 저장된 bowl pose를 추가적으로 더해줌(z값)
+        scrape_to_pose.position.x += scrape_to_pos[0] 
         scrape_to_pose.position.y += scrape_to_pos[1]
         scrape_to_pose.position.z += scrape_to_pos[2]
         scrape_to_pose.orientation = use_orient
+        #현재 bowl pose - concacenated한 pose
+        #z값은 위에서 이미 적용
         dist_x = scrape_to_pose.position.x - pre_pose.position.x
         dist_y = scrape_to_pose.position.y - pre_pose.position.y
         temp_plan, mp_info = self.linear_motion([dist_x, dist_y, 0], False)  # <TEMP> direction + or -
@@ -1543,6 +1548,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         rospy.loginfo(self.contain_objects)
 
         # Recover to initial orientation
+        # 현재 pose로 돌아옴
         recover_pose = self.get_cur_pose()
         recover_pose.orientation = initial_pose.orientation
         temp_plan, mp_info = self.move_to(recover_pose, False)
