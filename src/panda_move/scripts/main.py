@@ -472,14 +472,14 @@ def main():
             obj_test.init_sync()
             obj_test.scene_sync()     
 
-    carrot_path = './carrot_mapping.yaml'
-    with open(carrot_path) as f:
-        self.carrot_map = yaml.load(f,Loader=yaml.FullLoader)
+    # carrot_path = './carrot_mapping.yaml'
+    # with open(carrot_path) as f:
+    #     self.carrot_map = yaml.load(f,Loader=yaml.FullLoader)
     
     
-    for obj in self.carrot_map.keys():
-        idx = obj_list.index(obj) #obj의 list idx를 찾음
-        obj_list[idx]=self.carrot_map[obj] #carrot_map의 value값으로 변환
+    # for obj in self.carrot_map.keys():
+    #     idx = obj_list.index(obj) #obj의 list idx를 찾음
+    #     obj_list[idx]=self.carrot_map[obj] #carrot_map의 value값으로 변환
 
 
 
@@ -494,3 +494,8 @@ def main():
         for i, action in enumerate(action_sequences):
             ola_success, ola_info = obj_test.run(action)
             #print(action,ola_success)
+
+if __name__ == "__main__":
+    rospy.init_node('PandaMove', anonymous=True)
+    main()
+    # run_test_set()

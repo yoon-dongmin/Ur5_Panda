@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur5">
     <!-- table -->
     <xacro:property name="table_w" value="0.5"/>
-    <xacro:property name="table_l" value="3.0"/>
+    <xacro:property name="table_l" value="3.45"/>
     <xacro:property name="table_h" value="0.4"/>
     <xacro:property name="table_dx" value="0.5"/>
     
@@ -34,7 +34,7 @@
 
     <!-- sauce shelf -->
     <xacro:property name="shelf_w" value="0.2"/>
-    <xacro:property name="shelf_l" value="0.8"/>
+    <xacro:property name="shelf_l" value="1.0"/>
     <xacro:property name="shelf_h" value="0.02"/>    
     <xacro:property name="shelf_dh" value="0.1"/>
 
