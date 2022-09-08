@@ -2,7 +2,7 @@
 import yaml
 
 ###########################################################
-test_file_name = 'test_carrot_salad_v2.csv'
+test_file_name = 'test_dalgono_coffee_v2.csv'
 
 ###########################################################
 # instance-type-state
@@ -26,9 +26,9 @@ obj_state.append(['cutting_board', 'cutting_board', None])
 obj_state.append(['near_cutting_board', 'near_cutting_board', None])
 
 # ingredient
-obj_state.append(['cucumber', 'cucumber', ['exist']])
-obj_state.append(['banana', 'banana', ['exist']])
-obj_state.append(['black_olive', 'black_olive', ['exist']])
+#obj_state.append(['cucumber', 'cucumber', ['exist']])
+#obj_state.append(['banana', 'banana', ['exist']])
+#obj_state.append(['black_olive', 'black_olive', ['exist']])
 
 obj_state.append(['relish', 'relish', ['exist']])
 obj_state.append(['lemon_juice', 'lemon_juice', ['exist']])
@@ -85,9 +85,9 @@ obj_place.append(['cutting_board', 'cutting_board', 'table1_cutting_board', None
 # obj_state.append(['oregano', 'oregano', ['exist']])
 
 
-obj_place.append(['banana', 'banana', 'table1_ingredient_area', 'activated'])
-obj_place.append(['cucumber', 'cucumber', 'table1_ingredient_area', 'activated'])
-obj_place.append(['black_olive', 'black_olive', 'table1_ingredient_area', 'activated'])
+#obj_place.append(['banana', 'banana', 'table1_ingredient_area', 'activated'])
+#obj_place.append(['cucumber', 'cucumber', 'table1_ingredient_area', 'activated'])
+#obj_place.append(['black_olive', 'black_olive', 'table1_ingredient_area', 'activated'])
 obj_place.append(['relish_bottle', 'relish_bottle', 'table1_ing_bottle_area', 'activated'])
 obj_place.append(['lemon_juice_bottle', 'lemon_juice_bottle', 'table1_ing_bottle_area', 'activated'])
 obj_place.append(['olive_oil_bottle', 'olive_oil_bottle', 'table1_ing_bottle_area', 'activated'])
@@ -96,8 +96,8 @@ obj_place.append(['sugar_bottle', 'sugar_bottle', 'table1_ing_bottle_area', 'act
 
 # for Chop
 #obj_place.append(['chopped_cucumber', 'chopped_cucumber', 'deactivate', 'deactivated'])
-obj_place.append(['chopped_banana', 'chopped_banana', 'deactivate', 'deactivated'])
-obj_place.append(['oregano', 'oregano', 'deactivate', 'deactivated'])
+#obj_place.append(['chopped_banana', 'chopped_banana', 'deactivate', 'deactivated'])
+#obj_place.append(['oregano', 'oregano', 'deactivate', 'deactivated'])
 # for Spread
 
 # for Pour
@@ -107,12 +107,13 @@ obj_place.append(['olive_oil_1', 'olive_oil', 'deactivate', 'deactivated'])
 obj_place.append(['mayonnaise_1', 'mayonnaise', 'deactivate', 'deactivated'])
 obj_place.append(['sugar_1', 'sugar', 'deactivate', 'deactivated'])
 
-
+obj_place.append(['lettuce_1', 'lettuce', 'deactivate', 'deactivated'])
+obj_place.append(['chopped_lettuce_1', 'chopped_lettuce', 'deactivate', 'deactivated'])
 
 
 
 # for Stir
-# obj_place.append(['salad', 'salad', 'deactivate', 'deactivated'])
+#obj_place.append(['salad', 'salad', 'deactivate', 'deactivated'])
 
 ###########################################################
 # network_output -> goals, using_ings, recipe
@@ -128,36 +129,25 @@ network_output = (goals, using_ings, recipe)
 
 ###########################################################
 # # task_plan
-# task_plan = []
-# #task_plan.append(' -> PickUp/olive_oil_bottle -> Pour/olive_oil_bottle/bowl/olive_oil -> Place/olive_oil_bottle/table/ing_bottle')
-# task_plan.append(' -> PickUp/cucumber -> PutOn/cucumber/bowl/None')
-# task_plan.append(' -> PickUp/lemon_juice_bottle -> Pour/lemon_juice_bottle/bowl/lemon_juice')
-# task_plan.append(' -> Place/lemon_juice_bottle/table/ing_bottle -> PickUp/sugar_bottle -> Pour/sugar_bottle/bowl/sugar')
-# task_plan.append(' -> Place/sugar_bottle/table/ing_bottle -> PickUp/relish_bottle -> Pour/relish_bottle/bowl/relish')
-# task_plan.append(' -> Place/relish_bottle/table/ing_bottle -> PickUp/olive_oil_bottle -> Pour/olive_oil_bottle/bowl/olive_oil')
-# task_plan.append(' -> Place/olive_oil_bottle/table/ing_bottle -> PickUp/mayonnaise_bottle -> Pour/mayonnaise_bottle/bowl/mayonnaise')
-# task_plan.append(' -> Place/mayonnaise_bottle/table/ing_bottle -> PickUp/spatula -> Stir/bowl/oregano/spatula')
-# task_plan.append(' -> Place/spatula/table/tool -> PickUp/banana -> Place/banana/cutting_board/ingredient -> PickUp/knife -> Chop/banana/knife' )
-# task_plan.append(' -> Place/knife/table/tool -> PickUp/black_olive -> PutOn/black_olive/bowl/None') #chopped_lettuce위에?
-# task_plan.append(' -> PickUp/bowl -> Place/bowl/near_cutting_board/dishware -> PickUp/knife -> Scrape/chopped_banana/bowl/knife')
-# task_plan.append(' -> Place/knife/table/tool -> PickUp/spatula -> Stir/bowl/salad/spatula')
-# #task_plan.append(' -> PickUp/scooper -> Scrape/chopped_banana/bowl/scooper')
-# #task_plan.append(' -> Place/knife/table/tool -> PickUp/spatula -> Stir/bowl/salad/spatula')
+task_plan = []
+task_plan.append(' -> PickUp/mayonnaise_bottle -> Pour/mayonnaise_bottle/bowl/lettuce')
+task_plan.append(' -> Place/mayonnaise_bottle/table/ing_bottle -> PickUp/relish_bottle -> Pour/relish_bottle/bowl/relish')
+task_plan.append(' -> Place/relish_bottle/table/ing_bottle -> PickUp/olive_oil_bottle -> Pour/olive_oil_bottle/bowl/olive_oil')
+task_plan.append(' -> Place/olive_oil_bottle/table/ing_bottle -> PickUp/sugar_bottle -> Pour/sugar_bottle/bowl/sugar')
+task_plan.append(' -> Place/sugar_bottle/table/ing_bottle -> PickUp/lemon_juice_bottle -> Pour/lemon_juice_bottle/bowl/whipped_coffee')
+task_plan.append(' -> Place/lemon_juice_bottle/table/ing_bottle -> PickUp/spatula -> Stir/bowl/chopped_lettuce/spatula')
+
 
 
 ###
-task_plan = []
-task_plan.append(' -> PickUp/carrot -> PutIn/carrot/bowl/None')
-task_plan.append(' -> PickUp/lemon_juice_bottle -> PourIn/lemon_juice_bottle/bowl/lemon_juice')
-task_plan.append(' -> Place/lemon_juice_bottle/table/ing_bottle -> PickUp/brown_sugar_bottle -> PourIn/brown_sugar_bottle/bowl/brown_sugar')
-task_plan.append(' -> Place/brown_sugar_bottle/table/ing_bottle -> PickUp/chili_sauce_bottle -> PourIn/chili_sauce_bottle/bowl/chili_sauce')
-task_plan.append(' -> Place/chili_sauce_bottle/table/ing_bottle -> PickUp/greek_salad_dressing_bottle -> PourIn/greek_salad_dressing_bottle/bowl/greek_salad_dressing')
-task_plan.append(' -> Place/greek_salad_dressing_bottle/table/ing_bottle -> PickUp/sour_cream_bottle -> PourIn/sour_cream_bottle/bowl/sour_cream')
-task_plan.append(' -> Place/sour_cream_bottle/table/ing_bottle -> PickUp/spatula -> Stir/bowl/salad_mix/spatula')
-task_plan.append(' -> Place/spatula/table/tool -> PickUp/pineapple -> Place/pineapple/cutting_board/ingredient -> PickUp/knife -> Dice/pineapple/knife')
-task_plan.append(' -> Place/knife/table/tool -> PickUp/raisin -> PutIn/raisin/bowl/None')
-task_plan.append(' -> PickUp/knife -> Scrape/diced_pineapple/bowl/knife')
-task_plan.append(' -> Place/knife/table/tool -> PickUp/spatula -> Stir/bowl/carrot_salad/spatula')
+# task_plan = []
+# task_plan.append(' -> PickUp/milk_bottle -> PourIn/milk_bottle/drinking_glass/milk')
+# task_plan.append(' -> Place/milk_bottle/table/ing_bottle -> PickUp/instant_coffee_bottle -> PourIn/instant_coffee_bottle/drinking_glass/instant_coffee')
+# task_plan.append(' -> PickUp/instant_coffee_bottle -> PourIn/instant_coffee_bottle/drinking_glass/instant_coffee')
+# task_plan.append(' -> Place/instant_coffee_bottle/table/ing_bottle -> PickUp/water_ice_bottle -> PourIn/water_ice_bottle/drinking_glass/water_ice')
+# task_plan.append(' -> Place/water_ice_bottle/table/ing_bottle -> PickUp/coffee_bottle -> PourIn/coffee_bottle/drinking_glass/coffee')
+# task_plan.append(' -> Place/coffee_bottle/table/ing_bottle -> PickUp/lemon_juice_bottle -> PourIn/lemon_juice_bottle/drinking_glass/whipped_coffee')
+# task_plan.append(' -> Place/lemon_juice_bottle/table/ing_bottle -> PickUp/spatula -> Stir/drinking_glass/dalgona_coffee/spatula')
 
 
 

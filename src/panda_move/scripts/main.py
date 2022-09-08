@@ -22,6 +22,8 @@ import sample.tuna_sandwich
 import sample.greek_salad
 import sample.shrimp_salad
 import sample.carrot_salad
+import sample.EPIC_salad
+import sample.dalgona_coffee
 
 import sample.test_33_predict2_v2
 import sample.test_49_predict2_v2
@@ -436,7 +438,9 @@ def main():
 
     # sample
     #sandwich = sample.club_sandwich
-    sandwich = sample.carrot_salad
+    #sandwich = sample.carrot_salad
+    #sandwich = sample.EPIC_salad
+    sandwich = sample.dalgona_coffee
     # sandwich = sample.tuna_sandwich
     # sandwich = sample.greek_salad
     # sandwich = sample.shrimp_salad
