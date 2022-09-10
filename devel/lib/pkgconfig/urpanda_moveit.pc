@@ -1,4 +1,4 @@
-prefix=/ur5_panda/devel
+prefix=/ros_ws/devel
 
 Name: urpanda_moveit
 Description: Description of urpanda_moveit

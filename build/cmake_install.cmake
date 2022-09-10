@@ -1,8 +1,8 @@
-# Install script for directory: /ur5_panda/src
+# Install script for directory: /ros_ws/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/ur5_panda/install")
+  set(CMAKE_INSTALL_PREFIX "/ros_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -49,96 +49,96 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/ur5_panda/install/_setup_util.py")
+   "/ros_ws/install/_setup_util.py")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/ur5_panda/install" TYPE PROGRAM FILES "/ur5_panda/build/catkin_generated/installspace/_setup_util.py")
+file(INSTALL DESTINATION "/ros_ws/install" TYPE PROGRAM FILES "/ros_ws/build/catkin_generated/installspace/_setup_util.py")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/ur5_panda/install/env.sh")
+   "/ros_ws/install/env.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/ur5_panda/install" TYPE PROGRAM FILES "/ur5_panda/build/catkin_generated/installspace/env.sh")
+file(INSTALL DESTINATION "/ros_ws/install" TYPE PROGRAM FILES "/ros_ws/build/catkin_generated/installspace/env.sh")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/ur5_panda/install/setup.bash;/ur5_panda/install/local_setup.bash")
+   "/ros_ws/install/setup.bash;/ros_ws/install/local_setup.bash")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/ur5_panda/install" TYPE FILE FILES
-    "/ur5_panda/build/catkin_generated/installspace/setup.bash"
-    "/ur5_panda/build/catkin_generated/installspace/local_setup.bash"
+file(INSTALL DESTINATION "/ros_ws/install" TYPE FILE FILES
+    "/ros_ws/build/catkin_generated/installspace/setup.bash"
+    "/ros_ws/build/catkin_generated/installspace/local_setup.bash"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/ur5_panda/install/setup.sh;/ur5_panda/install/local_setup.sh")
+   "/ros_ws/install/setup.sh;/ros_ws/install/local_setup.sh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/ur5_panda/install" TYPE FILE FILES
-    "/ur5_panda/build/catkin_generated/installspace/setup.sh"
-    "/ur5_panda/build/catkin_generated/installspace/local_setup.sh"
+file(INSTALL DESTINATION "/ros_ws/install" TYPE FILE FILES
+    "/ros_ws/build/catkin_generated/installspace/setup.sh"
+    "/ros_ws/build/catkin_generated/installspace/local_setup.sh"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/ur5_panda/install/setup.zsh;/ur5_panda/install/local_setup.zsh")
+   "/ros_ws/install/setup.zsh;/ros_ws/install/local_setup.zsh")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/ur5_panda/install" TYPE FILE FILES
-    "/ur5_panda/build/catkin_generated/installspace/setup.zsh"
-    "/ur5_panda/build/catkin_generated/installspace/local_setup.zsh"
+file(INSTALL DESTINATION "/ros_ws/install" TYPE FILE FILES
+    "/ros_ws/build/catkin_generated/installspace/setup.zsh"
+    "/ros_ws/build/catkin_generated/installspace/local_setup.zsh"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/ur5_panda/install/.rosinstall")
+   "/ros_ws/install/.rosinstall")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/ur5_panda/install" TYPE FILE FILES "/ur5_panda/build/catkin_generated/installspace/.rosinstall")
+file(INSTALL DESTINATION "/ros_ws/install" TYPE FILE FILES "/ros_ws/build/catkin_generated/installspace/.rosinstall")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/ur5_panda/build/gtest/cmake_install.cmake")
-  include("/ur5_panda/build/franka_description/cmake_install.cmake")
-  include("/ur5_panda/build/geometry_msgs/cmake_install.cmake")
-  include("/ur5_panda/build/ur5/ur5_description/cmake_install.cmake")
-  include("/ur5_panda/build/ur5/ur5_gazebo/cmake_install.cmake")
-  include("/ur5_panda/build/urpanda_moveit/cmake_install.cmake")
-  include("/ur5_panda/build/ros_tcp_endpoint/cmake_install.cmake")
-  include("/ur5_panda/build/moveit_msgs/cmake_install.cmake")
-  include("/ur5_panda/build/panda_move/cmake_install.cmake")
+  include("/ros_ws/build/gtest/cmake_install.cmake")
+  include("/ros_ws/build/franka_description/cmake_install.cmake")
+  include("/ros_ws/build/geometry_msgs/cmake_install.cmake")
+  include("/ros_ws/build/ur5/ur5_description/cmake_install.cmake")
+  include("/ros_ws/build/ur5/ur5_gazebo/cmake_install.cmake")
+  include("/ros_ws/build/urpanda_moveit/cmake_install.cmake")
+  include("/ros_ws/build/ros_tcp_endpoint/cmake_install.cmake")
+  include("/ros_ws/build/moveit_msgs/cmake_install.cmake")
+  include("/ros_ws/build/panda_move/cmake_install.cmake")
 
 endif()
 
@@ -150,5 +150,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/ur5_panda/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/ros_ws/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

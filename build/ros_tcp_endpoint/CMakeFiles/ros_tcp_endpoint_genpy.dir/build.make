@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /ur5_panda/src
+CMAKE_SOURCE_DIR = /ros_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /ur5_panda/build
+CMAKE_BINARY_DIR = /ros_ws/build
 
 # Utility rule file for ros_tcp_endpoint_genpy.
 
@@ -63,10 +63,10 @@ ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_genpy.dir/build: ros_tcp_endpoint_g
 .PHONY : ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_genpy.dir/build
 
 ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_genpy.dir/clean:
-	cd /ur5_panda/build/ros_tcp_endpoint && $(CMAKE_COMMAND) -P CMakeFiles/ros_tcp_endpoint_genpy.dir/cmake_clean.cmake
+	cd /ros_ws/build/ros_tcp_endpoint && $(CMAKE_COMMAND) -P CMakeFiles/ros_tcp_endpoint_genpy.dir/cmake_clean.cmake
 .PHONY : ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_genpy.dir/clean
 
 ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_genpy.dir/depend:
-	cd /ur5_panda/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /ur5_panda/src /ur5_panda/src/ros_tcp_endpoint /ur5_panda/build /ur5_panda/build/ros_tcp_endpoint /ur5_panda/build/ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_genpy.dir/DependInfo.cmake --color=$(COLOR)
+	cd /ros_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /ros_ws/src /ros_ws/src/ros_tcp_endpoint /ros_ws/build /ros_ws/build/ros_tcp_endpoint /ros_ws/build/ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_genpy.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_genpy.dir/depend
 

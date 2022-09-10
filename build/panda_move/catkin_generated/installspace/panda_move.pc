@@ -1,4 +1,4 @@
-prefix=/ur5_panda/install
+prefix=/ros_ws/install
 
 Name: panda_move
 Description: Description of panda_move

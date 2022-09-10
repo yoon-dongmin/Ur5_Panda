@@ -1,52 +1,52 @@
 
 "use strict";
 
-let DeleteRobotStateFromWarehouse = require('./DeleteRobotStateFromWarehouse.js')
-let ExecuteKnownTrajectory = require('./ExecuteKnownTrajectory.js')
-let ApplyPlanningScene = require('./ApplyPlanningScene.js')
-let SetPlannerParams = require('./SetPlannerParams.js')
-let RenameRobotStateInWarehouse = require('./RenameRobotStateInWarehouse.js')
-let LoadMap = require('./LoadMap.js')
-let QueryPlannerInterfaces = require('./QueryPlannerInterfaces.js')
-let GetMotionSequence = require('./GetMotionSequence.js')
-let ChangeDriftDimensions = require('./ChangeDriftDimensions.js')
-let SaveMap = require('./SaveMap.js')
 let GetPlannerParams = require('./GetPlannerParams.js')
-let GetPositionIK = require('./GetPositionIK.js')
-let GetPositionFK = require('./GetPositionFK.js')
-let GetRobotStateFromWarehouse = require('./GetRobotStateFromWarehouse.js')
+let LoadMap = require('./LoadMap.js')
+let SetPlannerParams = require('./SetPlannerParams.js')
 let GetStateValidity = require('./GetStateValidity.js')
-let GetPlanningScene = require('./GetPlanningScene.js')
-let SaveRobotStateToWarehouse = require('./SaveRobotStateToWarehouse.js')
-let GraspPlanning = require('./GraspPlanning.js')
 let GetMotionPlan = require('./GetMotionPlan.js')
+let ChangeDriftDimensions = require('./ChangeDriftDimensions.js')
+let ExecuteKnownTrajectory = require('./ExecuteKnownTrajectory.js')
+let GetPositionIK = require('./GetPositionIK.js')
+let GetRobotStateFromWarehouse = require('./GetRobotStateFromWarehouse.js')
 let ListRobotStatesInWarehouse = require('./ListRobotStatesInWarehouse.js')
-let CheckIfRobotStateExistsInWarehouse = require('./CheckIfRobotStateExistsInWarehouse.js')
-let ChangeControlDimensions = require('./ChangeControlDimensions.js')
 let GetCartesianPath = require('./GetCartesianPath.js')
+let GetMotionSequence = require('./GetMotionSequence.js')
+let QueryPlannerInterfaces = require('./QueryPlannerInterfaces.js')
+let GetPositionFK = require('./GetPositionFK.js')
+let CheckIfRobotStateExistsInWarehouse = require('./CheckIfRobotStateExistsInWarehouse.js')
+let ApplyPlanningScene = require('./ApplyPlanningScene.js')
+let RenameRobotStateInWarehouse = require('./RenameRobotStateInWarehouse.js')
+let ChangeControlDimensions = require('./ChangeControlDimensions.js')
+let SaveRobotStateToWarehouse = require('./SaveRobotStateToWarehouse.js')
+let GetPlanningScene = require('./GetPlanningScene.js')
+let GraspPlanning = require('./GraspPlanning.js')
+let SaveMap = require('./SaveMap.js')
+let DeleteRobotStateFromWarehouse = require('./DeleteRobotStateFromWarehouse.js')
 
 module.exports = {
-  DeleteRobotStateFromWarehouse: DeleteRobotStateFromWarehouse,
-  ExecuteKnownTrajectory: ExecuteKnownTrajectory,
-  ApplyPlanningScene: ApplyPlanningScene,
-  SetPlannerParams: SetPlannerParams,
-  RenameRobotStateInWarehouse: RenameRobotStateInWarehouse,
-  LoadMap: LoadMap,
-  QueryPlannerInterfaces: QueryPlannerInterfaces,
-  GetMotionSequence: GetMotionSequence,
-  ChangeDriftDimensions: ChangeDriftDimensions,
-  SaveMap: SaveMap,
   GetPlannerParams: GetPlannerParams,
-  GetPositionIK: GetPositionIK,
-  GetPositionFK: GetPositionFK,
-  GetRobotStateFromWarehouse: GetRobotStateFromWarehouse,
+  LoadMap: LoadMap,
+  SetPlannerParams: SetPlannerParams,
   GetStateValidity: GetStateValidity,
-  GetPlanningScene: GetPlanningScene,
-  SaveRobotStateToWarehouse: SaveRobotStateToWarehouse,
-  GraspPlanning: GraspPlanning,
   GetMotionPlan: GetMotionPlan,
+  ChangeDriftDimensions: ChangeDriftDimensions,
+  ExecuteKnownTrajectory: ExecuteKnownTrajectory,
+  GetPositionIK: GetPositionIK,
+  GetRobotStateFromWarehouse: GetRobotStateFromWarehouse,
   ListRobotStatesInWarehouse: ListRobotStatesInWarehouse,
-  CheckIfRobotStateExistsInWarehouse: CheckIfRobotStateExistsInWarehouse,
-  ChangeControlDimensions: ChangeControlDimensions,
   GetCartesianPath: GetCartesianPath,
+  GetMotionSequence: GetMotionSequence,
+  QueryPlannerInterfaces: QueryPlannerInterfaces,
+  GetPositionFK: GetPositionFK,
+  CheckIfRobotStateExistsInWarehouse: CheckIfRobotStateExistsInWarehouse,
+  ApplyPlanningScene: ApplyPlanningScene,
+  RenameRobotStateInWarehouse: RenameRobotStateInWarehouse,
+  ChangeControlDimensions: ChangeControlDimensions,
+  SaveRobotStateToWarehouse: SaveRobotStateToWarehouse,
+  GetPlanningScene: GetPlanningScene,
+  GraspPlanning: GraspPlanning,
+  SaveMap: SaveMap,
+  DeleteRobotStateFromWarehouse: DeleteRobotStateFromWarehouse,
 };

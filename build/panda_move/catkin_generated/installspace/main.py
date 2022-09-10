@@ -11,6 +11,7 @@ import datetime
 import rospy
 from collections import defaultdict
 from os.path import dirname
+import sys
 from task_planning.searcher import AStarSearcher
 from task_planning.planner import ForwardPlanner
 from task_planning.domain import *
@@ -20,6 +21,9 @@ import sample.club_sandwich
 import sample.tuna_sandwich
 import sample.greek_salad
 import sample.shrimp_salad
+import sample.carrot_salad
+import sample.EPIC_salad
+import sample.dalgona_coffee
 
 import sample.test_33_predict2_v2
 import sample.test_49_predict2_v2
@@ -433,16 +437,19 @@ def main():
     use_unity = True
 
     # sample
-    # sandwich = sample.club_sandwich
+    #sandwich = sample.club_sandwich
+    #sandwich = sample.carrot_salad
+    #sandwich = sample.EPIC_salad
+    sandwich = sample.dalgona_coffee
     # sandwich = sample.tuna_sandwich
-    sandwich = sample.greek_salad
+    # sandwich = sample.greek_salad
     # sandwich = sample.shrimp_salad
     # sandwich = sample.test_15_predict3_v2
     # sandwich = sample.test_33_predict2_v2
     # sandwich = sample.test_49_predict2_v2
     # sandwich = sample.test_80_predict2_v2
 
-    # csv
+    # csv #여기서 
     test_dir = dirname(dirname(__file__)) + '/test_set/default_v2/'
     # test_dir = dirname(dirname(__file__)) + '/test_set/predict2_v2/'
     # test_dir = dirname(dirname(__file__)) + '/test_set/predict3_v2/'
@@ -454,142 +461,43 @@ def main():
             os.makedirs(target_dir)
 
     test_path = test_dir + sandwich.test_file_name
-    suffix = datetime.datetime.now().strftime("_%y%m%d_%H%M%S")
-    tp_result_path = result_dir + sandwich.test_file_name[:-4] + suffix + '_tp.csv'
-    ola_result_path = result_dir + sandwich.test_file_name[:-4] + suffix + '_ola.csv'
-    mp_result_path = result_dir + sandwich.test_file_name[:-4] + suffix + '_mp.csv'
+    #suffix = datetime.datetime.now().strftime("_%y%m%d_%H%M%S")
+    # tp_result_path = result_dir + sandwich.test_file_name[:-4] + suffix + '_tp.csv'
+    # ola_result_path = result_dir + sandwich.test_file_name[:-4] + suffix + '_ola.csv'
+    # mp_result_path = result_dir + sandwich.test_file_name[:-4] + suffix + '_mp.csv'
 
-    # initialize for task planning
-    knowledge_base = get_knowledge_base()
-    (goals, using_ings, new_objs, goal_diffs) = get_network_output(test_path)
-    default_initial = get_default_initial(sandwich.obj_state, knowledge_base)
     
     raw_input("Experiment Start!!")
-
     # initialize for motion planning
     if use_moveit:
         obj_test = ObjectLevelMotion(use_unity)
-        obj_test.initialize(sandwich.obj_place)
-    
+        obj_test.initialize(sandwich.obj_place) #recipe의 object_place를 가져옴
         if use_unity:
             obj_test.init_sync()
-            obj_test.scene_sync()
-            
+            obj_test.scene_sync()     
 
-    path = None
-    tp_infos = []
-    ola_infos = []
-    mp_infos = []
-    finished = False
-    for t in range(1, len(goals)):
-        # reduce object set
-        using_objects = set_ingredients(sandwich.obj_state, knowledge_base, using_ings[t])
-
-        ola_success = False
-        replan_num = 0
-        while (not ola_success) and replan_num < 3:
-            current = None
-            rospy.loginfo('='*50)
-            rospy.loginfo('[task={}]'.format(t))
-
-            # generate problem
-            initial = copy.deepcopy(default_initial)
-            initial.update(goals[t-1])
-            if use_moveit:
-                current = obj_test.get_current_state()
-                initial.update(current)
-                problem = [initial, goals[t]]
-            else:
-                if path:
-                    initial.update(path.end())
-                problem = [initial, goals[t]]
-            
-            # rospy.loginfo details
-            rospy.loginfo('####### generate problem #######')
-            rospy.loginfo('using_ings: {}'.format(using_ings[t]))
-            rospy.loginfo('using_objects: {}'.format(using_objects))
-            rospy.loginfo('goal: {}'.format(goals[t]))
-            rospy.loginfo('goal_diff: {}'.format(goal_diffs[t]))
-            rospy.loginfo('current: {}'.format(current))
-            rospy.loginfo('initial: {}'.format(initial))
-            
-            # task plan
-            task_planner = make_task_planner(problem, using_objects, knowledge_base, new_objs)
-            start = time.time()
-            success = task_planner.search()
-            end = time.time()
-
-            rospy.loginfo('####### task plan info #######')
-            path = task_planner.solution
-            rospy.loginfo('plan = {}'.format(task_planner.solution))
-            rospy.loginfo('length = {}'.format(len(task_planner.solution)-1))
-            rospy.loginfo('num_of_expand = {}'.format(task_planner.num_expanded))
-            rospy.loginfo('time = {}'.format(end-start))
-            rospy.loginfo('success = {}'.format(success))
-
-            tp_info = dict()
-            tp_info['task'] = t ##
-            tp_info['subgoal'] = goal_diffs[t]
-            tp_info['plan'] = task_planner.solution.to_str()
-            tp_info['length'] = len(task_planner.solution)-1
-            tp_info['num_of_expand'] = task_planner.num_expanded
-            tp_info['time'] = end-start
-            tp_info['success'] = success
-            tp_infos.append(tp_info)
-
-            if not success:
-                finished = True
-                break
-
-            # run action_sequences
-            action_sequences = [action.split('/') for action in task_planner.solution.to_str().split(" -> ") if action]
-            if use_moveit:
-                # success = False
-                for i, action in enumerate(action_sequences):
-                    rospy.loginfo('='*50)
-                    rospy.loginfo('[ola={}] {}'.format(i, action))
-                    
-                    start = time.time()
-                    ola_success, ola_info = obj_test.run(action)
-                    end = time.time()
-
-                    mpi = ola_info.pop('mp_infos')
-                    for j in range(len(mpi)):
-                        rospy.loginfo('####### motion plan info #######')
-                        rospy.loginfo('planning_time = {}'.format(mpi[j]['planning_time']))
-                        rospy.loginfo('execution_time = {}'.format(mpi[j]['execution_time']))
-                        rospy.loginfo('success = {}'.format(mpi[j]['success']))
-                        mpi[j]['action'] = ola_info['action']
-                        mpi[j]['action_length'] = ola_info['length']
-                        mpi[j]['sequence'] = j
-                        mpi[j]['task'] = t               
-                    mp_infos.extend(mpi)
-
-                    rospy.loginfo('####### object-level action info #######')
-                    rospy.loginfo('time = {}'.format(end-start))                    
-                    rospy.loginfo('action = {}'.format(ola_info['action']))
-                    rospy.loginfo('length = {}'.format(ola_info['length']))
-                    rospy.loginfo('success = {}'.format(ola_success))
-                    ola_info['time'] = end-start
-                    ola_info['task'] = t
-                    ola_infos.append(ola_info)
-                    
-                    # if object-level action failed, break from for loop and replan
-                    if not ola_success:
-                        replan_num += 1
-                        rospy.loginfo('!'*20 + 'replan {}'.format(replan_num))
-                        break
-            else:
-                break
-        
-        if finished:
-            break
+    # carrot_path = './carrot_mapping.yaml'
+    # with open(carrot_path) as f:
+    #     self.carrot_map = yaml.load(f,Loader=yaml.FullLoader)
     
-    # save to csv
-    save_list_of_dict(tp_result_path, ['task', 'subgoal', 'length', 'plan', 'success', 'time', 'num_of_expand'], tp_infos)
-    if use_moveit: 
-        save_list_of_dict(ola_result_path, ['task', 'action', 'length', 'time', 'success'], ola_infos) 
-        save_list_of_dict(mp_result_path, ['task', 'action', 'action_length', 'sequence', 'planning_time', 'execution_time', 'success'], mp_infos) 
+    
+    # for obj in self.carrot_map.keys():
+    #     idx = obj_list.index(obj) #obj의 list idx를 찾음
+    #     obj_list[idx]=self.carrot_map[obj] #carrot_map의 value값으로 변환
+
+
+
+
+
+    total_action_sequences = []
+    for result in sandwich.task_plan:
+        action_sequences = [action.split('/') for action in result.split(" -> ") if action]
+        total_action_sequences.append(action_sequences)
+        
+    for action_sequences in total_action_sequences:
+        for i, action in enumerate(action_sequences):
+            ola_success, ola_info = obj_test.run(action)
+            #print(action,ola_success)
 
 if __name__ == "__main__":
     rospy.init_node('PandaMove', anonymous=True)

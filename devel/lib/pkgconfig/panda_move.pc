@@ -1,8 +1,8 @@
-prefix=/ur5_panda/devel
+prefix=/ros_ws/devel
 
 Name: panda_move
 Description: Description of panda_move
 Version: 0.0.0
-Cflags: -I/ur5_panda/devel/include
+Cflags: -I/ros_ws/devel/include
 Libs: -L${prefix}/lib 
 Requires: 

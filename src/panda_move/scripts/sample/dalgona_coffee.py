@@ -98,6 +98,8 @@ obj_place.append(['sugar_bottle', 'sugar_bottle', 'table1_ing_bottle_area', 'act
 #obj_place.append(['chopped_cucumber', 'chopped_cucumber', 'deactivate', 'deactivated'])
 #obj_place.append(['chopped_banana', 'chopped_banana', 'deactivate', 'deactivated'])
 #obj_place.append(['oregano', 'oregano', 'deactivate', 'deactivated'])
+obj_place.append(['lettuce', 'lettuce', 'deactivate', 'deactivated'])
+
 # for Spread
 
 # for Pour
@@ -107,9 +109,8 @@ obj_place.append(['olive_oil_1', 'olive_oil', 'deactivate', 'deactivated'])
 obj_place.append(['mayonnaise_1', 'mayonnaise', 'deactivate', 'deactivated'])
 obj_place.append(['sugar_1', 'sugar', 'deactivate', 'deactivated'])
 
-obj_place.append(['lettuce_1', 'lettuce', 'deactivate', 'deactivated'])
-obj_place.append(['chopped_lettuce_1', 'chopped_lettuce', 'deactivate', 'deactivated'])
-
+#obj_place.append(['lettuce_1', 'lettuce', 'deactivate', 'deactivated'])
+obj_place.append(['tuna_spread_1', 'tuna_spread', 'deactivate', 'deactivated'])
 
 
 # for Stir
@@ -130,12 +131,12 @@ network_output = (goals, using_ings, recipe)
 ###########################################################
 # # task_plan
 task_plan = []
-task_plan.append(' -> PickUp/mayonnaise_bottle -> Pour/mayonnaise_bottle/bowl/lettuce')
+task_plan.append(' -> PickUp/mayonnaise_bottle -> Pour/mayonnaise_bottle/bowl/tuna_spread')
 task_plan.append(' -> Place/mayonnaise_bottle/table/ing_bottle -> PickUp/relish_bottle -> Pour/relish_bottle/bowl/relish')
 task_plan.append(' -> Place/relish_bottle/table/ing_bottle -> PickUp/olive_oil_bottle -> Pour/olive_oil_bottle/bowl/olive_oil')
 task_plan.append(' -> Place/olive_oil_bottle/table/ing_bottle -> PickUp/sugar_bottle -> Pour/sugar_bottle/bowl/sugar')
-task_plan.append(' -> Place/sugar_bottle/table/ing_bottle -> PickUp/lemon_juice_bottle -> Pour/lemon_juice_bottle/bowl/whipped_coffee')
-task_plan.append(' -> Place/lemon_juice_bottle/table/ing_bottle -> PickUp/spatula -> Stir/bowl/chopped_lettuce/spatula')
+task_plan.append(' -> Place/sugar_bottle/table/ing_bottle -> PickUp/lemon_juice_bottle -> Pour/lemon_juice_bottle/bowl/lemon_juice')
+task_plan.append(' -> Place/lemon_juice_bottle/table/ing_bottle -> PickUp/spatula -> Stir/bowl/lettuce/spatula')
 
 
 

@@ -1,2 +1,2 @@
 franka_description:geometry_msgs:moveit_msgs:panda_move:ros_tcp_endpoint:ur5/ur5_description:ur5/ur5_gazebo:urpanda_moveit
--DCATKIN_DEVEL_PREFIX=/ur5_panda/devel -DCMAKE_INSTALL_PREFIX=/ur5_panda/install -G Unix Makefiles
+-DCATKIN_DEVEL_PREFIX=/ros_ws/devel -DCMAKE_INSTALL_PREFIX=/ros_ws/install -G Unix Makefiles

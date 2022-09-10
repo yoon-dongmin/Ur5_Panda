@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /ur5_panda/src
+CMAKE_SOURCE_DIR = /ros_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /ur5_panda/build
+CMAKE_BINARY_DIR = /ros_ws/build
 
 # Utility rule file for run_tests_panda_move_roslaunch-check.
 
@@ -63,10 +63,10 @@ panda_move/CMakeFiles/run_tests_panda_move_roslaunch-check.dir/build: run_tests_
 .PHONY : panda_move/CMakeFiles/run_tests_panda_move_roslaunch-check.dir/build
 
 panda_move/CMakeFiles/run_tests_panda_move_roslaunch-check.dir/clean:
-	cd /ur5_panda/build/panda_move && $(CMAKE_COMMAND) -P CMakeFiles/run_tests_panda_move_roslaunch-check.dir/cmake_clean.cmake
+	cd /ros_ws/build/panda_move && $(CMAKE_COMMAND) -P CMakeFiles/run_tests_panda_move_roslaunch-check.dir/cmake_clean.cmake
 .PHONY : panda_move/CMakeFiles/run_tests_panda_move_roslaunch-check.dir/clean
 
 panda_move/CMakeFiles/run_tests_panda_move_roslaunch-check.dir/depend:
-	cd /ur5_panda/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /ur5_panda/src /ur5_panda/src/panda_move /ur5_panda/build /ur5_panda/build/panda_move /ur5_panda/build/panda_move/CMakeFiles/run_tests_panda_move_roslaunch-check.dir/DependInfo.cmake --color=$(COLOR)
+	cd /ros_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /ros_ws/src /ros_ws/src/panda_move /ros_ws/build /ros_ws/build/panda_move /ros_ws/build/panda_move/CMakeFiles/run_tests_panda_move_roslaunch-check.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : panda_move/CMakeFiles/run_tests_panda_move_roslaunch-check.dir/depend
 

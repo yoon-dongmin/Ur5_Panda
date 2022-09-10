@@ -1,4 +1,4 @@
-prefix=/ur5_panda/install
+prefix=/ros_ws/install
 
 Name: ur5_gazebo
 Description: Description of ur5_gazebo

@@ -83,17 +83,13 @@ class PoseLevelMotion(object):
         super(PoseLevelMotion, self).__init__()
         moveit_commander.roscpp_initialize(sys.argv)
 
-        #rospy.init_node('PandaMove', anonymous=True)
+        rospy.init_node('PandaMove', anonymous=True)
 
         self.robot = moveit_commander.RobotCommander() #robot 객체 생성
         self.scene = moveit_commander.PlanningSceneInterface() #바뀌는 장면을 추가적으로 넣어줌
         self.group_name = "arm"
         self.move_group = moveit_commander.MoveGroupCommander(self.group_name)
-        self.move_group.set_planner_id("RRTConnectkConfigDefault")
-        # self.move_group.set_planning_time()
-        # self.move_group.set_num_planning_attempts()
-        # self.move_group.set_max_velocity_scaling_factor()
-        # self.move_group.set_max_acceleration_scaling_factor()
+        self.move_group.set_planner_id("RRTConnectkConfigDefault") #RRTstarkConfigDefault
         self.move_group.set_end_effector_link('ee_link')
 
         # Planning Parameter #다음의 6개 존재
@@ -125,32 +121,35 @@ class PoseLevelMotion(object):
             self.robot, 'panda_finger_joint2'))
 
         # Visualization
-        # 뭐하는 부분? 
         self.br = StaticTransformBroadcaster()
         self.marker_array_pub = rospy.Publisher('waypoints', MarkerArray, queue_size=1)
-
-        self.self_play = self_play
+        self.self_play = self_play #True
 
     def add_box(self, box_name, box_pose_i, box_size, frame_id="world"):
-        box_pose = geometry_msgs.msg.PoseStamped()
-        box_pose.header.frame_id = frame_id
-        box_pose.pose = list_to_pose(box_pose_i) 
-        self.scene.add_box(box_name, box_pose, size=box_size)
+        box_pose = geometry_msgs.msg.PoseStamped() #geometry_msgs에서 posestamped_msg를 불러옴
+        box_pose.header.frame_id = frame_id 
+        box_pose.pose = list_to_pose(box_pose_i) #list값을 pose로 변경
+        #print(box_pose.pose)
+        self.scene.add_box(box_name, box_pose, size=box_size) #scene에 추가 
 
-    def add_object(self, object_name, object_pose, object_mesh, object_size, frame_id="world"): #object_mesh는 사용x?
+    def add_object(self, object_name, object_pose, object_mesh, object_size, frame_id="world"): 
         obj_pose = geometry_msgs.msg.PoseStamped()
         obj_pose.header.frame_id = frame_id
         obj_pose.pose = list_to_pose(object_pose)
-        self.scene.add_mesh(object_name, obj_pose, object_mesh, object_size)
+        #print(obj_pose.pose)
+        self.scene.add_mesh(object_name, obj_pose, object_mesh, object_size)  #scene에 추가 
 
     def get_cur_pose(self):
         cur_pose = self.move_group.get_current_pose().pose
+        print(cur_pose)
         return cur_pose
 
     def get_object_pose(self, object_name): #object 하나에 대한 pose를 가져옴
         try:
             obj_pose = self.scene.get_object_poses([object_name])
-            obj_pose = obj_pose.values()[0]        
+            #print(obj_pose.values(),1) 
+            obj_pose = obj_pose.values()[0] 
+            #print(obj_pose,2)       
             return obj_pose
         except Exception as e:
             rospy.logerr('cannot get object pose: '+object_name)
@@ -163,6 +162,8 @@ class PoseLevelMotion(object):
         co = self.scene.get_objects() 
         for key, val in co.items():
             obj_poses[key] = val.mesh_poses[0]
+
+        
         return obj_poses
 
     def update_object_pose(self, object_name, object_pose): #Unity에서 update된 pose를 적용실킬 때 사용
@@ -171,7 +172,7 @@ class PoseLevelMotion(object):
         obj_pose.pose = object_pose
         self.scene.update_pose(object_name, obj_pose)
 
-    def set_orientation_constraint(self, move_group): #planning orientation의 constraint 설정? 한번 체크
+    def set_orientation_constraint(self, move_group): #현재 orientation으로 고정
         cp = move_group.get_current_pose()
         ce = self.eef_link
         consts = moveit_msgs.msg.Constraints()
@@ -209,7 +210,6 @@ class PoseLevelMotion(object):
         plan = move_group.plan(pose_goal)
         planning_time = time.time() - start
         traj_length = len(plan.joint_trajectory.points)
-
         if self.self_play:
             rospy.loginfo('move_to: {}'.format(traj_length))
         else:
@@ -233,22 +233,30 @@ class PoseLevelMotion(object):
         mp_info['trajectory_length'] = traj_length
         mp_info['target_pose'] = utils.pose_to_list(pose_goal)
         mp_info['success'] = True if traj_length>0 else False
+        #print(plan,'plan')
+        #print(mp_info,"mp_info")
 
         return plan, mp_info
     
+    #current pose에 대한 trasnformation matrix는 현재 pose가 기준?
     def linear_motion(self, distance, avoid_collision=True, reference="world"):
         move_group = self.move_group
         waypoints = []
         wpose = move_group.get_current_pose().pose
-
-        if reference == "world":
-            wpose.position.x += distance[0]
+        print(wpose,1)
+        #reference에 따라 달라짐
+        #world이면 현재 position에 distance값을 더해줌
+        if reference == "world": 
+            wpose.position.x += distance[0] 
             wpose.position.y += distance[1]
             wpose.position.z += distance[2]
+        #eef이면 현재위치와 distance를 concatenate함
         elif reference == "eef":
-            lpose = distance + [0, 0, 0, 1]
+            lpose = distance + [0, 0, 0, 1] # 위치 + 방향
+            #print(type(wpose),1234)
             wpose = utils.concatenate_to_pose(wpose, lpose)
-        waypoints.append(copy.deepcopy(wpose))
+            print(wpose,2)
+        waypoints.append(copy.deepcopy(wpose)) #waypoints에 복사하여 붙여둠
 
         # Visualize
         self.marker_array_pub.publish(marker_array_msg(waypoints))
@@ -276,18 +284,18 @@ class PoseLevelMotion(object):
         mp_info['planning_time'] = planning_time
         mp_info['execution_time'] = execution_time
         mp_info['fraction'] = fraction
-        mp_info['success'] = True if fraction>0 else False
-
+        mp_info['success'] = True if fraction>0 else False #fraction이 0인 경우 동작을 수행하지 않은 것
+        print(mp_info)
         return plan, mp_info
 
     def reciprocating_motion(self, direction, distance, avoid_collision=True, reference="world"):
         move_group = self.move_group
-        waypoints = []
+        waypoints = [] #list로 만들어서 append
         wpose = move_group.get_current_pose().pose
-
+        print(wpose,type(wpose),123)
         if reference == "world":
             if direction == "X":
-                wpose.position.x -= distance
+                wpose.position.x -= distance #내려가는거 올라가는거 
                 waypoints.append(copy.deepcopy(wpose))
                 wpose.position.x += distance
                 waypoints.append(copy.deepcopy(wpose))
@@ -330,7 +338,7 @@ class PoseLevelMotion(object):
         (plan, fraction) = move_group.compute_cartesian_path(waypoints,
                                                                 0.03,
                                                                 0.0,
-                                                                avoid_collisions=avoid_collision)
+                                                                avoid_collisions=avoid_collision) #plan계산
         planning_time = time.time() - start
 
         # Execute
@@ -348,7 +356,7 @@ class PoseLevelMotion(object):
         mp_info['execution_time'] = execution_time
         mp_info['fraction'] = fraction
         mp_info['success'] = True if fraction>0 else False
-
+        print(mp_info,123)
         return plan, mp_info
 
     def circular_motion(self, normal_direction, direction, radius, start_angle, end_angle, avoid_collision):
@@ -453,19 +461,20 @@ class PoseLevelMotion(object):
 
         return plan, mp_info
 
-    def hold_object(self, object_list, grasp_size):
-        try:
-            robot = self.robot
-            hand_group = self.hand_group
-            eef_link = self.eef_link
-            touch_links = robot.get_link_names(group=self.grasp_name)
+    def hold_object(self, object_list, grasp_size): #object_list는 여러개??
+        try:#robot #hand_group #eef_link #touch_link 사용
+            robot = self.robot 
+            hand_group = self.hand_group 
+            eef_link = self.eef_link 
+            touch_links = robot.get_link_names(group=self.grasp_name) #self.grasp_name = hand
             hand_group.set_joint_value_target([grasp_size, 0])
             hand_group.go()
             for object_name in object_list:
                 hand_group.attach_object(
                     object_name, eef_link, touch_links=touch_links)
                 time.sleep(0.1)
-            self.grasp_state = True
+            #grasp_state와 hold_staue 변경
+            self.grasp_state = True 
             hold_status = True
 
             # info
@@ -496,6 +505,7 @@ class PoseLevelMotion(object):
                 time.sleep(0.1)
             hand_group.set_joint_value_target([0.04, 0])
             hand_group.go()
+            #state 변경
             self.grasp_state = False
             release_status = True
 
@@ -550,23 +560,21 @@ def main():
     pose_test = PoseLevelMotion()
     raw_input()
     pose_test.move_to(list_to_pose([0.3, 0, 0.3, 0, 0, 0]), False)
-    # pose_test.linear_motion([0, 0, -0.3], False)
+    # pose_test.add_box('box',[0.3, 0, 0.5, 0, 0, 0], (0.06, 0.06, 0.05))
+    #pose_test.add_object('[avocado]',[0.5, 0, 0.42,0,0,0], "/ur5_panda/src/object_sample/avocado.stl",(1, 1, 1))
+    #pose_test.add_object('[banana]',[0.5, 0, 0.42,0,0,0], "/ur5_panda/src/object_sample/banana.stl",(1, 1, 1))
+    #pose_test.move_to(list_to_pose([0.3, 0, 0.3, 0, 0, 0]), False)
+    #pose_test.get_cur_pose() 
     # raw_input()
-    # f_test.move_to(list_to_pose([0.3, 0.1, 0.5, 0, 0, 0]))
-    # f_test.move_to_object(list_to_pose([aaa.x, aaa.y, aaa.z, 0, -pi, -pi/2]))
+    #pose_test.move_to(list_to_pose([-0.5, 0, 0, 0, 0, 0]), False) 
+    # pose_test.linear_motion([0.3,-0.5,0], True)
     # raw_input()
-    # f_test.attach_box("box1")
+    # pose_test.linear_motion([0,0.5,0], True) 
     # raw_input()
-    # f_test.linear_motion("y", 0.3)
-    # raw_input()
-    # f_test.circular_motion("z", "CW", 0.1, 360)
-    # raw_input()
-    # f_test.circular_motion("y", "CW", 0.1, 360)
-    # raw_input()
-    # f_test.circular_motion("x", "CW", 0.1, 360)
-    # raw_input()
-    # f_test.detach_box("box1")
-    # raw_input()
-    # f_test.linear_motion("z", 0.2)
+    #pose_test.linear_motion([0,0,-3], True, reference="eef") 
+    #pose_test.reciprocating_motion("Z",0.3,False)
+    # raw_input("temp2") 
+    # pose_test.hold_object('box', 0.03)
+    #pose_test.hold_object('box', 0.03)
 if __name__ == '__main__':
     main()

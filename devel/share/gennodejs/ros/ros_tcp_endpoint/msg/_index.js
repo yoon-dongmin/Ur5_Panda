@@ -1,12 +1,12 @@
 
 "use strict";
 
+let RosUnityError = require('./RosUnityError.js');
 let RosUnitySysCommand = require('./RosUnitySysCommand.js');
 let RosUnitySrvMessage = require('./RosUnitySrvMessage.js');
-let RosUnityError = require('./RosUnityError.js');
 
 module.exports = {
+  RosUnityError: RosUnityError,
   RosUnitySysCommand: RosUnitySysCommand,
   RosUnitySrvMessage: RosUnitySrvMessage,
-  RosUnityError: RosUnityError,
 };

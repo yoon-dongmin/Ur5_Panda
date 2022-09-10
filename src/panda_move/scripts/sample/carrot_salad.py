@@ -128,36 +128,36 @@ network_output = (goals, using_ings, recipe)
 
 ###########################################################
 # # task_plan
-# task_plan = []
-# #task_plan.append(' -> PickUp/olive_oil_bottle -> Pour/olive_oil_bottle/bowl/olive_oil -> Place/olive_oil_bottle/table/ing_bottle')
-# task_plan.append(' -> PickUp/cucumber -> PutOn/cucumber/bowl/None')
-# task_plan.append(' -> PickUp/lemon_juice_bottle -> Pour/lemon_juice_bottle/bowl/lemon_juice')
-# task_plan.append(' -> Place/lemon_juice_bottle/table/ing_bottle -> PickUp/sugar_bottle -> Pour/sugar_bottle/bowl/sugar')
-# task_plan.append(' -> Place/sugar_bottle/table/ing_bottle -> PickUp/relish_bottle -> Pour/relish_bottle/bowl/relish')
-# task_plan.append(' -> Place/relish_bottle/table/ing_bottle -> PickUp/olive_oil_bottle -> Pour/olive_oil_bottle/bowl/olive_oil')
-# task_plan.append(' -> Place/olive_oil_bottle/table/ing_bottle -> PickUp/mayonnaise_bottle -> Pour/mayonnaise_bottle/bowl/mayonnaise')
-# task_plan.append(' -> Place/mayonnaise_bottle/table/ing_bottle -> PickUp/spatula -> Stir/bowl/oregano/spatula')
-# task_plan.append(' -> Place/spatula/table/tool -> PickUp/banana -> Place/banana/cutting_board/ingredient -> PickUp/knife -> Chop/banana/knife' )
-# task_plan.append(' -> Place/knife/table/tool -> PickUp/black_olive -> PutOn/black_olive/bowl/None') #chopped_lettuce위에?
-# task_plan.append(' -> PickUp/bowl -> Place/bowl/near_cutting_board/dishware -> PickUp/knife -> Scrape/chopped_banana/bowl/knife')
-# task_plan.append(' -> Place/knife/table/tool -> PickUp/spatula -> Stir/bowl/salad/spatula')
-# #task_plan.append(' -> PickUp/scooper -> Scrape/chopped_banana/bowl/scooper')
-# #task_plan.append(' -> Place/knife/table/tool -> PickUp/spatula -> Stir/bowl/salad/spatula')
+task_plan = []
+#task_plan.append(' -> PickUp/olive_oil_bottle -> Pour/olive_oil_bottle/bowl/olive_oil -> Place/olive_oil_bottle/table/ing_bottle')
+task_plan.append(' -> PickUp/cucumber -> PutOn/cucumber/bowl/None')
+task_plan.append(' -> PickUp/lemon_juice_bottle -> Pour/lemon_juice_bottle/bowl/lemon_juice')
+task_plan.append(' -> Place/lemon_juice_bottle/table/ing_bottle -> PickUp/sugar_bottle -> Pour/sugar_bottle/bowl/sugar')
+task_plan.append(' -> Place/sugar_bottle/table/ing_bottle -> PickUp/relish_bottle -> Pour/relish_bottle/bowl/relish')
+task_plan.append(' -> Place/relish_bottle/table/ing_bottle -> PickUp/olive_oil_bottle -> Pour/olive_oil_bottle/bowl/olive_oil')
+task_plan.append(' -> Place/olive_oil_bottle/table/ing_bottle -> PickUp/mayonnaise_bottle -> Pour/mayonnaise_bottle/bowl/mayonnaise')
+task_plan.append(' -> Place/mayonnaise_bottle/table/ing_bottle -> PickUp/spatula -> Stir/bowl/oregano/spatula')
+task_plan.append(' -> Place/spatula/table/tool -> PickUp/banana -> Place/banana/cutting_board/ingredient -> PickUp/knife -> Chop/banana/knife' )
+task_plan.append(' -> Place/knife/table/tool -> PickUp/black_olive -> PutOn/black_olive/bowl/None') #chopped_lettuce위에?
+task_plan.append(' -> PickUp/bowl -> Place/bowl/near_cutting_board/dishware -> PickUp/knife -> Scrape/chopped_banana/bowl/knife')
+task_plan.append(' -> Place/knife/table/tool -> PickUp/spatula -> Stir/bowl/salad/spatula')
+#task_plan.append(' -> PickUp/scooper -> Scrape/chopped_banana/bowl/scooper')
+#task_plan.append(' -> Place/knife/table/tool -> PickUp/spatula -> Stir/bowl/salad/spatula')
 
 
 ###
-task_plan = []
-task_plan.append(' -> PickUp/carrot -> PutIn/carrot/bowl/None')
-task_plan.append(' -> PickUp/lemon_juice_bottle -> PourIn/lemon_juice_bottle/bowl/lemon_juice')
-task_plan.append(' -> Place/lemon_juice_bottle/table/ing_bottle -> PickUp/brown_sugar_bottle -> PourIn/brown_sugar_bottle/bowl/brown_sugar')
-task_plan.append(' -> Place/brown_sugar_bottle/table/ing_bottle -> PickUp/chili_sauce_bottle -> PourIn/chili_sauce_bottle/bowl/chili_sauce')
-task_plan.append(' -> Place/chili_sauce_bottle/table/ing_bottle -> PickUp/greek_salad_dressing_bottle -> PourIn/greek_salad_dressing_bottle/bowl/greek_salad_dressing')
-task_plan.append(' -> Place/greek_salad_dressing_bottle/table/ing_bottle -> PickUp/sour_cream_bottle -> PourIn/sour_cream_bottle/bowl/sour_cream')
-task_plan.append(' -> Place/sour_cream_bottle/table/ing_bottle -> PickUp/spatula -> Stir/bowl/salad_mix/spatula')
-task_plan.append(' -> Place/spatula/table/tool -> PickUp/pineapple -> Place/pineapple/cutting_board/ingredient -> PickUp/knife -> Dice/pineapple/knife')
-task_plan.append(' -> Place/knife/table/tool -> PickUp/raisin -> PutIn/raisin/bowl/None')
-task_plan.append(' -> PickUp/knife -> Scrape/diced_pineapple/bowl/knife')
-task_plan.append(' -> Place/knife/table/tool -> PickUp/spatula -> Stir/bowl/carrot_salad/spatula')
+# task_plan = []
+# task_plan.append(' -> PickUp/carrot -> PutIn/carrot/bowl/None')
+# task_plan.append(' -> PickUp/lemon_juice_bottle -> PourIn/lemon_juice_bottle/bowl/lemon_juice')
+# task_plan.append(' -> Place/lemon_juice_bottle/table/ing_bottle -> PickUp/brown_sugar_bottle -> PourIn/brown_sugar_bottle/bowl/brown_sugar')
+# task_plan.append(' -> Place/brown_sugar_bottle/table/ing_bottle -> PickUp/chili_sauce_bottle -> PourIn/chili_sauce_bottle/bowl/chili_sauce')
+# task_plan.append(' -> Place/chili_sauce_bottle/table/ing_bottle -> PickUp/greek_salad_dressing_bottle -> PourIn/greek_salad_dressing_bottle/bowl/greek_salad_dressing')
+# task_plan.append(' -> Place/greek_salad_dressing_bottle/table/ing_bottle -> PickUp/sour_cream_bottle -> PourIn/sour_cream_bottle/bowl/sour_cream')
+# task_plan.append(' -> Place/sour_cream_bottle/table/ing_bottle -> PickUp/spatula -> Stir/bowl/salad_mix/spatula')
+# task_plan.append(' -> Place/spatula/table/tool -> PickUp/pineapple -> Place/pineapple/cutting_board/ingredient -> PickUp/knife -> Dice/pineapple/knife')
+# task_plan.append(' -> Place/knife/table/tool -> PickUp/raisin -> PutIn/raisin/bowl/None')
+# task_plan.append(' -> PickUp/knife -> Scrape/diced_pineapple/bowl/knife')
+# task_plan.append(' -> Place/knife/table/tool -> PickUp/spatula -> Stir/bowl/carrot_salad/spatula')
 
 
 

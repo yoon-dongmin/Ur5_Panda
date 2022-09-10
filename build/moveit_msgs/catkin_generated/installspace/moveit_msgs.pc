@@ -1,4 +1,4 @@
-prefix=/ur5_panda/install
+prefix=/ros_ws/install
 
 Name: moveit_msgs
 Description: Description of moveit_msgs

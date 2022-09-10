@@ -29,8 +29,8 @@ import sample.club_sandwich
 import sample.tuna_sandwich
 import sample.greek_salad
 import sample.shrimp_salad
-
-from panda_move.srv import Init, InitRequest, InitResponse #InitRequest와 InitResponse는 어디?
+#request와 response할 객체 이름을 정해서 가져옴
+from panda_move.srv import Init, InitRequest, InitResponse  
 from panda_move.srv import Sync, SyncRequest, SyncResponse
 from panda_move.srv import Plan, PlanRequest, PlanResponse
 from panda_move.srv import Hand, HandRequest, HandResponse
@@ -40,21 +40,18 @@ from panda_move.msg import ExecutionCheck
 # Set Path
 ## dirname(__FILE__) echo __FILE__; // 파일명을 포함한 경로
 ## echo dirname(__FILE__); //파일명을 제외한 경로
-YAML_PATH = dirname(dirname(__file__)) + '/config/'
-POSE_INFO_PATH = YAML_PATH + 'object_pose_info.yaml'
-STL_INFO_PATH = YAML_PATH + 'object_stl_info.yaml'
-PLACEMENT_INFO_PATH = YAML_PATH + 'placement_pose_info.yaml'
-STL_PATH = dirname(dirname(dirname(__file__))) + '/object_sample/'  #mesh 파일과 관련?
-
-#이거 사용?
-SAUCES = ['mayonnaise', 'sugar', 'pepper', 'salt', 'black_pepper', 'lemon_juice', 'olive_oil']
+YAML_PATH = dirname(dirname(__file__)) + '/config/' #panda_move/config
+POSE_INFO_PATH = YAML_PATH + 'object_pose_info.yaml' #object grasp pose가 있는 파일 
+STL_INFO_PATH = YAML_PATH + 'object_stl_info.yaml' #object pose와 scale이 있는 파일 
+PLACEMENT_INFO_PATH = YAML_PATH + 'placement_pose_info.yaml' #cutting_board와 같은 placement_pose가 있는 파일
+STL_PATH = dirname(dirname(dirname(__file__))) + '/object_sample/'  #object 종류가 들어있는 파일
 
 def import_yaml(file_path):
-    with open(file_path) as f:  # Path
+    with open(file_path) as f:  
         yaml_data = yaml.load(f, Loader=yaml.FullLoader)
     return yaml_data
 
-def pressEnter(msg):  #마우스 제어?
+def pressEnter(msg):  #마우스 제어? 현제 사용x
     if msg.status:
         pyautogui.press('enter')
 
@@ -74,7 +71,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         self.marker_pub = rospy.Publisher('action', Marker, queue_size=1) #marker publisher
 
         # key=object state, val=object list
-        self.objects = defaultdict(list) 
+        self.objects = defaultdict(list)  #default값이 list인 딕션어리
         # obj instance -> obj type
         self.instance_type = dict()
         # place area -> list of placement pose name
@@ -82,67 +79,67 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         # key=container, val=(sorted)list of objects
         self.contain_objects = dict()
         # key=object, val=number of pour
-        self.num_of_pour = defaultdict(int)
+        self.num_of_pour = defaultdict(int) #default값이 int인 딕션어리
         # self.execution_check()
         # check_thread = threading.Thread(target=self.execution_check)
         # check_thread.start()
 
     #add objects to the scene and initialize lists
-    def initialize(self, arrange_info, fixed_pose=None):
-        try:
-            # Temp (table setup)
-            # raw_input("table1")
-            # self.add_box("table1", [0.5, 0, 0.2, 0, 0, 0], (0.5, 3, 0.4))
-            # raw_input("table2")
-            # self.panda.add_box("table2", )
-            
+    def initialize(self, arrange_info, fixed_pose=None): #arrang_info = sandwich.obj_place 
+        try:     
             # initialize self.place_area_poses
-            for key, val in self.placement_yaml.items():
+            for key, val in self.placement_yaml.items(): #config에 있는 파일
                 for area in val['area']: #value값이 'area'인것에 대해서
-                    self.place_area_poses[area].append(key) #place_area_poses에 key값 추가
+                    self.place_area_poses[area].append(key) #key:area([stove_cookware_area]) value:stove_1 =>같은 area를 가지는 key값 존재
+            #check self.object가 add object한 후 추가?
 
-            for (obj_instance, obj_type, place_area, obj_state) in arrange_info:
+            # temp = []
+            for (obj_instance, obj_type, place_area, obj_state) in arrange_info: #왜 ingredient가 2번 들어감? => bread같은 경우 bread1,bread2,bread3 존재
                 # add object
-                placement = self._select_pose_from_area(obj_type, place_area) #placement가 selected pose
-                self._arrange(obj_instance, obj_type, placement) # add object
+                placement = self._select_pose_from_area(obj_type, place_area) #placement 선택
+                self._arrange(obj_instance, obj_type, placement) # 그 placement에 add object
 
                 # initialize obj_state
                 if obj_state is not None:
-                    self.objects[obj_state].append(obj_instance)
-
+                    self.objects[obj_state].append(obj_instance) #ex) key:activated value:tomato =>self.objects 추가 
+                    
+                
+                # temp.append([obj_state, obj_instance])
+                #
+                #
                 # initialize obj_instance
-                self.instance_type[obj_instance] = obj_type
-
+                self.instance_type[obj_instance] = obj_type # self.instance_type 추가 
+            # for (a, b) in temp:
+            #       self.objects[a] = b
             raw_input("Initial Scene Configuration Completed")
 
         except Exception as e:
             rospy.logerr(e)
 
-
+    #ingredient를 possible_area에 random하게 배치
     def _select_pose_from_area(self, obj, obj_to_area):
         candidate_poses = []
         feasible_poses = []
         selected_pose = None
 
         # update place pose state
-        place_available, _ = self._update_place_pose_state()
+        place_available, _ = self._update_place_pose_state() #activated한 obj에 대해서
         print('-'*30)
         print(place_available)
 
         # candidate_poses
-        candidate_poses = self.place_area_poses[obj_to_area]
+        candidate_poses = self.place_area_poses[obj_to_area] #레시피 파일의 place_area
         print('candidate_poses', candidate_poses)
 
         # feasible_poses
-        # place_pose_state에 없다면?
-        for pose in candidate_poses:
-            if not place_available[pose]:
+        for pose in candidate_poses: #하나의 area에 대한 여러개 candidate중
+            if not place_available[pose]: #obj가 없으면 추가
                 feasible_poses.append(pose)
         print('feasible_poses', feasible_poses)
 
         # selected_pose
         if feasible_poses:
-            selected_pose = random.choice(feasible_poses)        
+            selected_pose = random.choice(feasible_poses) #random하게 하나 선택     
         print('selected_pose', selected_pose)
         print('-'*30)
 
@@ -165,11 +162,11 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         # get collision object poses from Planing Scene 
         # 딕션어리 형태로 collision object pose들을 가져옴
         obj_poses = dict() 
-        for obj in self.objects['activated']:
-            obj_pose = self.get_object_pose(obj)
+        for obj in self.objects['activated']: #activated인 object에 대해서
+            obj_pose = self.get_object_pose(obj) #poselevelmotion의 pose값 구하는 함수
             rospy.loginfo("obj={}, obj_pose={}".format(obj, obj_pose))
-            if obj_pose:
-                obj_poses[obj] = obj_pose
+            if obj_pose: #값이 있으면
+                obj_poses[obj] = obj_pose 
             else:
                 rospy.logerr("self.objects", self.objects)
                 exit()
@@ -193,9 +190,9 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
             if place_pose_state[key]:
                 rospy.loginfo("key={}, val={}".format(key, place_pose_state[key]))
                 sorted_obj = sorted(place_pose_state[key], key=lambda x: x.get('z'))
-                place_pose_state[key] = [obj['name'] for obj in sorted_obj]       
+                place_pose_state[key] = [obj['name'] for obj in sorted_obj] #key:table1_empty_1 value:tomatto => 하나씩 존재
         
-        return place_pose_state, obj_poses.keys()
+        return place_pose_state, obj_poses.keys() 
 
 
 
@@ -203,30 +200,30 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
     def _arrange(self, obj_name, obj_type, placement): #check
         try:
-            placement_pose = self.placement_yaml[placement]['pose']
-            place_pose = self._make_place_pose(obj_type)
-            place_pose_inv = utils.inv_trans_mat(place_pose)
+            placement_pose = self.placement_yaml[placement]['pose'] # placement_pose값을 가져옴
+            place_pose = self._make_place_pose(obj_type) #obj에 대한 place_pose를 가져옴
+            place_pose_inv = utils.inv_trans_mat(place_pose) # inverse로 변경
             
-            object_pose = utils.concatenate_to_pose_list(placement_pose, place_pose_inv)
+            object_pose = utils.concatenate_to_pose_list(placement_pose, place_pose_inv) #최종적으로 object pose 구함
             object_mesh = STL_PATH + self.obj_stl_yaml[obj_type]['file_name']
             object_size = self.obj_stl_yaml[obj_type]['scale']
-            frame_id = self.placement_yaml[placement]['frame_id']
+            frame_id = self.placement_yaml[placement]['frame_id'] #world로 동일
 
             # raw_input(obj_name)
             rospy.loginfo(obj_name)
-            self.add_object(obj_name, object_pose,
-                            object_mesh, object_size, frame_id)
+            self.add_object(obj_name, object_pose, 
+                            object_mesh, object_size, frame_id) #obj 추가
 
         except Exception as e:
             rospy.logerr(e)
 
-    #thickness와 orient를 고려하여 place pose를 설정
+    #thickness와 orient를 고려하여 obj의 place pose를 설정
     def _make_place_pose(self, obj_type):
-        if 'place_pos' in self.obj_pose_yaml[obj_type].keys():
-            place_pos = self.obj_pose_yaml[obj_type]['place_pos']
+        if 'place_pos' in self.obj_pose_yaml[obj_type].keys(): #knife, spatula, scooper, spreader
+            place_pos = self.obj_pose_yaml[obj_type]['place_pos'] # 파일에 있는 값 가져옴
         else:
-            place_pos = [0, 0, -self.obj_stl_yaml[obj_type]['thickness'][0]-0.001]
-        place_orient = utils.rpy_to_quaternion_list(self.obj_pose_yaml[obj_type]['place_orient'])
+            place_pos = [0, 0, -self.obj_stl_yaml[obj_type]['thickness'][0]-0.001] #이외의 모든 obj에 대한 thickness를 가져옴 ex)[0,0,0.0006]
+        place_orient = utils.rpy_to_quaternion_list(self.obj_pose_yaml[obj_type]['place_orient']) #orient를 가져옴 euler -> quaternion
         place_pose = place_pos + place_orient
 
         return place_pose
@@ -235,37 +232,36 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
     ### Unity - ROS Communication Method Start ###
     #Send initial configuration scene to Unity
-    #다시 check
     def init_sync(self):
         if self.unity == True: #unity와 연결되어 있을때
             try:
                 rospy.wait_for_service("init_sync")
-                init_sync_client = rospy.ServiceProxy("init_sync", Init)
-                init_sync_req = InitRequest() #init_request
+                init_sync_client = rospy.ServiceProxy("init_sync", Init) #Client 객체 생성
+                init_sync_req = InitRequest() #obj의 정보와 joint정보를 request할 객체 생성
 
-                joint_state = self.robot.get_current_state().joint_state.position
-                init_sync_req.joint_state = joint_state
+                joint_state = self.robot.get_current_state().joint_state.position #현재 로봇의 joint state를 가져옴
+                init_sync_req.joint_state = joint_state #joint state의 정보를 담음
 
                 for i in range(len(self.objects["activated"])): #activate된 object에 대해서 name,type,position,orientation정보를 가져옴
                     temp_name = self.objects["activated"][i]
-                    temp_type = self.instance_type[temp_name]
+                    temp_type = self.instance_type[temp_name] #bread1 -> bread
                     temp_position = self.get_object_pose(temp_name).position
                     temp_orientation = self.get_object_pose(
                         temp_name).orientation
 
-                    init_sync_req.activated_object.append(temp_name)
+                    init_sync_req.activated_object.append(temp_name) #이름 정보 담음
                     # init_sync_req.object_name.append(temp_name)
                     # scale과 관련된 정보 
-                    init_sync_req.position.append(temp_position)
-                    init_sync_req.orientation.append(temp_orientation)
-                    temp_scale = geometry_msgs.msg.Vector3()
+                    init_sync_req.position.append(temp_position) #position 정보 담음
+                    init_sync_req.orientation.append(temp_orientation) #orientation 정보 담음
+                    temp_scale = geometry_msgs.msg.Vector3() #Vector3라는 객체 생성
                     temp_scale.x = self.obj_stl_yaml[temp_type]["scale"][0]
                     temp_scale.y = self.obj_stl_yaml[temp_type]["scale"][1]
                     temp_scale.z = self.obj_stl_yaml[temp_type]["scale"][2]
-                    init_sync_req.scale.append(temp_scale)
+                    init_sync_req.scale.append(temp_scale) #scale에 대한 정보 담음
                 
-                init_sync_res = init_sync_client(init_sync_req)
-                if init_sync_res.init_state == 1:
+                init_sync_res = init_sync_client(init_sync_req) #request할 정보를 담아서 전달후 response 받음
+                if init_sync_res.init_state == 1: #response를 받으면 1
                     raw_input("Initialization Sync Completed")
                 else:
                     rospy.loginfo("[Unity Error] Initialization Sync Failed")
@@ -280,27 +276,28 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         if self.unity == True:
             try:
                 rospy.wait_for_service("scene_sync")
-                scene_sync_client = rospy.ServiceProxy("scene_sync", Sync)
+                scene_sync_client = rospy.ServiceProxy("scene_sync", Sync) 
                 scene_sync_req = SyncRequest()
-                scene_sync_req.activated_object = self.objects["activated"]
+                scene_sync_req.activated_object = self.objects["activated"] #activated obj를 request (deactivated ->activated)
 
-                scene_sync_res = scene_sync_client(scene_sync_req)
+                scene_sync_res = scene_sync_client(scene_sync_req) #request할 정보를 담아서 전달후 response 받음
                 #joint와 관련된 정보
-                for i in range(len(scene_sync_res.joint_state)):
+                for i in range(len(scene_sync_res.joint_state)): #unity의 joint state
                     if i == 0:
-                        self.joint[i].move(scene_sync_res.joint_state[i])
+                        self.joint[i].move(scene_sync_res.joint_state[i]) #pose_level_motion에서 정의한 것들
                     elif i > 0 and i < 7:
                         self.joint[i].move(
-                            scene_sync_res.joint_state[i] * m.pi / 180)
+                            scene_sync_res.joint_state[i] * m.pi / 180) # 왜 / 180?
                     else:
-                        self.joint[i].move(scene_sync_res.joint_state[i])
+                        self.joint[i].move(scene_sync_res.joint_state[i]) #eef 
 
-                for i in range(len(scene_sync_res.object_name)):
+                #rviz상 scene update
+                for i in range(len(scene_sync_res.object_name)): 
                     temp_name = scene_sync_res.object_name[i]
                     temp_pose = geometry_msgs.msg.Pose()
                     temp_pose.position = scene_sync_res.position[i]
                     temp_pose.orientation = scene_sync_res.orientation[i]
-                    self.update_object_pose(temp_name, temp_pose)
+                    self.update_object_pose(temp_name, temp_pose) #rviz상 scene update
                 rospy.loginfo("Scene Sync Completed")
 
             except Exception as e:
@@ -320,7 +317,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
                 hand_sync_req.object_name = object_name
                 hand_sync_req.grasp_size = grasp_size
 
-                hand_sync_res = hand_sync_client(hand_sync_req)
+                hand_sync_res = hand_sync_client(hand_sync_req) #바로 request
 
                 if hand_sync_res.execute_state == 1:
                     rospy.loginfo("Hand Sync Completed")
@@ -334,17 +331,17 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
             pass
 
     #send plan trajectoryof panda to Unity
-    def panda_plan(self, plan_i): 
+    def panda_plan(self, plan_i): #plan을 입력받음
         if self.unity == True:
             try:#panda_plan_req정보를 전달
                 rospy.wait_for_service("panda_plan")
                 panda_plan_client = rospy.ServiceProxy("panda_plan", Plan)
                 panda_plan_req = PlanRequest()
-                panda_plan_req.trajectories.append(plan_i)
+                panda_plan_req.trajectories.append(plan_i) 
 
-                panda_plan_res = panda_plan_client(panda_plan_req)
+                panda_plan_res = panda_plan_client(panda_plan_req) #trajectories 정보 request
 
-                if panda_plan_res.execute_state == 1:
+                if panda_plan_res.execute_state == 1: #response
                     raw_input("Plan Execution Complelted")
                 else:
                     rospy.loginfo("[Unity Error] Plan Execution Failed")
@@ -474,7 +471,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
 
 
-    def get_current_state(self):
+    def get_current_state(self): #현재 사용?
         place_pose_state, obj_list = self._update_place_pose_state()
         current_state = self._to_symbolic_state(place_pose_state, obj_list)
 
@@ -483,6 +480,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
     #함수 안 함수
     def run(self, action):
+        #marker 함수
         def marker_msg(action):
             marker_ = Marker()
             marker_.header.frame_id = "/table1"
@@ -559,7 +557,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         # Parameter
         pre_dist = 0.1
-        if 'place_pos' in self.obj_pose_yaml[obj_type].keys(): #'place_pos'가 obj_pose_yaml에 있다면
+        if 'place_pos' in self.obj_pose_yaml[obj_type].keys(): #knife,...
             place_pos = self.obj_pose_yaml[obj_type]['place_pos'] #그 값을 가져옴
         else: #thickness에서 가져옴?
             place_pos = [0, 0, -self.obj_stl_yaml[obj_type]['thickness'][0]-0.001]
@@ -569,8 +567,8 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         placement_pose = self.placement_yaml[obj_to_pose]['pose']
 
         # Move to pre place pose
-        pre_dist_pose = [0, 0, pre_dist, 0, 0, 0, 1]
-        place_pose = place_pos + place_orient #값 or 좌표??
+        pre_dist_pose = [0, 0, pre_dist, 0, 0, 0, 1] #up
+        place_pose = place_pos + place_orient 
         place_pose_inv = utils.inv_trans_mat(place_pose) # inv_trans_mat을 이용하여 값을 변경
         pre_pose = utils.concatenate_to_pose(pre_dist_pose, placement_pose, place_pose_inv, grasp_pose) #concatenate_to_pose를 이용하여 pre_pose를 가져옴
         temp_plan, mp_info = self.move_to(pre_pose, False) #위의 구한 pre_pose를 이용하여 move
@@ -641,29 +639,30 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         
         # Parameter
         # 다음 4개의 parameter를 초기에 설정
-        pre_dist = 0.1
-        post_dist = 0.1 # 0.2
+        pre_dist = 0.1 # down
+        post_dist = 0.1 # up
+        #gripper size와 grasp할 위치를 가져옴
         grasp_size = self.obj_pose_yaml[obj_type]['grasp_size']
         grasp_pose = self.obj_pose_yaml[obj_type]['grasp_pose']
         
         # Move to pre-grasp pose
-        obj_pose = self.get_object_pose(obj)
-        pre_dist_pose = [0, 0, -pre_dist, 0, 0, 0, 1]
+        obj_pose = self.get_object_pose(obj) #inv 필요x
+        pre_dist_pose = [0, 0, -pre_dist, 0, 0, 0, 1] #[0,0,-0.1,0,0,0,1]
         #pre-pick_up motion
-        pre_pose = utils.concatenate_to_pose(obj_pose, grasp_pose, pre_dist_pose) 
+        pre_pose = utils.concatenate_to_pose(obj_pose, grasp_pose, pre_dist_pose) #obj위치 + gripper위치 + 초기위치
         temp_plan, mp_info = self.move_to(pre_pose, False)
         mp_infos.append(mp_info)
 
         if not mp_info['success']:
             return False, mp_infos
         # Service request to Unity
-        # Unity에 적용?
+        # Unity에 적용
         self.panda_plan(temp_plan)
         self.scene_sync()
 
         # Move to grasp pose
         # end-effector를 조절
-        temp_plan, mp_info = self.linear_motion([0, 0, pre_dist], True, "eef")
+        temp_plan, mp_info = self.linear_motion([0, 0, pre_dist], True, "eef") #eef를 사용하여 아래로 더 내려감
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos
@@ -673,13 +672,13 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
         
         # Get object hierarchy
         # 이 부분 check
-        obj_hierarchy = [obj] #object가 들어있는 list로 만든다?
-        if obj in self.contain_objects.keys():
+        obj_hierarchy = [obj] #object가 들어있는 list로 만든다? => 여러 obj handle
+        if obj in self.contain_objects.keys(): #put_on과 같은 motion에서 추가됨
             obj_hierarchy += copy.deepcopy(self.contain_objects[obj])
         rospy.loginfo("obj_hierarchy = {}".format(obj_hierarchy))
         
         # Grasp target object
-        # 위에서 구한 obj_hierarchy를 이용하여 hold
+        # 위에서 구한 obj_hierarchy를 hold
         _, mp_info = self.hold_object(obj_hierarchy, grasp_size)
         mp_infos.append(mp_info)
         if not mp_info['success']:
@@ -689,11 +688,12 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         # Change object state
         for obj in obj_hierarchy: #obj_hierarchy에 대해서
+            #activated는 제거 attached는 추가
             self.objects['activated'].remove(obj)
-            self.objects['attached'].append(obj)
+            self.objects['attached'].append(obj) 
 
         # Move to post-grasp pose
-        temp_plan, mp_info = self.linear_motion([0, 0, post_dist], True)
+        temp_plan, mp_info = self.linear_motion([0, 0, post_dist], True) #다시 올라옴 check
         mp_infos.append(mp_info)
         if not mp_info['success']:
             return False, mp_infos
@@ -983,7 +983,7 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
 
         # Cutting
         for i in range(chop_num):        
-            temp_plan, mp_info = self.reciprocating_motion('Z', cut_size, False)
+            temp_plan, mp_info = self.reciprocating_motion('Z', cut_size, False) #chop을 하기 위해서 collision을 false?
             mp_infos.append(mp_info)
             if not mp_info['success']:
                 return False, mp_infos
@@ -1558,12 +1558,12 @@ class ObjectLevelMotion(PoseLevelMotion): #poselevelmotion을 상속받음
     
 def main():
     use_moveit = True
-    use_unity = True
+    use_unity = False
 
     # sample
-    # sandwich = sample.club_sandwich
+    sandwich = sample.club_sandwich
     # sandwich = sample.tuna_sandwich
-    sandwich = sample.greek_salad
+    # sandwich = sample.greek_salad
     # sandwich = sample.shrimp_salad
     # sandwich = sample.test_15_predict3_v2
     # sandwich = sample.test_33_predict2_v2
@@ -1595,7 +1595,8 @@ def main():
     if use_moveit:
         obj_test = ObjectLevelMotion(use_unity)
         obj_test.initialize(sandwich.obj_place) #recipe의 object_place를 가져옴
-    obj_test.pick_up('onion')
+    obj_test.pick_up('mayonnaise_bottle')
+    obj_test.pour('mayonnaise_bottle','bread2','mayonnaise') #(self, obj, obj_to, new_obj) Pour/mayonnaise_bottle/bread2/mayonnaise
     obj_test.place('onion','cutting_board','ingredient')
     obj_test.pick_up('knife') 
     obj_test.chop('onion')

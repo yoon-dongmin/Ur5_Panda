@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /ur5_panda/devel/setup.sh
+    local-name: /ros_ws/devel/setup.sh

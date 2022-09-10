@@ -1,8 +1,8 @@
-# Install script for directory: /ur5_panda/src/urpanda_moveit
+# Install script for directory: /ros_ws/src/urpanda_moveit
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/ur5_panda/install")
+  set(CMAKE_INSTALL_PREFIX "/ros_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,25 +38,25 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/ur5_panda/build/urpanda_moveit/catkin_generated/installspace/urpanda_moveit.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/ros_ws/build/urpanda_moveit/catkin_generated/installspace/urpanda_moveit.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urpanda_moveit/cmake" TYPE FILE FILES
-    "/ur5_panda/build/urpanda_moveit/catkin_generated/installspace/urpanda_moveitConfig.cmake"
-    "/ur5_panda/build/urpanda_moveit/catkin_generated/installspace/urpanda_moveitConfig-version.cmake"
+    "/ros_ws/build/urpanda_moveit/catkin_generated/installspace/urpanda_moveitConfig.cmake"
+    "/ros_ws/build/urpanda_moveit/catkin_generated/installspace/urpanda_moveitConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urpanda_moveit" TYPE FILE FILES "/ur5_panda/src/urpanda_moveit/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urpanda_moveit" TYPE FILE FILES "/ros_ws/src/urpanda_moveit/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urpanda_moveit" TYPE DIRECTORY FILES "/ur5_panda/src/urpanda_moveit/launch" REGEX "/setup\\_assistant\\.launch$" EXCLUDE)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urpanda_moveit" TYPE DIRECTORY FILES "/ros_ws/src/urpanda_moveit/launch" REGEX "/setup\\_assistant\\.launch$" EXCLUDE)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urpanda_moveit" TYPE DIRECTORY FILES "/ur5_panda/src/urpanda_moveit/config")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/urpanda_moveit" TYPE DIRECTORY FILES "/ros_ws/src/urpanda_moveit/config")
 endif()
 
