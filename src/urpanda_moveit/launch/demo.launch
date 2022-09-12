@@ -50,10 +50,10 @@
   </include>
 
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
-  <include file="$(find urpanda_moveit)/launch/moveit_rviz.launch">
+  <!-- <include file="$(find urpanda_moveit)/launch/moveit_rviz.launch">
     <arg name="rviz_tutorial" value="$(arg rviz_tutorial)"/>
     <arg name="debug" value="$(arg debug)"/>
-  </include>
+  </include> -->
 
   <!-- If database loading was enabled, start mongodb as well -->
   <include file="$(find urpanda_moveit)/launch/default_warehouse_db.launch" if="$(arg db)">

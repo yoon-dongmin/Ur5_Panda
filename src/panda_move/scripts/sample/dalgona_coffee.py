@@ -131,6 +131,7 @@ network_output = (goals, using_ings, recipe)
 ###########################################################
 # # task_plan
 task_plan = []
+#task_plan.append(' -> PickUp/olive_oil_bottle -> Pour/olive_oil_bottle/bowl/olive_oil -> Place/olive_oil_bottle/table/ing_bottle')
 task_plan.append(' -> PickUp/mayonnaise_bottle -> Pour/mayonnaise_bottle/bowl/tuna_spread')
 task_plan.append(' -> Place/mayonnaise_bottle/table/ing_bottle -> PickUp/relish_bottle -> Pour/relish_bottle/bowl/relish')
 task_plan.append(' -> Place/relish_bottle/table/ing_bottle -> PickUp/olive_oil_bottle -> Pour/olive_oil_bottle/bowl/olive_oil')

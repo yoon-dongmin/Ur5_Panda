@@ -19,10 +19,10 @@ from task_planning.problem import StripsProblem
 from object_level_motion import ObjectLevelMotion
 import sample.club_sandwich
 import sample.tuna_sandwich
+import sample.tuna_sandwich2
 import sample.greek_salad
 import sample.shrimp_salad
 import sample.carrot_salad
-import sample.EPIC_salad
 import sample.dalgona_coffee
 
 import sample.test_33_predict2_v2
@@ -441,6 +441,7 @@ def main():
     #sandwich = sample.carrot_salad
     #sandwich = sample.EPIC_salad
     sandwich = sample.dalgona_coffee
+    #sandwich = sample.tuna_sandwich2
     # sandwich = sample.tuna_sandwich
     # sandwich = sample.greek_salad
     # sandwich = sample.shrimp_salad
@@ -497,6 +498,14 @@ def main():
     for action_sequences in total_action_sequences:
         for i, action in enumerate(action_sequences):
             ola_success, ola_info = obj_test.run(action)
+
+            if not ola_success:
+                ola_success, ola_info = obj_test.run(action)
+                print('replan!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+            
+            if not ola_success:
+                ola_success, ola_info = obj_test.run(action)
+                print('replan22222222222222222222222222')
             #print(action,ola_success)
 
 if __name__ == "__main__":
