@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export LD_LIBRARY_PATH='/opt/ros/melodic/lib:/usr/lib/x86_64-linux-gnu:/usr/lib/i386-linux-gnu'
-export PKG_CONFIG_PATH='/opt/ros/melodic/lib/pkgconfig'
-export PWD='/ros_ws/build'
-export PYTHONPATH='/opt/ros/melodic/lib/python2.7/dist-packages'
+export CMAKE_PREFIX_PATH="/carrot_ws/devel:$CMAKE_PREFIX_PATH"
+export PWD='/carrot_ws/build'
+export ROSLISP_PACKAGE_DIRECTORIES='/carrot_ws/devel/share/common-lisp'
+export ROS_PACKAGE_PATH="/carrot_ws/src:$ROS_PACKAGE_PATH"

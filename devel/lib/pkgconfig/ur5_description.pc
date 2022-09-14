@@ -1,4 +1,4 @@
-prefix=/ros_ws/devel
+prefix=/carrot_ws/devel
 
 Name: ur5_description
 Description: Description of ur5_description

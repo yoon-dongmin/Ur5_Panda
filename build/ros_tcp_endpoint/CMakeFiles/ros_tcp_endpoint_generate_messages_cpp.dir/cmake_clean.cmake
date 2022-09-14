@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ros_tcp_endpoint_generate_messages_cpp"
-  "/ros_ws/devel/include/ros_tcp_endpoint/RosUnitySrvMessage.h"
-  "/ros_ws/devel/include/ros_tcp_endpoint/RosUnitySysCommand.h"
-  "/ros_ws/devel/include/ros_tcp_endpoint/RosUnityError.h"
-  "/ros_ws/devel/include/ros_tcp_endpoint/RosUnityTopicList.h"
+  "/carrot_ws/devel/include/ros_tcp_endpoint/RosUnityError.h"
+  "/carrot_ws/devel/include/ros_tcp_endpoint/RosUnitySrvMessage.h"
+  "/carrot_ws/devel/include/ros_tcp_endpoint/RosUnitySysCommand.h"
+  "/carrot_ws/devel/include/ros_tcp_endpoint/RosUnityTopicList.h"
 )
 
 # Per-language clean rules from dependency scanning.

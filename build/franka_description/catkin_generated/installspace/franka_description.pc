@@ -1,4 +1,4 @@
-prefix=/ros_ws/install
+prefix=/carrot_ws/install
 
 Name: franka_description
 Description: Description of franka_description

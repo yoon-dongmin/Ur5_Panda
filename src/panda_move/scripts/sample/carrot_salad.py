@@ -129,7 +129,7 @@ network_output = (goals, using_ings, recipe)
 ###########################################################
 # # task_plan
 task_plan = []
-#task_plan.append(' -> PickUp/olive_oil_bottle -> Pour/olive_oil_bottle/bowl/olive_oil -> Place/olive_oil_bottle/table/ing_bottle')
+# task_plan.append(' -> PickUp/olive_oil_bottle -> Pour/olive_oil_bottle/bowl/olive_oil -> Place/olive_oil_bottle/table/ing_bottle')
 task_plan.append(' -> PickUp/cucumber -> PutOn/cucumber/bowl/None')
 task_plan.append(' -> PickUp/lemon_juice_bottle -> Pour/lemon_juice_bottle/bowl/lemon_juice')
 task_plan.append(' -> Place/lemon_juice_bottle/table/ing_bottle -> PickUp/sugar_bottle -> Pour/sugar_bottle/bowl/sugar')
@@ -138,7 +138,7 @@ task_plan.append(' -> Place/relish_bottle/table/ing_bottle -> PickUp/olive_oil_b
 task_plan.append(' -> Place/olive_oil_bottle/table/ing_bottle -> PickUp/mayonnaise_bottle -> Pour/mayonnaise_bottle/bowl/mayonnaise')
 task_plan.append(' -> Place/mayonnaise_bottle/table/ing_bottle -> PickUp/spatula -> Stir/bowl/oregano/spatula')
 task_plan.append(' -> Place/spatula/table/tool -> PickUp/banana -> Place/banana/cutting_board/ingredient -> PickUp/knife -> Chop/banana/knife' )
-task_plan.append(' -> Place/knife/table/tool -> PickUp/black_olive -> PutOn/black_olive/bowl/None') #chopped_lettuce위에?
+task_plan.append(' -> Place/knife/table/tool -> PickUp/black_olive -> PutOn/black_olive/oregano/None') #chopped_lettuce위에?
 task_plan.append(' -> PickUp/bowl -> Place/bowl/near_cutting_board/dishware -> PickUp/knife -> Scrape/chopped_banana/bowl/knife')
 task_plan.append(' -> Place/knife/table/tool -> PickUp/spatula -> Stir/bowl/salad/spatula')
 #task_plan.append(' -> PickUp/scooper -> Scrape/chopped_banana/bowl/scooper')

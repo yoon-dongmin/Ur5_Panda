@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /ros_ws/src
+CMAKE_SOURCE_DIR = /carrot_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /ros_ws/build
+CMAKE_BINARY_DIR = /carrot_ws/build
 
 # Utility rule file for _catkin_empty_exported_target.
 
@@ -63,10 +63,10 @@ franka_description/CMakeFiles/_catkin_empty_exported_target.dir/build: _catkin_e
 .PHONY : franka_description/CMakeFiles/_catkin_empty_exported_target.dir/build
 
 franka_description/CMakeFiles/_catkin_empty_exported_target.dir/clean:
-	cd /ros_ws/build/franka_description && $(CMAKE_COMMAND) -P CMakeFiles/_catkin_empty_exported_target.dir/cmake_clean.cmake
+	cd /carrot_ws/build/franka_description && $(CMAKE_COMMAND) -P CMakeFiles/_catkin_empty_exported_target.dir/cmake_clean.cmake
 .PHONY : franka_description/CMakeFiles/_catkin_empty_exported_target.dir/clean
 
 franka_description/CMakeFiles/_catkin_empty_exported_target.dir/depend:
-	cd /ros_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /ros_ws/src /ros_ws/src/franka_description /ros_ws/build /ros_ws/build/franka_description /ros_ws/build/franka_description/CMakeFiles/_catkin_empty_exported_target.dir/DependInfo.cmake --color=$(COLOR)
+	cd /carrot_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /carrot_ws/src /carrot_ws/src/franka_description /carrot_ws/build /carrot_ws/build/franka_description /carrot_ws/build/franka_description/CMakeFiles/_catkin_empty_exported_target.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : franka_description/CMakeFiles/_catkin_empty_exported_target.dir/depend
 

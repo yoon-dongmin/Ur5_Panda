@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /ros_ws/src
+CMAKE_SOURCE_DIR = /carrot_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /ros_ws/build
+CMAKE_BINARY_DIR = /carrot_ws/build
 
 # Utility rule file for std_msgs_generate_messages_lisp.
 
@@ -63,10 +63,10 @@ geometry_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/build: std_msgs_gen
 .PHONY : geometry_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 
 geometry_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean:
-	cd /ros_ws/build/geometry_msgs && $(CMAKE_COMMAND) -P CMakeFiles/std_msgs_generate_messages_lisp.dir/cmake_clean.cmake
+	cd /carrot_ws/build/geometry_msgs && $(CMAKE_COMMAND) -P CMakeFiles/std_msgs_generate_messages_lisp.dir/cmake_clean.cmake
 .PHONY : geometry_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/clean
 
 geometry_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend:
-	cd /ros_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /ros_ws/src /ros_ws/src/geometry_msgs /ros_ws/build /ros_ws/build/geometry_msgs /ros_ws/build/geometry_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /carrot_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /carrot_ws/src /carrot_ws/src/geometry_msgs /carrot_ws/build /carrot_ws/build/geometry_msgs /carrot_ws/build/geometry_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : geometry_msgs/CMakeFiles/std_msgs_generate_messages_lisp.dir/depend
 

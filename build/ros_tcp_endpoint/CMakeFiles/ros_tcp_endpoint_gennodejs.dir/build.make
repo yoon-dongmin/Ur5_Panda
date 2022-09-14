@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /ros_ws/src
+CMAKE_SOURCE_DIR = /carrot_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /ros_ws/build
+CMAKE_BINARY_DIR = /carrot_ws/build
 
 # Utility rule file for ros_tcp_endpoint_gennodejs.
 
@@ -63,10 +63,10 @@ ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_gennodejs.dir/build: ros_tcp_endpoi
 .PHONY : ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_gennodejs.dir/build
 
 ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_gennodejs.dir/clean:
-	cd /ros_ws/build/ros_tcp_endpoint && $(CMAKE_COMMAND) -P CMakeFiles/ros_tcp_endpoint_gennodejs.dir/cmake_clean.cmake
+	cd /carrot_ws/build/ros_tcp_endpoint && $(CMAKE_COMMAND) -P CMakeFiles/ros_tcp_endpoint_gennodejs.dir/cmake_clean.cmake
 .PHONY : ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_gennodejs.dir/clean
 
 ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_gennodejs.dir/depend:
-	cd /ros_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /ros_ws/src /ros_ws/src/ros_tcp_endpoint /ros_ws/build /ros_ws/build/ros_tcp_endpoint /ros_ws/build/ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_gennodejs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /carrot_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /carrot_ws/src /carrot_ws/src/ros_tcp_endpoint /carrot_ws/build /carrot_ws/build/ros_tcp_endpoint /carrot_ws/build/ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_gennodejs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : ros_tcp_endpoint/CMakeFiles/ros_tcp_endpoint_gennodejs.dir/depend
 

@@ -68,20 +68,20 @@ stove_2:
   - 1
   type: stove
   area: [stove_cookware_area]
-table1_bowl:
-  child_frame_id: table1_bowl
-  fixed: true
-  frame_id: world
-  pose:
-  - 0.625
-  - 0.875
-  - 0.4
-  - 0
-  - 0
-  - 0
-  - 1
-  type: table1
-  area: [table1_dishware_area]
+# table1_bowl:
+#   child_frame_id: table1_bowl
+#   fixed: true
+#   frame_id: world
+#   pose:
+#   - 0.625
+#   - 0.875
+#   - 0.4
+#   - 0
+#   - 0
+#   - 0
+#   - 1
+#   type: table1
+#   area: [table1_dishware_area]
 table1_cutting_board:
   child_frame_id: table1_cutting_board
   fixed: true
@@ -96,20 +96,20 @@ table1_cutting_board:
   - 1
   type: table1
   area: [table1_cutting_board]
-table1_empty_1:
-  child_frame_id: table1_empty_1
-  fixed: false
-  frame_id: world
-  pose:
-  - 0.625
-  - 0.08499999999999996
-  - 0.4
-  - 0
-  - 0
-  - 0
-  - 1
-  type: table1
-  area: [table1_dishware_area]
+# table1_empty_1:
+#   child_frame_id: table1_empty_1
+#   fixed: false
+#   frame_id: world
+#   pose:
+#   - 0.625
+#   - 0.08499999999999996
+#   - 0.4
+#   - 0
+#   - 0
+#   - 0
+#   - 1
+#   type: table1
+#   area: [table1_dishware_area]
 table1_empty_2:
   child_frame_id: table1_empty_2
   fixed: false

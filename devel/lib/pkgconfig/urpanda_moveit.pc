@@ -1,4 +1,4 @@
-prefix=/ros_ws/devel
+prefix=/carrot_ws/devel
 
 Name: urpanda_moveit
 Description: Description of urpanda_moveit

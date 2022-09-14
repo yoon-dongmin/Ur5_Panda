@@ -1,2 +1,2 @@
-set(panda_move_MESSAGE_FILES "/ros_ws/src/panda_move/msg/Action.msg;/ros_ws/src/panda_move/msg/Predicate.msg;/ros_ws/src/panda_move/msg/ExecutionCheck.msg")
-set(panda_move_SERVICE_FILES "/ros_ws/src/panda_move/srv/Init.srv;/ros_ws/src/panda_move/srv/Sync.srv;/ros_ws/src/panda_move/srv/Plan.srv;/ros_ws/src/panda_move/srv/Hand.srv;/ros_ws/src/panda_move/srv/MotionCheck.srv;/ros_ws/src/panda_move/srv/ActionSequences.srv;/ros_ws/src/panda_move/srv/NewState.srv")
+set(panda_move_MESSAGE_FILES "/carrot_ws/src/panda_move/msg/Action.msg;/carrot_ws/src/panda_move/msg/Predicate.msg;/carrot_ws/src/panda_move/msg/ExecutionCheck.msg")
+set(panda_move_SERVICE_FILES "/carrot_ws/src/panda_move/srv/Init.srv;/carrot_ws/src/panda_move/srv/Sync.srv;/carrot_ws/src/panda_move/srv/Plan.srv;/carrot_ws/src/panda_move/srv/Hand.srv;/carrot_ws/src/panda_move/srv/MotionCheck.srv;/carrot_ws/src/panda_move/srv/ActionSequences.srv;/carrot_ws/src/panda_move/srv/NewState.srv")

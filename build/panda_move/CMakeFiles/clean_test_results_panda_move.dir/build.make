@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /ros_ws/src
+CMAKE_SOURCE_DIR = /carrot_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /ros_ws/build
+CMAKE_BINARY_DIR = /carrot_ws/build
 
 # Utility rule file for clean_test_results_panda_move.
 
@@ -54,7 +54,7 @@ CMAKE_BINARY_DIR = /ros_ws/build
 include panda_move/CMakeFiles/clean_test_results_panda_move.dir/progress.make
 
 panda_move/CMakeFiles/clean_test_results_panda_move:
-	cd /ros_ws/build/panda_move && /usr/bin/python2 /opt/ros/melodic/share/catkin/cmake/test/remove_test_results.py /ros_ws/build/test_results/panda_move
+	cd /carrot_ws/build/panda_move && /usr/bin/python2 /opt/ros/melodic/share/catkin/cmake/test/remove_test_results.py /carrot_ws/build/test_results/panda_move
 
 clean_test_results_panda_move: panda_move/CMakeFiles/clean_test_results_panda_move
 clean_test_results_panda_move: panda_move/CMakeFiles/clean_test_results_panda_move.dir/build.make
@@ -67,10 +67,10 @@ panda_move/CMakeFiles/clean_test_results_panda_move.dir/build: clean_test_result
 .PHONY : panda_move/CMakeFiles/clean_test_results_panda_move.dir/build
 
 panda_move/CMakeFiles/clean_test_results_panda_move.dir/clean:
-	cd /ros_ws/build/panda_move && $(CMAKE_COMMAND) -P CMakeFiles/clean_test_results_panda_move.dir/cmake_clean.cmake
+	cd /carrot_ws/build/panda_move && $(CMAKE_COMMAND) -P CMakeFiles/clean_test_results_panda_move.dir/cmake_clean.cmake
 .PHONY : panda_move/CMakeFiles/clean_test_results_panda_move.dir/clean
 
 panda_move/CMakeFiles/clean_test_results_panda_move.dir/depend:
-	cd /ros_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /ros_ws/src /ros_ws/src/panda_move /ros_ws/build /ros_ws/build/panda_move /ros_ws/build/panda_move/CMakeFiles/clean_test_results_panda_move.dir/DependInfo.cmake --color=$(COLOR)
+	cd /carrot_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /carrot_ws/src /carrot_ws/src/panda_move /carrot_ws/build /carrot_ws/build/panda_move /carrot_ws/build/panda_move/CMakeFiles/clean_test_results_panda_move.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : panda_move/CMakeFiles/clean_test_results_panda_move.dir/depend
 

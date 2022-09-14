@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /ros_ws/src
+CMAKE_SOURCE_DIR = /carrot_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /ros_ws/build
+CMAKE_BINARY_DIR = /carrot_ws/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -137,14 +137,14 @@ install/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /ros_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /ros_ws/build/CMakeFiles /ros_ws/build/ur5/ur5_gazebo/CMakeFiles/progress.marks
-	cd /ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5/ur5_gazebo/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /ros_ws/build/CMakeFiles 0
+	cd /carrot_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /carrot_ws/build/CMakeFiles /carrot_ws/build/ur5/ur5_gazebo/CMakeFiles/progress.marks
+	cd /carrot_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5/ur5_gazebo/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /carrot_ws/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5/ur5_gazebo/clean
+	cd /carrot_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5/ur5_gazebo/clean
 .PHONY : clean
 
 # The main clean target
@@ -154,17 +154,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5/ur5_gazebo/preinstall
+	cd /carrot_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5/ur5_gazebo/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5/ur5_gazebo/preinstall
+	cd /carrot_ws/build && $(MAKE) -f CMakeFiles/Makefile2 ur5/ur5_gazebo/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /ros_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /carrot_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -191,6 +191,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /ros_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /carrot_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

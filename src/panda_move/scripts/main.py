@@ -438,9 +438,9 @@ def main():
 
     # sample
     #sandwich = sample.club_sandwich
-    #sandwich = sample.carrot_salad
+    sandwich = sample.carrot_salad
     #sandwich = sample.EPIC_salad
-    sandwich = sample.dalgona_coffee
+    #sandwich = sample.dalgona_coffee
     #sandwich = sample.tuna_sandwich2
     # sandwich = sample.tuna_sandwich
     # sandwich = sample.greek_salad

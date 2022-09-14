@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /ros_ws/src
+CMAKE_SOURCE_DIR = /carrot_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /ros_ws/build
+CMAKE_BINARY_DIR = /carrot_ws/build
 
 # Utility rule file for std_srvs_generate_messages_cpp.
 
@@ -63,10 +63,10 @@ panda_move/CMakeFiles/std_srvs_generate_messages_cpp.dir/build: std_srvs_generat
 .PHONY : panda_move/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
 
 panda_move/CMakeFiles/std_srvs_generate_messages_cpp.dir/clean:
-	cd /ros_ws/build/panda_move && $(CMAKE_COMMAND) -P CMakeFiles/std_srvs_generate_messages_cpp.dir/cmake_clean.cmake
+	cd /carrot_ws/build/panda_move && $(CMAKE_COMMAND) -P CMakeFiles/std_srvs_generate_messages_cpp.dir/cmake_clean.cmake
 .PHONY : panda_move/CMakeFiles/std_srvs_generate_messages_cpp.dir/clean
 
 panda_move/CMakeFiles/std_srvs_generate_messages_cpp.dir/depend:
-	cd /ros_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /ros_ws/src /ros_ws/src/panda_move /ros_ws/build /ros_ws/build/panda_move /ros_ws/build/panda_move/CMakeFiles/std_srvs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /carrot_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /carrot_ws/src /carrot_ws/src/panda_move /carrot_ws/build /carrot_ws/build/panda_move /carrot_ws/build/panda_move/CMakeFiles/std_srvs_generate_messages_cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : panda_move/CMakeFiles/std_srvs_generate_messages_cpp.dir/depend
 

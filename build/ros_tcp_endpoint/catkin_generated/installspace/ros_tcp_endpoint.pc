@@ -1,4 +1,4 @@
-prefix=/ros_ws/install
+prefix=/carrot_ws/install
 
 Name: ros_tcp_endpoint
 Description: Description of ros_tcp_endpoint

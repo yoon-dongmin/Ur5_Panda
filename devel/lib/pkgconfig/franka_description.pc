@@ -1,4 +1,4 @@
-prefix=/ros_ws/devel
+prefix=/carrot_ws/devel
 
 Name: franka_description
 Description: Description of franka_description
